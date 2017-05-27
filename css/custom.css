@@ -1,0 +1,44 @@
+.parallax-counter-v4 {
+    z-index: 1;
+    height: auto;
+    padding: 30px 0;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    background: rgba(0,0,0,0.5);
+}
+
+.promo-section h2:after,
+.promo-section h2:before {
+  font-size: 16px;
+  content: "\f233";
+  position: absolute;
+  font-family: FontAwesome;
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+}
+
+.btn-u.shade {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.footsie {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  padding-top: 4px;
+}
+
+.footsie p {
+  padding-top: 1em;
+}
+
+.dropdown-menu {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+}

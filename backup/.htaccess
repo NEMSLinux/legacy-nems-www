@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "NEMS-Migrator"
+AuthUserFile /var/www/htpasswd
+Require valid-user
