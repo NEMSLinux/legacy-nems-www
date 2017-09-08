@@ -117,7 +117,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 							<ul class="dropdown-menu">
  							  <li><a href="/monitorix/">Monitorix</a></li>
-							  <li><a href="<?= $self->protocol . '://' . $self->host ?>:8888" target="_blank">RPi-Monitor</a></li>
+							  <li><a href="http://<?= $self->host ?>:8888" target="_blank">RPi-Monitor</a></li>
 							  <li><a href="https://<?= $self->host ?>:10000" target="_blank">Webmin</a></li>
 							</ul>
 						</li>
