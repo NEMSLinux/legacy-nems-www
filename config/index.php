@@ -52,7 +52,7 @@ if (isset($_POST)) {
             <label class="label">Administrator domain/username</label>
             <label class="input">
                 <i class="icon-append fa fa-user"></i>
-                <input type="text" name="domainuser" placeholder="mydomain/Administrator" value="<?= $user3 ?>">
+                <input type="text" name="domainuser" placeholder="mydomain/Administrator" value="<?= $USER3 ?>">
                 <b class="tooltip tooltip-bottom-right">Administrator username for Windows Domain Machines</b>
             </label>
         </section>
@@ -60,7 +60,7 @@ if (isset($_POST)) {
             <label class="label">Administrator Password</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $user4 ?>">
+                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
                 <b class="tooltip tooltip-bottom-right">Administrator password</b>
             </label>
         </section>
@@ -71,7 +71,7 @@ if (isset($_POST)) {
     <fieldset>
 	<?php
 		// figure out the server and port from config or use default port
-		$smtptmp = explode(':',$user7);
+		$smtptmp = explode(':',$USER7);
 		if (count($smtptmp) > 1) $port = intval($smtptmp[1]); else $port = 25;
 		$smtp = trim($smtptmp[0]);
 	?>
@@ -91,7 +91,7 @@ if (isset($_POST)) {
             <label class="label">From Sender Email Address</label>
             <label class="input">
                 <i class="icon-append fa fa-envelope"></i>
-                <input type="email" name="email" placeholder="Email address" value="<?= $user5 ?>">
+                <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
                 <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
             </label>
         </section>
@@ -99,7 +99,7 @@ if (isset($_POST)) {
             <label class="label">SMTP Authentication Username (Typically email address)</label>
             <label class="input">
                 <i class="icon-append fa fa-envelope"></i>
-                <input type="email" name="smtpuser" placeholder="Email address" value="<?= $user9 ?>">
+                <input type="email" name="smtpuser" placeholder="Email address" value="<?= $USER9 ?>">
                 <b class="tooltip tooltip-bottom-right">SMTP Username</b>
             </label>
         </section>
@@ -107,7 +107,7 @@ if (isset($_POST)) {
             <label class="label">SMTP Password</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="smtppassword" placeholder="Password" id="password" value="<?= $user10 ?>">
+                <input type="password" name="smtppassword" placeholder="Password" id="password" value="<?= $USER10 ?>">
                 <b class="tooltip tooltip-bottom-right">SMTP Password</b>
             </label>
         </section>
