@@ -37,7 +37,7 @@ if (isset($_POST)) {
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
   $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
-  file_put_contents('/tmp/transfer.resource.cfg'); // it's fine to save to /tmp since only an authenticated user could inject. This file will be read and loaded by the transfer cron.
+  file_put_contents('/tmp/transfer.resource.cfg',$output); // it's fine to save to /tmp since only an authenticated user could inject. This file will be read and loaded by the transfer cron.
 }
 
 ?>
