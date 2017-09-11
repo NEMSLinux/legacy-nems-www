@@ -28,7 +28,8 @@ function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
 }
 
-if (isset($_POST)) {
+if (isset($_POST) && isset($_POST['email'])) {
+  if ($_POST['port'] == '') $_POST['port'] = 25;
   $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Configuration Interface ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
   $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
   $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
@@ -37,7 +38,7 @@ if (isset($_POST)) {
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
   $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
-  file_put_contents('/tmp/transfer.resource.cfg',$output); // it's fine to save to /tmp since only an authenticated user could inject. This file will be read and loaded by the transfer cron.
+  file_put_contents('/etc/nagios3/resource.cfg',$output); // overwrite the existing config
 }
 
 ?>
@@ -49,7 +50,7 @@ if (isset($_POST)) {
     <header>Windows Domain Access (Hidden from CGIs)</header>
     <fieldset>
         <section>
-            <label class="label">Administrator domain/username</label>
+            <label class="label">Administrator domain/username. If not on a domain, use username only.</label>
             <label class="input">
                 <i class="icon-append fa fa-user"></i>
                 <input type="text" name="domainuser" placeholder="mydomain/Administrator" value="<?= $USER3 ?>">
