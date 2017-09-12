@@ -11,7 +11,8 @@
   }
   include('/var/www/html/inc/header.php');
 
-$resource = file('/etc/nagios3/resource.cfg');
+$resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
+$resource = file($resourcefile);
 if (is_array($resource)) {
   foreach ($resource as $line) {
     if (strstr($line,'$=')) {
@@ -38,7 +39,7 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
   $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
-  file_put_contents('/etc/nagios3/resource.cfg',$output); // overwrite the existing config
+  file_put_contents($resourcefile,$output); // overwrite the existing config
 }
 
 ?>
