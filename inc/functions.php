@@ -12,6 +12,13 @@
       case 'nagios': // /usr/sbin/nagios3 --version
         return '3.5.1';
 	break;
+      case 'platform': // which platform is this for
+        $platform = shell_exec('/home/pi/nems-scripts/info.sh platform');
+	$platform = trim($platform);
+	if ($platform == 'pi') $platform = 'Raspberry Pi';
+	if ($platform == 'xu4') $platform = 'Hardkernel ODROID XU4';
+        return $platform; // version of NEMS currently available on our site
+	break;
     }
   }
 

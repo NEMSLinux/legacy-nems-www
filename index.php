@@ -16,7 +16,7 @@
 				  <div class="col-sm-10 col-sm-offset-1 text-center-xs">
 					<h2><span class="color-green">Nagios</span> Enterprise Monitoring Server</h2>
 					<div class="promo-text">
-            For Raspberry Pi<br />
+            For <?= ver('platform') ?><br />
 						Version <?= ver('nems') ?>
 						<?php if (ver('nems-available') > ver('nems')) echo '<div class="alert alert-warning fade in"><strong>Note:</strong> NEMS ' . ver('nems-available') . ' is available. Please review the changelog on <a href="http://baldnerd.com/nems" target="_blank">our web site</a>.</div></div>'; ?>
 					<div class="promo-next">
