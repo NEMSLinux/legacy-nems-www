@@ -2,7 +2,7 @@
   function ver($product='nems') {
     switch ($product) {
       case 'nems':
-        $nemsver = file_get_contents('/var/www/html/inc/ver.txt');
+        $nemsver = shell_exec('/home/pi/nems-scripts/info.sh nemsver');
         return trim($nemsver); // version of NEMS
         break;
       case 'nems-available': // obtained from our site each day via root cron

@@ -12,6 +12,22 @@
   include('/var/www/html/inc/header.php');
 
 $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
+
+if (isset($_POST) && isset($_POST['email'])) {
+  if ($_POST['port'] == '') $_POST['port'] = 25;
+  $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings interface ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
+  $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
+  $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
+  $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
+  $output .= '$USER5$=' . sanitize($_POST['email']) . PHP_EOL; // The "from address" for notifications
+  $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
+  $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
+  $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
+  file_put_contents($resourcefile,$output); // overwrite the existing config
+}
+
+
+
 $resource = file($resourcefile);
 if (is_array($resource)) {
   foreach ($resource as $line) {
@@ -29,25 +45,35 @@ function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
 }
 
-if (isset($_POST) && isset($_POST['email'])) {
-  if ($_POST['port'] == '') $_POST['port'] = 25;
-  $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Configuration Interface ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
-  $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
-  $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
-  $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
-  $output .= '$USER5$=' . sanitize($_POST['email']) . PHP_EOL; // The "from address" for notifications
-  $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
-  $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
-  $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
-  file_put_contents($resourcefile,$output); // overwrite the existing config
-}
-
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
-  <h2>NEMS System Configuration</h2>
+  <h2>NEMS System Settings</h2>
 
 <form method="post" id="sky-form4" class="sky-form">
+
+    <header>NEMS Settings</header>
+    <fieldset>
+        <section>
+            <label class="label">Navigation Style</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+		Descriptive
+		Technical
+		Klingon
+                <b class="tooltip tooltip-bottom-right">Administrator username for Windows Domain Machines</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">Administrator Password</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
+                <b class="tooltip tooltip-bottom-right">Administrator password</b>
+            </label>
+        </section>
+    </fieldset>
+
     <header>Windows Domain Access (Hidden from CGIs)</header>
     <fieldset>
         <section>
