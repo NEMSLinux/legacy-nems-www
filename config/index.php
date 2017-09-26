@@ -11,6 +11,7 @@
   }
   include('/var/www/html/inc/header.php');
 
+// Nagios config
 $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
 
 if (isset($_POST) && isset($_POST['email'])) {
@@ -25,8 +26,6 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
   file_put_contents($resourcefile,$output); // overwrite the existing config
 }
-
-
 
 $resource = file($resourcefile);
 if (is_array($resource)) {
@@ -44,6 +43,14 @@ if (is_array($resource)) {
 function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
 }
+
+
+// File storage devices
+  $drivestmp = shell_exec('/home/pi/nems-scripts/info.sh drives');
+  $drivestmp = json_decode($drivestmp, true);
+
+print_r($drivestmp);
+exit();
 
 ?>
 
@@ -65,11 +72,11 @@ function sanitize($string) {
             </label>
         </section>
         <section>
-            <label class="label">Administrator Password</label>
+            <label class="label">Migrator Backup Storage</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
-                <b class="tooltip tooltip-bottom-right">Administrator password</b>
+multi-select checkboxes: RAM (Default, must be checked) / SD Card / USB Drive / Network Share / Cloud ($20 / year)
+                <b class="tooltip tooltip-bottom-right">Choose Multiple if Desired</b>
             </label>
         </section>
     </fieldset>
