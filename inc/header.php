@@ -149,9 +149,18 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                 <li><a href="https://donate.category5.tv/" target="_blank"><i class="fa fa-fw fa-credit-card"></i> Donate</a></li>
               </ul>
 						</li>
-						<li>
-							<a href="http://www.baldnerd.com/category/raspberry-pi/nems/" target="_blank">Documentation</a>
+
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								Get Help
+							</a>
+							<ul class="dropdown-menu">
+                <li><a href="https://wiki.nemslinux.com/" target="_blank">NEMS Documentation Wiki</a></li>
+								<li><a href="https://forum.nemslinux.com/" target="_blank">Community Forum</a></li>
+                <li><a href="https://nemslinux.com/" target="_blank">Official NEMS Web Site</a></li>
+					                </ul>
 						</li>
+
 					</ul>
 				</div>
 			</div>
