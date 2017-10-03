@@ -131,7 +131,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							</a>
 							<ul class="dropdown-menu">
 							  <li><a href="/backup/" target="_blank">Backup</a></li>
-							  <li><a href="http://baldnerd.com/nems-migrator-restore/" target="_blank">Restore</a></li>
+							  <li><a href="https://wiki.nemslinux.com/commands/nems-restore/" target="_blank">Restore</a></li>
 							</ul>
 						</li>
 						<li>
@@ -155,8 +155,8 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 								Get Help
 							</a>
 							<ul class="dropdown-menu">
-                <li><a href="https://wiki.nemslinux.com/" target="_blank">NEMS Documentation Wiki</a></li>
-								<li><a href="https://forum.nemslinux.com/" target="_blank">Community Forum</a></li>
+                <li><a href="https://docs.nemslinux.com/" target="_blank">NEMS Documentation</a></li>
+								<li><a href="https://forum.category5.tv/forum-8.html" target="_blank">Community Forum</a></li>
                 <li><a href="https://nemslinux.com/" target="_blank">Official NEMS Web Site</a></li>
 					                </ul>
 						</li>
