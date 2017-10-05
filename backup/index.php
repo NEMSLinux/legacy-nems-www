@@ -1,4 +1,4 @@
 <?php
-  header('location:backup.nems');
+  header('location:snapshot/backup.nems');
   exit();
 ?>
