@@ -16,7 +16,7 @@ $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to re
 
 if (isset($_POST) && isset($_POST['email'])) {
   if ($_POST['port'] == '') $_POST['port'] = 25;
-  $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings interface ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
+  $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings Tool ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
   $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
   $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
   $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
@@ -48,35 +48,42 @@ function sanitize($string) {
 // File storage devices
   $drivestmp = shell_exec('/home/pi/nems-scripts/info.sh drives');
   $drivestmp = json_decode($drivestmp, true);
-
-print_r($drivestmp);
-exit();
+  if (is_array($drivestmp['blockdevices']) && count($drivestmp['blockdevices']) > 0) {
+    foreach ($drivestmp['blockdevices'] as $blockdevice) {
+      if (is_array($blockdevice['children']) && count($blockdevice['children']) > 0) {
+        foreach ($blockdevice['children'] as $partition) {
+          if ($partition['fstype'] != 'swap' && $partition['mountpoint'] != '/boot') {
+            $partitions['usable'][$partition['uuid']] = $partition;
+            if ($partition['mountpoint'] == '/') $partitions['default'] = $partition['uuid'];
+          }
+        }
+      }
+    }
+  }
+// print_r($drivestmp);
 
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
-  <h2>NEMS System Settings</h2>
+  <h2>NEMS System Settings Tool</h2>
 
 <form method="post" id="sky-form4" class="sky-form">
 
-    <header>NEMS Settings</header>
+    <header>NEMS Configuration Options</header>
     <fieldset>
         <section>
-            <label class="label">Navigation Style</label>
-            <label class="input">
-                <i class="icon-append fa fa-user"></i>
-		Descriptive
-		Technical
-		Klingon
-                <b class="tooltip tooltip-bottom-right">Administrator username for Windows Domain Machines</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">Migrator Backup Storage</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-multi-select checkboxes: RAM (Default, must be checked) / SD Card / USB Drive / Network Share / Cloud ($20 / year)
-                <b class="tooltip tooltip-bottom-right">Choose Multiple if Desired</b>
+            <label class="label">Realtime Data Storage</label>
+            <label class="select">
+              <select name="budget">
+                
+                <?php
+                  echo '<option value="' . $partitions['usable'][$partitions['default']]['name'] . '">Default - ' . $partitions['usable'][$partitions['default']]['name'] . ' | ' . $partitions['usable'][$partitions['default']]['size'] . ' | ' . $partitions['usable'][$partitions['default']]['fstype'] . ' | Mounted on ' . $partitions['usable'][$partitions['default']]['mountpoint'] . '</option>';
+                  foreach ($partitions['usable'] as $uuid=>$partition) {
+                    if ($uuid != $partitions['default']) echo '<option value="' . $partition['name'] . '">' . $partition['name'] . ' | ' . $partition['size'] . ' | ' . $partition['fstype'] . ' | Mounted on ' . $partition['mountpoint'] . '</option>';
+                  }
+                ?>
+              </select>
+              <i></i>
             </label>
         </section>
     </fieldset>
@@ -102,7 +109,6 @@ multi-select checkboxes: RAM (Default, must be checked) / SD Card / USB Drive / 
     </fieldset>
 
     <header>SMTP Email Configuration</header>
-    <p>For help, visit the <a href="https://www.baldnerd.com/configuring-email-notifications-in-nems/" target="_blank">documentation</a>.</p>
     <fieldset>
 	<?php
 		// figure out the server and port from config or use default port
@@ -123,7 +129,7 @@ multi-select checkboxes: RAM (Default, must be checked) / SD Card / USB Drive / 
             </label>
         </section>
         <section>
-            <label class="label">From Sender Email Address</label>
+            <label class="label">"From" Sender Email Address</label>
             <label class="input">
                 <i class="icon-append fa fa-envelope"></i>
                 <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
@@ -131,7 +137,7 @@ multi-select checkboxes: RAM (Default, must be checked) / SD Card / USB Drive / 
             </label>
         </section>
         <section>
-            <label class="label">SMTP Authentication Username (Typically email address)</label>
+            <label class="label">SMTP Authentication Username (Typically an email address)</label>
             <label class="input">
                 <i class="icon-append fa fa-envelope"></i>
                 <input type="email" name="smtpuser" placeholder="Email address" value="<?= $USER9 ?>">
