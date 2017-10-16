@@ -66,6 +66,7 @@ function sanitize($string) {
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
   <h2>NEMS System Settings Tool</h2>
+  <p><b>Your NEMS Hardware ID:</b> <?= shell_exec('/usr/bin/nems-info hwid'); ?></p>
 
 <form method="post" id="sky-form4" class="sky-form">
 
