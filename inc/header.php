@@ -94,7 +94,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  Configuration
 							</a>
 							<ul class="dropdown-menu">
-							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . '/config/">NEMS System Settings</a></li>'; ?>
+							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . '/config/">NEMS System Settings Tool</a></li>'; ?>
 							  <li><a href="/nconf/" target="_blank">NEMS Configurator (NConf)</a></li>
 							</ul>
 						</li>
@@ -120,6 +120,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
  							  <li><a href="/monitorix/">Monitorix</a></li>
 							  <li><a href="http://<?= $self->host ?>:8888" target="_blank">RPi-Monitor</a></li>
 							  <li><a href="https://<?= $self->host ?>:10000" target="_blank">Webmin</a></li>
+							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . ':2812" target="_blank"><em>monit</em> Service Monitor</a></li>'; ?>
 							</ul>
 						</li>
 

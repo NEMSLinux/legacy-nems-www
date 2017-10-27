@@ -24,6 +24,11 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
   $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
+
+  # Telegram Account Info
+  $output .= '$USER11$=' . sanitize($_POST['telegram_bot']) . PHP_EOL;
+  $output .= '$USER12$=' . sanitize($_POST['telegram_chatid']) . PHP_EOL;
+
   file_put_contents($resourcefile,$output); // overwrite the existing config
 }
 
@@ -85,6 +90,26 @@ function sanitize($string) {
                 ?>
               </select>
               <i></i>
+            </label>
+        </section>
+    </fieldset>
+
+    <header>Telegram Account Info</header>
+    <fieldset>
+        <section>
+            <label class="label">Your Bot</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="telegram_bot" placeholder="bot123" value="<?= $USER11 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter the name of your bot as provided in the Telegram interface</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">Telegram Chat ID</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="text" name="telegram_chatid" placeholder="chat123" value="<?= $USER12 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your Telegram Chat ID</b>
             </label>
         </section>
     </fieldset>
