@@ -14,7 +14,7 @@
 	break;
       case 'platform': // which platform is this for
         $platform_num = trim(shell_exec('/home/pi/nems-scripts/info.sh platform'));
-        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/?platform=' . $platform_num));
+        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/' . $platform_num));
         return $platform; // version of NEMS currently available on our site
 	break;
     }
