@@ -13,10 +13,8 @@
         return '3.5.1';
 	break;
       case 'platform': // which platform is this for
-        $platform = shell_exec('/home/pi/nems-scripts/info.sh platform');
-	$platform = trim($platform);
-	if ($platform == 'pi') $platform = 'Raspberry Pi';
-	if ($platform == 'xu4') $platform = 'Hardkernel ODROID XU4';
+        $platform_num = trim(shell_exec('/home/pi/nems-scripts/info.sh platform'));
+        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/?platform=' . $platform_num));
         return $platform; // version of NEMS currently available on our site
 	break;
     }
