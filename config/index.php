@@ -94,6 +94,28 @@ function sanitize($string) {
         </section>
     </fieldset>
 
+
+    <fieldset>
+        <section>
+            <label class="label">Optional Services</label>
+            <label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>
+            <label class="toggle"><input name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>
+            <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
+            <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
+<script>
+$(".services").on('click', function(){
+   var checked = $(this).attr('checked');
+   if(checked){
+      var name = $(this).name();
+      var value = $(this).val();
+      $.post('services.php', { name:name,value:value }, function(data){ if ($data == 1) $good = 1; });
+   }
+});
+</script>
+        </section>
+    </fieldset>
+
+
     <header>Telegram Account Info</header>
     <fieldset>
         <section>
