@@ -98,7 +98,12 @@ function sanitize($string) {
     <fieldset>
         <section>
             <label class="label">Optional Services</label>
-            <label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>
+            <?php
+              // Only for Raspberry Pi
+              if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
+                echo '<label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
+              }
+            ?>
             <label class="toggle"><input name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>
             <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
             <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
