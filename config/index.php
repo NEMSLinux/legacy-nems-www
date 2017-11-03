@@ -70,8 +70,8 @@ function sanitize($string) {
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
-  <h2>NEMS System Settings Tool</h2>
-  <p><b>Your NEMS Hardware ID:</b> <?= shell_exec('/usr/bin/nems-info hwid'); ?></p>
+  <h2><b>NEMS</b> <b>S</b>ystem <b>S</b>ettings <b>T</b>ool</h2>
+  <p class="pull-right" style="padding:4px 6px; color: #333 !important;"><b>Your NEMS Hardware ID:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hwid'); ?></span></p>
 
 <form method="post" id="sky-form4" class="sky-form">
 
@@ -103,14 +103,24 @@ function sanitize($string) {
             <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
             <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
 <script>
-$(".services").on('click', function(){
-   var checked = $(this).attr('checked');
-   if(checked){
-      var name = $(this).name();
-      var value = $(this).val();
-      $.post('services.php', { name:name,value:value }, function(data){ if ($data == 1) $good = 1; });
-   }
-});
+window.onload = function() {
+  $(".services").on('click', function(){
+      var thename = $(this).attr('name');
+      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
+      $.ajax({
+          url: 'services.php',
+          type: 'post',
+          data: {
+            name: thename,
+            value: onoff
+          },
+          success: function(response) {
+             console.log(thename+' set to '+onoff);
+          }
+      });
+
+  });
+}
 </script>
         </section>
     </fieldset>

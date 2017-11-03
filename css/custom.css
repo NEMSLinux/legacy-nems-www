@@ -42,3 +42,12 @@
 .dropdown-menu a:hover {
   background: rgba(255, 255, 255, 0.3) !important;
 }
+
+
+.nems-green {
+  color: #72c02c !important;
+}
+
+p {
+  color: #cecece !important;
+}
