@@ -142,5 +142,26 @@
   if (isset($_SERVER['REQUEST_SCHEME'])) $self->protocol = $_SERVER['REQUEST_SCHEME']; else $self->protocol = 'http';
   if (isset($_SERVER['HTTP_HOST'])) $self->host = $_SERVER['HTTP_HOST']; else $self->host = 'nems.local';
 
+  function checkConfEnabled($service) {
+    $response = false;
+    $conf = '/usr/local/share/nems/nems.conf';
+    $tmp = file($conf);
+    if (is_array($tmp)) {
+      foreach ($tmp as $line) {
+        $data = explode('=',$line);
+        $confdata[$data[0]] = $data[1];
+      }
+      if (is_array($confdata) && isset($confdata['service.' . $service])) {
+        if ($confdata['service.' . $service] == 0) {
+          $response = false;
+        } else {
+          $response = true;
+        }
+      } else {
+        $response = true; // it's true because it has not been set otherwise
+      }
+    }
+    return($response);
+  }
 
 ?>

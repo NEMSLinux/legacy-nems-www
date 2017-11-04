@@ -150,10 +150,13 @@ function sanitize($string) {
             <?php
               // Only for Raspberry Pi
               if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
-                echo '<label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
+                if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
               }
+              if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+              echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>';
+
             ?>
-            <label class="toggle"><input name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>
 <script>
 window.onload = function() {
   $(".services").on('click', function(){
