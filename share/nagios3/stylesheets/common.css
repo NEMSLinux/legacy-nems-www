@@ -1,6 +1,6 @@
 html * { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; }
 table * { font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif; -webkit-border-radius: 6px; }
-body { background-image:url(../../images/wood_wall.jpg); }
+/* body { background-image:url(/img/wallpaper/server_room.jpg); } */
 div.logEntries { background-color: #222; font-size: 1.0em; padding: 0px 0px 3px 3px ; } 
 a.homepageURL:Hover { color: #880000; }
 .infoBox { color: #CCC; background-color: #222; padding: 2px; border: 0; }

@@ -75,10 +75,11 @@ function sanitize($string) {
 
 <form method="post" id="sky-form4" class="sky-form">
 
+<div class="col-md-12" style="display:none;">
     <header>NEMS Configuration Options</header>
     <fieldset>
         <section>
-            <label class="label">Realtime Data Storage</label>
+            <label class="label">Realtime Data Storage <font color="red">This feature is coming soon but doesn't do anything yet</font></label>
             <label class="select">
               <select name="budget">
                 
@@ -93,44 +94,34 @@ function sanitize($string) {
             </label>
         </section>
     </fieldset>
+</div>
 
+<div class="row" style="background: #fff; margin: 0;">
 
+  <div class="col-md-4">
+    <header>Windows Domain Access</header>
     <fieldset>
         <section>
-            <label class="label">Optional Services</label>
-            <?php
-              // Only for Raspberry Pi
-              if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
-                echo '<label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
-              }
-            ?>
-            <label class="toggle"><input name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>
-            <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
-            <label class="toggle"><input name="servicename" type="checkbox" class="services"><i></i>service</label>
-<script>
-window.onload = function() {
-  $(".services").on('click', function(){
-      var thename = $(this).attr('name');
-      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
-      $.ajax({
-          url: 'services.php',
-          type: 'post',
-          data: {
-            name: thename,
-            value: onoff
-          },
-          success: function(response) {
-             console.log(thename+' set to '+onoff);
-          }
-      });
-
-  });
-}
-</script>
+            <label class="label">Administrator domain/username. If not on a domain, use username only.</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="domainuser" placeholder="mydomain/Administrator" value="<?= $USER3 ?>">
+                <b class="tooltip tooltip-bottom-right">Administrator username for Windows Domain Machines</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">Administrator Password</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
+                <b class="tooltip tooltip-bottom-right">Administrator password</b>
+            </label>
         </section>
     </fieldset>
 
+  </div>
 
+  <div class="col-md-4">
     <header>Telegram Account Info</header>
     <fieldset>
         <section>
@@ -150,26 +141,45 @@ window.onload = function() {
             </label>
         </section>
     </fieldset>
+  </div>
 
-    <header>Windows Domain Access (Hidden from CGIs)</header>
+  <div class="col-md-4">
+    <header>Optional Services</header>
     <fieldset>
         <section>
-            <label class="label">Administrator domain/username. If not on a domain, use username only.</label>
-            <label class="input">
-                <i class="icon-append fa fa-user"></i>
-                <input type="text" name="domainuser" placeholder="mydomain/Administrator" value="<?= $USER3 ?>">
-                <b class="tooltip tooltip-bottom-right">Administrator username for Windows Domain Machines</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">Administrator Password</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
-                <b class="tooltip tooltip-bottom-right">Administrator password</b>
-            </label>
+            <?php
+              // Only for Raspberry Pi
+              if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
+                echo '<label class="toggle"><input name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
+              }
+            ?>
+            <label class="toggle"><input name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>
+<script>
+window.onload = function() {
+  $(".services").on('click', function(){
+      var thename = $(this).attr('name');
+      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
+      $.ajax({
+          url: 'services.php',
+          type: 'post',
+          data: {
+            name: thename,
+            value: onoff
+          },
+          success: function(response) {
+             console.log(thename+' set to '+onoff);
+          }
+      });
+    alert('Change saved. Please reboot your NEMS server.');
+  });
+}
+</script>
         </section>
     </fieldset>
+  </div>
+
+
+</div>
 
     <header>SMTP Email Configuration</header>
     <fieldset>
