@@ -1,0 +1,19 @@
+
+.showlog { font-size: .9em; background-color: #222; color: #CCC; }
+
+a { color: #CCC; text-decoration: none; }
+a:hover { color: #076107; }
+th { text-align: left; padding: 0 5px; border: 0; }
+td { font-size: .9em; border: 0; }
+hr { border: 0; color: #ededed; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.infoMessage { text-align: center; color: #880000; font-weight: normal; }
+
+.navBoxTitle { font-weight: normal; }
+.navBoxItem { color: #CCC }
+.navBoxFile { color: #CCC; font-weight: normal; text-align: center; }
+
+.dateTimeBreak { font-size: 1.0em; font-weight: normal; background-color: #666; color: #CCC; }

@@ -1,0 +1,107 @@
+
+.tac { background-color: #222; color: #CCC; font-size: .9em; }
+
+a { color: #CCC; text-decoration: none; }
+a:hover { color: #076107; }
+td { font-size: .9em; }
+
+.errorMessage { font-weight: normal; background-color: #222; color: #CCC; }
+.errorDescription { text-align: center; font-weight: normal; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; }
+
+.infoBox { margin: 10px 0px 0px 10px; background-color: #222; color: #CCC; padding: 2; border: 0; }
+.infoBoxTitle { font-weight: normal; color: #CCC; }
+.infoBoxBadProcStatus { color: #880000; }
+
+.title { font-weight: normal; background-color: #222; color: #CCC; }
+.titleItem { background-color: #222;  color: #CCC; }
+.infoBoxBadProcStatus { background-color: #222; color: #880000; }
+
+.healthTitle { font-weight: normal; background-color: #707677; color: #CCC; }
+.healthBox { padding: 2px; background-color: #222; color: #CCC; }
+.healthItem { background-color: #222; color: #CCC; }
+.healthBar { background-color: #222; color: #CCC; }
+
+.perfTitle { font-weight: normal; background-color: #707677; color: #CCC; }
+.perfBox { background-color: #222; color: #CCC; }
+.perfItem { background-color: #222; color: #CCC; }
+.perfValue { background-color: #222; color: #CCC; }
+
+.featureTitle { font-weight: normal; background-color: #707677; color: #CCC; }
+.featureHeader { text-align: center; background-color: #222; color: #CCC; }
+
+.featureEnabled { text-align: center; background-color: #076107; color: #8f8f8f; }
+.featureDisabled { text-align: center; background-color: #880000; color: #b3b3b3; }
+
+.featureEnabledFlapDetection { text-align: center; background-color: #076107; color: #CCC; }
+.featureDisabledFlapDetection { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledServiceFlapDetection { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledServiceFlapDetection { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledHostFlapDetection { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledHostFlapDetection { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemServicesNotFlapping { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemServicesFlapping { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemHostsNotFlapping { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemHostsFlapping { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemDisabledServiceFlapDetection a, .featureItemDisabledHostFlapDetection a, .featureItemServicesFlapping a, .featureItemHostsFlapping a { color: #CCC; }
+.featureItemDisabledServiceFlapDetection a:hover, .featureItemDisabledHostFlapDetection a:hover, .featureItemServicesFlapping a:hover, .featureItemHostsFlapping a:hover { color: #076107; }
+
+.featureEnabledNotifications { text-align: center; background-color: #076107; color: #CCC; }
+.featureDisabledNotifications { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledServiceNotifications { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledServiceNotifications { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledHostNotifications { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledHostNotifications { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemDisabledServiceNotifications a, .featureItemDisabledHostNotifications a { color: #CCC; }
+.featureItemDisabledServiceNotifications a:hover, .featureItemDisabledHostNotifications a:hover { color: #076107; }
+
+.featureEnabledHandlers { text-align: center; background-color: #076107; color: #CCC; }
+.featureDisabledHandlers { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledServiceHandlers { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledServiceHandlers { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledHostHandlers { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledHostHandlers { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemDisabledServiceHandlers a, .featureItemDisabledHostHandlers a { color: #CCC; }
+.featureItemDisabledServiceHandlers a:hover, .featureItemDisabledHostHandlers a:hover { color: #076107; }
+
+.featureEnabledActiveChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureDisabledActiveChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledActiveServiceChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledActiveServiceChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledActiveHostChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledActiveHostChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemDisabledActiveServiceChecks a, .featureItemDisabledActiveHostCheck a { color: #CCC; }
+.featureItemDisabledActiveServiceChecks a:hover, .featureItemDisabledActiveHostCheck a:hover { color: #076107; }
+
+.featureEnabledPassiveChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureDisabledPassiveChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledPassiveServiceChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledPassiveServiceChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemEnabledPassiveHostChecks { text-align: center; background-color: #076107; color: #CCC; }
+.featureItemDisabledPassiveHostChecks { text-align: center; background-color: #880000; color: #CCC; }
+.featureItemDisabledPassiveServiceChecks a, .featureItemDisabledPassiveHostChecks  a { color: #CCC; }
+.featureItemDisabledPassiveServiceChecks a:hover, .featureItemDisabledPassiveHostChecks  a:hover { color: #076107; }
+
+.outageTitle {  font-weight: normal; background-color: #707677; color: #CCC; }
+.outageHeader { text-align: center; background-color: #222; color: #CCC; }
+
+.outageImportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.outageUnimportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.outageUnimportantProblem a, .outageUnimportantProblem a { color: #CCC; }
+.outageUnimportantProblem a:hover, .outageUnimportantProblem a:hover { color: #076107; }
+
+.hostTitle { font-weight: normal; background-color: #707677; color: #CCC; }
+.hostHeader { text-align: center; background-color: #222; color: #CCC; }
+
+.hostImportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.hostUnimportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.hostImportantProblem a, .hostUnimportantProblem a { color: #CCC; }
+.hostImportantProblem a:hover, .hostUnimportantProblem a:hover { color: #076107; }
+
+.serviceTitle {  font-weight: normal; background-color: #707677; color: #CCC; }
+.serviceHeader { text-align: center; background-color: #222; color: #CCC; }
+
+.serviceImportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.serviceUnimportantProblem { text-align: center; background-color: #880000; color: #CCC; }
+.serviceImportantProblem a, .serviceUnimportantProblem a { color: #CCC; }
+.serviceImportantProblem a:hover, .serviceUnimportantProblem a:hover { color: #076107; }

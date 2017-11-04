@@ -1,0 +1,22 @@
+
+.cmd { background-color: #222; color: #CCC; font-size: .9em; }
+
+a { color: #CCC; text-decoration: none; }
+a:hover { color: #076107; }
+th { text-align: left; font-size: .9em; text-align: left; padding: 0 5px; border: 0; }
+td { font-size: .9em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.infoMessage { text-align: center; color: #880000; font-weight: normal; }
+
+.cmdType { font-weight: normal; text-align: center; background-color: #222; }
+
+.commandDescription { text-align: center; padding: 5; border:0; background-color: #222; color: #CCC; }
+.descriptionTitle { text-align: center;  color: #CCC; background-color: #222; }
+
+.optBox { border: 0; }
+form .optBox { text-align: center; padding: 10px; background-color: #222; border: 1px solid #ccc; }
+.optBoxTitle { margin-bottom: 10px; text-align: center; font-weight: normal; }
+.optBoxRequiredItem { background-color: #222; }

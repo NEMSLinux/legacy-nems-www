@@ -1,0 +1,40 @@
+
+.notifications { font-size: .9em; background-color: #222; color: #CCC; }
+
+a { color: #CCC; text-decoration: none; }
+a:hover { color: #076107; }
+th { text-align: left; padding: 0 5px; border: 0; }
+td { font-size: .8em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+
+.linkBox { border: 0; }
+table.linkBox { margin-top: 20px; }
+td.linkBox a { margin-left: 5px; padding-left: 10px; background: url(../../images/interface/menu_li1.gif) 0 0.35em no-repeat; }
+td.linkBox a:hover { background: url(../../images/interface/menu_li2.gif) 0 0.35em no-repeat; }
+
+.dataTitle { text-align: center; background-color: #222; font-weight: normal; font-size: 1.0em; }
+
+.navBoxTitle { font-weight: normal; }
+.navBoxItem {  color: #707677; }
+.navBoxFile { font-weight: normal; text-align: center; color: #707677; }
+
+table.notifications { background-color: #222; padding: 5; }
+th.notifications { font-size: 1.0em; background-color: #707677; color: #CCC; }
+.notificationsOdd { background-color: #222; }
+.notificationsEven { background-color: #333; }
+
+.notificationsOK { background-color: #076107; color: #CCC; text-align: center; }
+.notificationsUNKNOWN { background-color: #bf44b2; color: #CCC; text-align: center; }
+.notificationsWARNING { background-color: #ffa500; color: #CCC; text-align: center; }
+.notificationsCRITICAL { background-color: #880000; color: #CCC; text-align: center; }
+.notificationsACKNOWLEDGEMENT { background-color: #acacac; color: #CCC; text-align: center; }
+.notificationsCUSTOM { background-color: #778899; color: #CCC; text-align: center; }
+
+.notificationsHOSTUP { background-color: #076107; color: #CCC; text-align: center; }
+.notificationsHOSTDOWN { background-color: #880000; color: #CCC; text-align: center; }
+.notificationsHOSTUNREACHABLE { background-color: #bf44b2; color: #CCC; text-align: center; }
+.notificationsHOSTACKNOWLEDGEMENT { background-color: #acacac; color: #CCC; text-align: center; }
+.notificationsHOSTCUSTOM { background-color: #778899; color: #CCC; text-align: center; }

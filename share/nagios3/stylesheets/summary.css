@@ -1,0 +1,58 @@
+
+.summary { font-size: .9em; background-color: #222; color: #CCC; }
+
+a { color: #CCC; text-decoration: none; }
+a:hover { color: #076107; }
+th { text-align: left; font-size: .9em; padding: 0 5px; border: 0; }
+td { font-size: .9em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.infoMessage { text-align: center;  color: #880000; font-weight: normal; }
+
+.linkBox { border: 0; }
+table.linkBox { margin-top: 20px; }
+td.linkBox a { margin-left: 5px; padding-left: 10px; background: url(../../images/interface/menu_li1.gif) 0 0.35em no-repeat; }
+td.linkBox a:hover { background: url(../../images/interface/menu_li2.gif) 0 0.35em no-repeat; }
+
+.reportRange { text-align: center; font-weight: normal; }
+.reportDuration { text-align: center; }
+.reportTime { text-align: center; }
+
+.reportDataEven { background-color: #222; padding: 2; }
+.reportDataOdd { background-color: #333; padding: 2; }
+
+.dataTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+.dataSubTitle { text-align: center; font-weight: normal; }
+
+table.data { background-color: #222; padding: 2; }
+th.data { font-size: .8em; background-color: #707677; color: #CCC; }
+.dataOdd { background-color: #222; }
+.dataEven { background-color: #333; }
+
+.hostUP { background-color: #076107; color: #CCC; }
+.hostDOWN { background-color: #880000; color: #CCC; }
+.hostUNREACHABLE { background-color: #bf44b2; color: #CCC; }
+tr.dataEven td.hostUP, tr.dataEven td.hostDOWN, tr.dataEven .hostUNREACHABLE { text-align: center; }
+tr.dataOdd td.hostUP, tr.dataOdd td.hostDOWN, tr.dataOdd .hostUNREACHABLE { text-align: center; }
+
+.serviceOK { background-color: #076107; color: #CCC; }
+.serviceWARNING { background-color: #ffa500; color: #CCC; }
+.serviceUNKNOWN { background-color: #bf44b2; color: #CCC; }
+.serviceCRITICAL { background-color: #880000; color: #CCC; }
+tr.dataEven td.serviceOK, tr.dataEven td.serviceWARNING, tr.dataEven td.serviceUNKNOWN, tr.dataEven td.serviceCRITICAL { text-align: center; }
+tr.dataOdd td.serviceOK, tr.dataOdd td.serviceWARNING, tr.dataOdd td.serviceUNKNOWN, tr.dataOdd td.serviceCRITICAL { text-align: center; }
+
+.optBoxTitle { font-weight: normal; }
+.optBoxValue { color: #707677; }
+
+.helpfulHint { font-style: italic; text-align: center; }
+
+.dateSelectTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+.dateSelectSubTitle { font-weight: normal; }
+
+.reportSelectTip { font-style: italic; }
+
+.reportSelectTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+.reportSelectSubTitle { text-align: right; }

@@ -1,0 +1,35 @@
+
+.extinfo { background-color: #222; color: #CCC; font-size: .9em; }
+
+a {  color: #CCC;  text-decoration: none; }
+a:hover {  color: #076107;  border-color: #707677; }
+table { border-color: #ccc; border-style: solid; }
+th { text-align: left; font-size: .9em; text-align: left; padding: 0 5px; border: 0; }
+td { font-size: .9em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+
+.linkBox { border: 0; }
+table.linkBox { margin-top: 20px; }
+td.linkBox a { margin-left: 5px;  padding-left: 10px;  background: url(../../images/interface/menu_li1.gif) 0 0.35em no-repeat;  }
+td.linkBox a:hover { background: url(../../images/interface/menu_li2.gif) 0 0.35em no-repeat;  }
+
+.Title { text-align: center; font-weight: normal; font-size: 1.0em; }
+.SectionTitle { text-align: center; font-weight: normal; }
+
+.optionBoxTitle { text-align: center; font-weight: normal; }
+.optionBox { background-color: #ededed; padding: 2; }
+
+.DynamicData { background-color: #222; padding: 2; }
+.StaticData { background-color: #222; padding: 2; }
+.TableHeader { background-color: #707677; color: #222; }
+
+.Item { background-color: #222; font-weight: normal; }
+.DataSource { background-color: #222; }
+.Number {  background-color: #222; }
+
+.Value { background-color: #C4C2C2; color: #CCC; }
+.ValueOk { background-color: #33cc00; color: #CCC; }
+.ValueError { background-color: #880000; color: #CCC; }

@@ -1,0 +1,109 @@
+
+.extinfo { background-color: #222; color: #CCC; font-size: 1.2em; }
+
+a { color: #CCC;  text-decoration: none; }
+a:hover {  color: #076107; border-color: #707677; }
+table { border: 0 }
+th { text-align: left; font-size: .9em; text-align: left; padding: 0 5px; border: 0; }
+td { font-size: .9em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+
+table.linkBox { margin-top: 20px; border: 0; }
+td.linkBox a { margin-left: 5px;  padding-left: 10px;  background: url(../../images/interface/menu_li1.gif) 0 0.35em no-repeat;  }
+td.linkBox a:hover { background: url(../../images/interface/menu_li2.gif) 0 0.35em no-repeat;  }
+
+div.dataTitle { text-align: center; color: #CCC; font-size: 1.2em; margin-bottom: 15px; }
+div.data { text-align: center; font-size: 1.0em; }
+
+div.perfTypeTitle { text-align: right; font-weight: normal; }
+
+table.data { background-color: #ededed; padding: 3px; color: #CCC; }
+th.data { font-size: .8em; background-color: #707677; color: #CCC; }
+.dataOdd { background-color: #222; }
+.dataEven { background-color: #333; }
+
+.optionBoxTitle { text-align: center; font-weight: normal; }
+.optionBox { background-color: #ededed; padding: 3px; }
+
+div.commandTitle { text-align: center; font-weight: normal; font-size: 1.0em; margin-bottom: 15px; }
+
+table.command { background-color: #222; padding: 3px; }
+.command { padding: 2px; }
+
+.commentTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+div.commentNav { text-align: center; }
+
+table.comment { width: 100%; background-color: #222;  padding: 3px; }
+th.comment { text-align: left; font-size: .8em; background-color: #707677; color: #CCC; }
+.commentOdd { background-color: #222; color: #CCC; }
+.commentEven { background-color: #333; color: #CCC; }
+div.comment,a.comment { background-color: #222; text-align: center; }
+
+.downtimeTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+div.downtimeNav { text-align: center; }
+
+table.downtime { width: 100%; background-color: #222; padding: 3px; }
+th.downtime { text-align: left; font-size: .8em;  background-color: #707677; color: #CCC; }
+.downtimeOdd { background-color: #222; }
+.downtimeEven { background-color: #333; }
+
+.notificationsENABLED { background-color: #076107; color: #CCC; text-align: center; }
+.notificationsDISABLED { background-color: #880000; color: #CCC; text-align: center; }
+
+.checksENABLED { background-color: #076107; color: #CCC; text-align: center; }
+.checksDISABLED { background-color: #880000; color: #CCC; text-align: center; }
+
+.eventhandlersENABLED { background-color: #076107; color: #CCC; text-align: center; }
+.eventhandlersDISABLED { background-color: #880000; color: #CCC; text-align: center; }
+
+.flapdetectionENABLED { background-color: #076107; color: #CCC; text-align: center; }
+.flapdetectionDISABLED { background-color: #880000; color: #CCC; text-align: center; }
+
+.notflapping { background-color: #076107; color: #CCC; float: left; }
+.flapping { background-color: #880000; color: #CCC; float: left; }
+
+.downtimeACTIVE { background-color: #880000; color: #CCC; float: left; }
+.downtimeINACTIVE { background-color: #076107; color: #CCC; float: left; }
+
+.processOK { background-color: #076107; color: #CCC; }
+.processUNKNOWN { background-color: #bf44b2; color: #CCC; }
+.processWARNING { background-color: #ffa500; color: #CCC; }
+.processCRITICAL { background-color: #880000; color: #CCC; }
+
+.modeACTIVE { background-color: #076107; color: #CCC; }
+.modeSTANDBY { background-color: #ffa500; color: #CCC; }
+
+div.hostUP, div.hostDOWN, div.hostUNREACHABLE { display: inline; }
+.hostUP { background-color: #076107; color: #CCC; }
+.hostDOWN { background-color: #880000; color: #CCC; }
+.hostUNREACHABLE { background-color: #bf44b2; color: #CCC; }
+tr.dataEven td.hostUP, tr.dataEven td.hostDOWN, tr.dataEven .hostUNREACHABLE { text-align: center; }
+tr.dataOdd td.hostUP, tr.dataOdd td.hostDOWN, tr.dataOdd .hostUNREACHABLE { text-align: center; }
+
+div.serviceOK, div.serviceWARNING, div.serviceUNKNOWN, div.serviceCRITICAL { display: inline; }
+.serviceOK { background-color: #076107; color: #CCC; }
+.serviceWARNING { background-color: #ffa500; color: #CCC; }
+.serviceUNKNOWN { background-color: #bf44b2; color: #CCC; }
+.serviceCRITICAL { background-color: #880000; color: #CCC; }
+tr.dataEven td.serviceOK, tr.dataEven td.serviceWARNING, tr.dataEven td.serviceUNKNOWN, tr.dataEven td.serviceCRITICAL { text-align: center; }
+tr.dataOdd td.serviceOK, tr.dataOdd td.serviceWARNING, tr.dataOdd td.serviceUNKNOWN, tr.dataOdd td.serviceCRITICAL { text-align: center; }
+
+.commandPanel { background-color: #222; }
+.commentPanel { background-color: #222; }
+
+.stateInfoPanel { background-color: #222; }
+.stateStatisticsPanel { background-color: #222; }
+.stateInfoTable1 { background-color: #222; }
+.stateInfoTable2 { background-color: #222; }
+
+.queueTitle { text-align: center; font-weight: normal; font-size: 1.0em; }
+
+table.queue { background-color: #333; padding: 2; }
+th.queue { text-align: left; background-color: #707677; color: #CCC; }
+.queueOdd { background-color: #222; }
+.queueEven { background-color: #222; }
+.queueENABLED { text-align: center; color: #CCC; background-color: #076107; }
+.queueDISABLED { text-align: center; color: #CCC; background-color: #880000; }

@@ -1,0 +1,27 @@
+
+.outages { background-color: #222; color: #CCC; font-size: 1.2em; }
+
+a { color: #CCC;  text-decoration: none; }
+a:hover { color: #076107; }
+table { width: 100% }
+th { text-align: left; padding: 0 5px;  border: 0; }
+td { font-size: .9em; border: 0; }
+
+.errorMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.errorDescription { text-align: center; font-weight: normal; font-size: 1.0em; }
+.warningMessage { text-align: center; color: #880000; font-weight: normal; font-size: 1.0em; }
+.infoMessage { text-align: center; color: #880000; font-weight: normal; }
+
+.itemTotalsTitle { font-size: .9em; text-align: center; }
+
+.dataTitle { text-align: center; font-weight: normal; font-size: 1.0em; margin-bottom: 15px; }
+
+table.data { background-color: #222; padding: 2; }
+th.data { text-align: left; font-size:.8em; background-color: #707677; color: #CCC; }
+.dataOdd { background-color: #222; }
+.dataEven { background-color: #333; }
+
+.hostUP { background-color: #076107; font-weight: normal; }
+.hostDOWN { background-color: #880000; font-weight: normal; }
+.hostUNREACHABLE { background-color: #bf44b2; font-weight: normal; }
+
