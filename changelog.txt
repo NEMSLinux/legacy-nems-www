@@ -1,1 +1,1 @@
-/home/pi/changelog.txt
+/home/nemsadmin/changelog.txt

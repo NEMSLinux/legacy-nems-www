@@ -71,7 +71,7 @@ function sanitize($string) {
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
   <h2><b>NEMS</b> <b>S</b>ystem <b>S</b>ettings <b>T</b>ool</h2>
-  <p class="pull-right" style="padding:4px 6px; color: #333 !important;"><b>Your NEMS Hardware ID:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hwid'); ?></span></p>
+  <p style="padding:4px 6px; color: #aaa !important;"><b>Your NEMS Hardware ID:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hwid'); ?></span></p>
 
 <form method="post" id="sky-form4" class="sky-form">
 
@@ -173,7 +173,7 @@ window.onload = function() {
              console.log(thename+' set to '+onoff);
           }
       });
-    alert('Change saved. Please reboot your NEMS server.');
+    alert('You have turned ' + onoff + ' ' + thename + '. Please reboot your NEMS server for the change to take effect.');
   });
 }
 </script>
