@@ -5,9 +5,12 @@ You have not initialized NEMS yet. Please SSH to your NEMS server and run the <e
 
 <br /><br />
 <pre>
-ssh pi@<?= $self->host ?>
-
-Password: raspberry
-
-sudo nems-init
+<?php
+  if (ver('nems') < 1.3) {
+    echo 'ssh pi@' . $self->host . PHP_EOL . 'Password: raspberry';
+  } else {
+    echo 'ssh nemsadmin@nems.local' . PHP_EOL . 'Password: nemsadmin';
+  }
+  echo PHP_EOL . PHP_EOL . 'sudo nems-init';
+?>
 </pre>
