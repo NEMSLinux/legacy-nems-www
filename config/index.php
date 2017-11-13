@@ -195,13 +195,13 @@ window.onload = function() {
         <section>
             <label class="label">SMTP Server Address</label>
             <label class="input">
-                <input type="text" name="smtp" placeholder="smtp.gmail.com" value="<?= $smtp ?>">
+                <input type="text" name="smtp" placeholder="For example: smtp.gmail.com" value="<?= $smtp ?>">
             </label>
         </section>
         <section>
             <label class="label">SMTP Server Port</label>
             <label class="input">
-                <input type="text" name="port" placeholder="25" value="<?= $port ?>">
+                <input type="text" name="port" placeholder="For example: 25" value="<?= $port ?>">
             </label>
         </section>
         <section>
