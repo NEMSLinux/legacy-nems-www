@@ -21,7 +21,7 @@
 							<div class="tab-pane fade in active" id="day">
 								<div class="row">
 									<div class="col-md-12">
-										<h4>NEMS Raspberry Pi &ndash; <b>One Day Overview</b></h4>
+										<h4>NEMS Linux &ndash; <b>One Day Overview</b></h4>
                                                                                 <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1day.png')) ?></p>
 
 										<div class="row">
@@ -88,7 +88,7 @@
 							<div class="tab-pane fade in" id="week">
 								<div class="row">
 									<div class="col-md-12">
-										<h4>NEMS Raspberry Pi &ndash; <b>One Week Overview</b></h4>
+										<h4>NEMS Linux &ndash; <b>One Week Overview</b></h4>
                                                                                 <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1week.png')) ?></p>
 
 										<div class="row">
@@ -155,7 +155,7 @@
 							<div class="tab-pane fade in" id="month">
 								<div class="row">
 									<div class="col-md-12">
-										<h4>NEMS Raspberry Pi &ndash; <b>One Month Overview</b></h4>
+										<h4>NEMS Linux &ndash; <b>One Month Overview</b></h4>
                                                                                 <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1month.png')) ?></p>
 
 										<div class="row">
@@ -221,7 +221,7 @@
 							<div class="tab-pane fade in" id="year">
 								<div class="row">
 									<div class="col-md-12">
-										<h4>NEMS Raspberry Pi &ndash; <b>One Year Overview</b></h4>
+										<h4>NEMS Linux &ndash; <b>One Year Overview</b></h4>
                                                                                 <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1year.png')) ?></p>
 
 										<div class="row">

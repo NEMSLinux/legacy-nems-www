@@ -29,6 +29,10 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER11$=' . sanitize($_POST['telegram_bot']) . PHP_EOL;
   $output .= '$USER12$=' . sanitize($_POST['telegram_chatid']) . PHP_EOL;
 
+  # Pushover Account Info
+  $output .= '$USER13$=' . sanitize($_POST['pushover_appkey']) . PHP_EOL;
+  $output .= '$USER14$=' . sanitize($_POST['pushover_userkey']) . PHP_EOL;
+
   file_put_contents($resourcefile,$output); // overwrite the existing config
 }
 
@@ -138,6 +142,28 @@ function sanitize($string) {
                 <i class="icon-append fa fa-lock"></i>
                 <input type="text" name="telegram_chatid" placeholder="chat123" value="<?= $USER12 ?>">
                 <b class="tooltip tooltip-bottom-right">Enter your Telegram Chat ID</b>
+            </label>
+        </section>
+    </fieldset>
+  </div>
+
+  <div class="col-md-4">
+    <header>Pushover Account Info</header>
+    <fieldset>
+        <section>
+            <label class="label">API Key</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="pushover_apikey" placeholder="" value="<?= $USER13 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your Pushover API key</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">User Key</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="text" name="pushover_userkey" placeholder="" value="<?= $USER14 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your Pushover User key</b>
             </label>
         </section>
     </fieldset>
