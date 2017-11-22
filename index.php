@@ -101,6 +101,8 @@
 
 				</div><!--/end row-->
 
+	<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>
+
 			</div><!--/end container-->
 
 		</div>
