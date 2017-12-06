@@ -18,7 +18,7 @@ if (isset($_POST) && isset($_POST['email'])) {
   if ($_POST['port'] == '') $_POST['port'] = 25;
   $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings Tool ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
   $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
-  $output .= '$USER2$=' . PHP_EOL; // not used, but must be defined
+  $output .= '$USER2$=/usr/share/nagios3/plugins/eventhandlers' . PHP_EOL; // A default setting, not user-configurable: the path to event handlers
   $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
   $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
   $output .= '$USER5$=' . sanitize($_POST['email']) . PHP_EOL; // The "from address" for notifications
