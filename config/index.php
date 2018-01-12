@@ -77,7 +77,7 @@ $nemsconffile = '/usr/local/share/nems/nems.conf'; // www-admin must have access
 $conf = file($nemsconffile);
 if (is_array($conf)) { // Load the existing conf data
 	foreach ($conf as $line) {
-		$tmp = explode('"',$line);
+		$tmp = explode('=',$line);
 		if (is_array($tmp) && count($tmp) == 2) $nemsconf[trim($tmp[0])] = trim($tmp[1]);
 	}
 }
