@@ -8,8 +8,7 @@
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+	<meta name="author" content="Robbie Ferguson - https://baldnerd.com/">
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
@@ -115,7 +114,6 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  System
 							</a>
 
-
 							<ul class="dropdown-menu">
  							  <li><a href="/monitorix/">Monitorix</a></li>
 							  <li><a href="http://<?= $self->host ?>:8888" target="_blank">RPi-Monitor</a></li>
@@ -143,12 +141,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 								Support Us
 							</a>
 							<ul class="dropdown-menu">
-                <li><a href="https://patreon.com/nems" target="_blank"><i class="fa fa-fw fa-user"></i> Patreon</a></li>
+                						<li><a href="https://patreon.com/nems" target="_blank"><i class="fa fa-fw fa-user"></i> Patreon</a></li>
 								<li><a href="http://www.amazon.com/?tag=cat5tv-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.com</a></li>
 								<li><a href="http://www.amazon.ca/?tag=cattectv06-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.ca</a></li>
 								<li><a href="http://www.amazon.co.uk/?tag=cattectv-21" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.co.uk</a></li>
-                <li><a href="https://donate.category5.tv/" target="_blank"><i class="fa fa-fw fa-credit-card"></i> Donate</a></li>
-              </ul>
+               							<li><a href="https://donate.category5.tv/" target="_blank"><i class="fa fa-fw fa-credit-card"></i> Donate</a></li>
+            						</ul>
 						</li>
 
 						<li class="dropdown">
@@ -156,9 +154,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 								Get Help
 							</a>
 							<ul class="dropdown-menu">
-                <li><a href="https://docs.nemslinux.com/" target="_blank">NEMS Documentation</a></li>
-								<li><a href="https://forum.category5.tv/forum-8.html" target="_blank">Community Forum</a></li>
-                <li><a href="https://nemslinux.com/" target="_blank">Official NEMS Web Site</a></li>
+						                <li><a href="https://docs.nemslinux.com/" target="_blank">NEMS Documentation</a></li>
+								<li><a href="https://www.patreon.com/bePatron?c=1348071&rid=2163018" target="_blank">Priority Support</a></li>
+						                <li><a href="https://forum.category5.tv/forum-8.html" target="_blank">Community Forum</a></li>
+                						<li><a href="https://nemslinux.com/" target="_blank">Official NEMS Web Site</a></li>
 					                </ul>
 						</li>
 
