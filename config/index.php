@@ -72,6 +72,27 @@ if (is_array($resource)) {
   }
 }
 
+// NEMS Config
+$nemsconffile = '/usr/local/share/nems/nems.conf'; // www-admin must have access to read/write
+$conf = file($nemsconffile);
+if (is_array($conf)) { // Load the existing conf data
+	foreach ($conf as $line) {
+		$tmp = explode('"',$line);
+		if (is_array($tmp) && count($tmp) == 2) $nemsconf[trim($tmp[0])] = trim($tmp[1]);
+	}
+}
+if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite the existing conf data
+	// only need to include the conf options that are included in NEMS SST. The rest will be re-written from existing values.
+	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
+	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
+	$nemsconfoutput = '';
+	foreach ($nemsconf as $key=>$value) {
+		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
+	}
+        file_put_contents($nemsconffile,$nemsconfoutput); // overwrite the existing config
+}
+
+
 function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
 }
@@ -102,9 +123,9 @@ function sanitize($string) {
 
 <form method="post" id="sky-form4" class="sky-form">
 
-<div class="col-md-12" style="display:none;">
+<div class="col-md-12">
     <header>NEMS Configuration Options</header>
-    <fieldset>
+    <fieldset style="display:none;">
         <section>
             <label class="label">Realtime Data Storage <font color="red">This feature is coming soon but doesn't do anything yet</font></label>
             <label class="select">
@@ -118,6 +139,22 @@ function sanitize($string) {
                 ?>
               </select>
               <i></i>
+            </label>
+        </section>
+    </fieldset>
+	
+   <fieldset>
+        <section>
+		<label class="label">NEMS Migrator Offsite Backup (Requires Account - <a href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>)</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="password" name="osbpass" value="<?= $osbpass ?>">
+                <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
+            </label>
+            <label class="input">
+                <i class="icon-append fa fa-key"></i>
+                <input type="text" name="osbkey" value="<?= $osbkey ?>">
+                <b class="tooltip tooltip-bottom-right">Your Offsite Backup License Key</b>
             </label>
         </section>
     </fieldset>
@@ -196,36 +233,35 @@ function sanitize($string) {
     <header>Optional Services</header>
     <fieldset>
         <section>
-            <?php
-              // Only for Raspberry Pi
-              if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
-                if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-                echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
-              }
-              if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-              echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>';
-
-            ?>
-<script>
-window.onload = function() {
-  $(".services").on('click', function(){
-      var thename = $(this).attr('name');
-      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
-      $.ajax({
-          url: 'services.php',
-          type: 'post',
-          data: {
-            name: thename,
-            value: onoff
-          },
-          success: function(response) {
-             console.log(thename+' set to '+onoff);
-          }
-      });
-    alert('You have turned ' + onoff + ' ' + thename + '. Please reboot your NEMS server for the change to take effect.');
-  });
-}
-</script>
+		<?php
+		  // Only for Raspberry Pi
+		  if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
+			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
+		  }
+		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+		  echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>';
+		?>
+		<script>
+		window.onload = function() {
+		  $(".services").on('click', function(){
+		      var thename = $(this).attr('name');
+		      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
+		      $.ajax({
+			  url: 'services.php',
+			  type: 'post',
+			  data: {
+			    name: thename,
+			    value: onoff
+			  },
+			  success: function(response) {
+			     console.log(thename+' set to '+onoff);
+			  }
+		      });
+		    alert('You have turned ' + onoff + ' ' + thename + '. Please reboot your NEMS server for the change to take effect.');
+		  });
+		}
+		</script>
         </section>
     </fieldset>
   </div>
