@@ -53,7 +53,7 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER12$=' . sanitize($_POST['telegram_chatid']) . PHP_EOL;
 
   # Pushover Account Info
-  $output .= '$USER13$=' . sanitize($_POST['pushover_appkey']) . PHP_EOL;
+  $output .= '$USER13$=' . sanitize($_POST['pushover_apikey']) . PHP_EOL;
   $output .= '$USER14$=' . sanitize($_POST['pushover_userkey']) . PHP_EOL;
 
   file_put_contents($resourcefile,$output); // overwrite the existing config
@@ -91,7 +91,6 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	}
         file_put_contents($nemsconffile,$nemsconfoutput); // overwrite the existing config
 }
-
 
 function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
@@ -148,12 +147,12 @@ function sanitize($string) {
 		<label class="label">NEMS Migrator Offsite Backup (Requires Account - <a href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>)</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="osbpass" value="<?= $osbpass ?>">
+                <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
                 <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
             </label>
             <label class="input">
                 <i class="icon-append fa fa-key"></i>
-                <input type="text" name="osbkey" value="<?= $osbkey ?>">
+                <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
                 <b class="tooltip tooltip-bottom-right">Your Offsite Backup License Key</b>
             </label>
         </section>
