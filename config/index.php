@@ -122,9 +122,9 @@ function sanitize($string) {
 
 <form method="post" id="sky-form4" class="sky-form">
 
-<div class="col-md-12">
-    <header>NEMS Configuration Options</header>
-    <fieldset style="display:none;">
+<div class="col-md-12" style="display:none;">
+    <header>Storage Options</header>
+    <fieldset>
         <section>
             <label class="label">Realtime Data Storage <font color="red">This feature is coming soon but doesn't do anything yet</font></label>
             <label class="select">
@@ -141,15 +141,18 @@ function sanitize($string) {
             </label>
         </section>
     </fieldset>
-	
+</div>
+<div class="col-md-12">
+   <header>NEMS Migrator Offsite Backup <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a></header>
    <fieldset>
         <section>
-		<label class="label">NEMS Migrator Offsite Backup (Requires Account - <a href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>)</label>
+            <label class="label">Personal Encryption Password</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
                 <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
                 <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
             </label>
+            <label class="label">NEMS Migrator OSB License Key</label>
             <label class="input">
                 <i class="icon-append fa fa-key"></i>
                 <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
