@@ -44,9 +44,9 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
   $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
   $output .= '$USER5$=' . sanitize($_POST['email']) . PHP_EOL; // The "from address" for notifications
-  $output .= '$USER6$=NULL'; // not used at present
+  $output .= '$USER6$=NULL' . PHP_EOL; // not used at present
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
-  $output .= '$USER8$=NULL'; // not used at present
+  $output .= '$USER8$=NULL' . PHP_EOL; // not used at present
   $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
   $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
 
