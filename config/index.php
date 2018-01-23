@@ -145,7 +145,7 @@ function sanitize($string) {
     </fieldset>
 </div>
 <div class="col-md-12">
-   <header>NEMS Migrator Offsite Backup <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a></header>
+   <header>NEMS Migrator Offsite Backup <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
    <fieldset>
         <section>
             <label class="label">Personal Encryption Password</label>
