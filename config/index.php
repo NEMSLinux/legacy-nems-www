@@ -145,7 +145,7 @@ function sanitize($string) {
     </fieldset>
 </div>
 <div class="col-md-12">
-   <header>NEMS Migrator Offsite Backup <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
+   <header>NEMS Migrator Off-Site Backup <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
    <fieldset>
         <section>
             <label class="label">Personal Encryption Password</label>
@@ -158,7 +158,7 @@ function sanitize($string) {
             <label class="input">
                 <i class="icon-append fa fa-key"></i>
                 <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
-                <b class="tooltip tooltip-bottom-right">Your Offsite Backup License Key</b>
+                <b class="tooltip tooltip-bottom-right">Your Off-Site Backup License Key</b>
             </label>
         </section>
     </fieldset>
