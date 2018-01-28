@@ -41,22 +41,22 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings Tool ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
   $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
   $output .= '$USER2$=/usr/share/nagios3/plugins/eventhandlers' . PHP_EOL; // A default setting, not user-configurable: the path to event handlers
-  $output .= '$USER3$=' . sanitize($_POST['domainuser']) . PHP_EOL;
-  $output .= '$USER4$=' . sanitize($_POST['domainpassword']) . PHP_EOL;
-  $output .= '$USER5$=' . sanitize($_POST['email']) . PHP_EOL; // The "from address" for notifications
+  $output .= '$USER3$=' . (sanitize($_POST['domainuser']) ?: 'NULL') . PHP_EOL;
+  $output .= '$USER4$=' . (sanitize($_POST['domainpassword']) ?: 'NULL') . PHP_EOL;
+  $output .= '$USER5$=' . (sanitize($_POST['email']) ?: 'NULL') . PHP_EOL; // The "from address" for notifications
   $output .= '$USER6$=NULL' . PHP_EOL; // not used at present
   $output .= '$USER7$=' . sanitize($_POST['smtp']) . ':' . sanitize($_POST['port']) . PHP_EOL; // The SMTP server:port
   $output .= '$USER8$=NULL' . PHP_EOL; // not used at present
-  $output .= '$USER9$=' . sanitize($_POST['smtpuser']) . PHP_EOL; // The SMTP authentication username
-  $output .= '$USER10$=' . sanitize($_POST['smtppassword']) . PHP_EOL; // The SMTP authentication username
+  $output .= '$USER9$=' . (sanitize($_POST['smtpuser']) ?: 'NULL') . PHP_EOL; // The SMTP authentication username
+  $output .= '$USER10$=' . (sanitize($_POST['smtppassword']) ?: 'NULL') . PHP_EOL; // The SMTP authentication username
 
   # Telegram Account Info
-  $output .= '$USER11$=' . sanitize($_POST['telegram_bot']) . PHP_EOL;
-  $output .= '$USER12$=' . sanitize($_POST['telegram_chatid']) . PHP_EOL;
+  $output .= '$USER11$=' . (sanitize($_POST['telegram_bot']) ?: 'NULL') . PHP_EOL;
+  $output .= '$USER12$=' . (sanitize($_POST['telegram_chatid']) ?: 'NULL') . PHP_EOL;
 
   # Pushover Account Info
-  $output .= '$USER13$=' . sanitize($_POST['pushover_apikey']) . PHP_EOL;
-  $output .= '$USER14$=' . sanitize($_POST['pushover_userkey']) . PHP_EOL;
+  $output .= '$USER13$=' . (sanitize($_POST['pushover_apikey']) ?: 'NULL') . PHP_EOL;
+  $output .= '$USER14$=' . (sanitize($_POST['pushover_userkey']) ?: 'NULL') . PHP_EOL;
 
   file_put_contents($resourcefile,$output); // overwrite the existing config
 }
@@ -66,13 +66,14 @@ if (is_array($resource)) {
   foreach ($resource as $line) {
     if (strstr($line,'$=')) {
       $tmp = explode('$=',$line);
-      if (substr(trim($tmp[0]),0,1) == '$') { // omit comments (eg., starts with # instead of $)
+      if (substr(trim($tmp[0]),0,1) == '$' && trim($tmp[1]) != 'NULL') { // omit comments (eg., starts with # instead of $)
         $variable_name = str_replace('$','',trim($tmp[0]));
         $$variable_name = trim($tmp[1]);
       }
     }
   }
 }
+
 
 // NEMS Config
 $nemsconffile = '/usr/local/share/nems/nems.conf'; // www-admin must have access to read/write
