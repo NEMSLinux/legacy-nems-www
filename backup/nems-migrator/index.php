@@ -140,7 +140,7 @@
   } else {
 ?>
 
-    <div class="call-action-v1 call-action-v1-boxed bg-color-primary margin-bottom-40">
+    <div class="call-action-v1 call-action-v1-boxed bg-color-blue margin-bottom-40">
       <div class="call-action-v1-box">
         <div class="call-action-v1-in">
           <h3 class="color-light" style="color: #fff;">Optional Off-Site Backup Service</h3>
@@ -148,6 +148,17 @@
         </div>
         <div class="call-action-v1-in inner-btn page-scroll">
           <a href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">SIGN UP</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="call-action-v1 call-action-v1-boxed bg-color-primary margin-bottom-40">
+      <div class="call-action-v1-box">
+        <div class="call-action-v1-in">
+          <p class="color-light" style="color: #eee !important;">It's easy to restore your NEMS Linux server backup to replace a defective SD card or upgrade your NEMS server.</p>
+        </div>
+        <div class="call-action-v1-in inner-btn page-scroll">
+          <a href="https://docs.nemslinux.com/commands/nems-restore#how_to_restore_a_nems_migrator_backup" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
         </div>
       </div>
     </div>

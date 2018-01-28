@@ -132,15 +132,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 						<li>
 						</li>
-						<li class="dropdown">
-							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-							  Migrator
-							</a>
-							<ul class="dropdown-menu">
-							  <li><a href="/backup/" target="_blank">Backup</a></li>
-							  <li><a href="https://docs.nemslinux.com/commands/nems-restore/" target="_blank">Restore</a></li>
-							</ul>
+						<li>
+							<a href="/backup/nems-migrator/">Migrator</a>
 						</li>
+
 						<li>
 							<a href="https://cat5.tv/pi" target="_blank">Buy a Pi</a>
 						</li>
