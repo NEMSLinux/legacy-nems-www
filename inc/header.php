@@ -87,7 +87,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 				</button>
 
 				<a class="navbar-brand" href="/">
-					<span>N</span>EMS
+					<span>N</span>EMS Linux
 				</a>
 			</div>
 
