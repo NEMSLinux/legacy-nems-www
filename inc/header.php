@@ -3,12 +3,13 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>NEMS | Nagios Enterprise Monitoring Server</title>
+	<title>NEMS Linux</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Robbie Ferguson - https://baldnerd.com/">
+        <meta name="robots" content="noindex">
 
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
