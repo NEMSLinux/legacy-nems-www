@@ -22,7 +22,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<h4>NEMS Linux &ndash; <b>One Day Overview</b></h4>
-                                                                                <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1day.png')) ?></p>
+                                                                                <p>Updated <?= date ("F d Y H:i:s", filemtime('./img/raspberrypi1.1day.png')) ?></p>
 
 										<div class="row">
                                                                                   <div class="text-center col-md-12 col-xs-12">
