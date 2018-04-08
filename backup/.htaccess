@@ -2,3 +2,6 @@ AuthType Basic
 AuthName "NEMS-Migrator"
 AuthUserFile /var/www/htpasswd
 Require valid-user
+RewriteEngine On
+Redirect 301 /backup/backup.nems /backup/
+
