@@ -9,6 +9,10 @@
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
   <p><img src="./logo.png" /></p>
+
+<?php
+  if (file_exists('img/system1z.1year.png')) {
+?>
 					<div class="tab-v1">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#day" data-toggle="tab">Day</a></li>
@@ -286,6 +290,21 @@
 							</div>
 						</div>
 					</div>
+<?php
+  } else {
+?>
+
+    <div class="row">
+      <div class="col-md-12">
+        <p>When you first boot your NEMS server, all Monitorix data and graphs are reset. It takes some time for Monitorix to be ready.</p>
+        <p>Please check back soon.</p>
+      </div>
+    </div>
+
+<?php
+  }
+?>
+
 
 <p><span style="color:#444;">Powered By</span> <a href="http://www.monitorix.org/" target="_blank">Monitorix</a> by Jordi Sanfeliu</p>
 
