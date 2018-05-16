@@ -1,0 +1,19 @@
+1.03 April 10 2013
+==================
+- Fixed permissions bug where host escalations were not properly authorized their contacts
+
+1.02 Jan 10 2011
+=========================
+- Proper license and authorship attribution added for Teeny Nagios Apache License
+
+
+1.01 Jan 9 2012
+=========================
+- Applied fixes to permissions issue - patch by Marc Chadwick
+- Turned off PHP error messages displaying on page
+- Minor bug fixes
+
+
+1.0 Dec 21 - 2011
+=========================
+- Initial release

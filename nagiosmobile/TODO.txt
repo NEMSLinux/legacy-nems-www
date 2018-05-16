@@ -1,0 +1,31 @@
+
+
+[BUGS]
+- IE 9 and Win7 phones: After setting date and time and then clicking on "Commit" does ... nothing, no reaction at all.
+- A host which is in an acknowledged downtime state still shows all services on that host as Unacknowledged in the Nagios Mobile UI.
+
+- Blackberry is requesting the JS and CSS files twice, once without authorization:
+=====================================================================================
+nagios mobile on my blackberry [BUG]
+
+Postby stephendowed » Wed Feb 08, 2012 5:29 pm
+installed nagios mobile on my server and i can acess it but the issue is that i just get only
+a white screen without all the colors.i guess something is breaking the style sheet or i don't know
+that's why i am here. i am using the most recent version 1.02 and i have tried adjusting the setting
+on my device to see if the problem is from there but all to no avail..here is a log from apache i am getting
+================================================================================================
+Hi - I'm getting the same issue with my BB Bold 9000. There are no errors in the error_log, however - the access_log shows that apache is responding to the requests for CSS and JS with HTTP status 401. This doesn't happen if I access it direct from my PC browser (or from iPhone).
+
+The following logs have just CSS requests shown:
+
+Code: Select all
+    192.168.1.70 - - [14/Mar/2012:18:00:29 +1100] "GET /nagiosmobile/nagiosmobile.css HTTP/1.1" 401 490 "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+    192.168.1.70 - - [14/Mar/2012:18:00:29 +1100] "GET /nagiosmobile/jquery.mobile-1.0/jquery.mobile-1.0.min.css HTTP/1.1" 401 490 "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+    192.168.1.70 - - [14/Mar/2012:18:00:30 +1100] "GET /nagiosmobile/nagiosmobile.css HTTP/1.1" 401 490 "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+    192.168.1.70 - jwadmin [14/Mar/2012:18:00:30 +1100] "GET /nagiosmobile/nagiosmobile.css HTTP/1.1" 304 - "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+    192.168.1.70 - - [14/Mar/2012:18:00:36 +1100] "GET /nagiosmobile/jquery.mobile-1.0/jquery.mobile-1.0.min.css HTTP/1.1" 401 490 "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+    192.168.1.70 - jwadmin [14/Mar/2012:18:00:36 +1100] "GET /nagiosmobile/jquery.mobile-1.0/jquery.mobile-1.0.min.css HTTP/1.1" 304 - "http://nagios/nagiosmobile/" "BlackBerry9000/5.0.0.771 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/122"
+
+
+Notice that each request is sent twice, once without a username (hence returning 401 not authorized), then once with a username (returning http 304).
+Note that I too can access and view all features of nagiosmobile, except for the CSS and JS.

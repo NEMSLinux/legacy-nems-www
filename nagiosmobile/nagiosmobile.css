@@ -1,0 +1,96 @@
+/*  nagiosmobile.css 
+* 	@author Hirose Masaaki
+*	moved from main index to separate stylesheet
+*/ 
+
+body {
+    font-family: Helvetica;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+h2:first-child {
+    margin-top: 0;
+}
+ul.overview li {
+    font-size: 12px;
+}
+div.rounded {
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: rgba(0,0,0,.3) 1px 1px 3px;
+    background:   #ccc;
+    margin: 5px 10px 10px;
+    padding: 6px 10px;
+    text-shadow: none;
+}
+div.rounded ul, div.rounded dl {
+    color: #333;
+    border: 0;
+    font: normal 12px Helvetica;
+    margin:  0;
+    padding: 0;
+}
+
+div.rounded ul li, div.rounded dl dt, div.rounded dl dd {
+    color: #333;
+    border: 0;
+    margin:  0;
+    padding: 0;
+    background: transparent;
+}
+
+
+dt {
+    font-weight: bold;
+}
+
+dt:nth-child(n+2) {
+    margin-top: .5em;
+}
+
+div.rounded dl dt {
+    font-size: 120%;
+}
+
+div.result {
+    background:   #ccc;
+    text-align: center;
+    font-weight: bold;
+    line-height: 3em;
+    color: #333;
+    text-shadow: none;
+    margin: 0 -15px;
+}
+
+/* *****************flat backgrounds************************
+
+.hostproblem {
+	background: #DF2E25 !important;
+}
+
+.critical {
+	background: #E26C60 !important;
+}
+
+.warning {
+	background: #EACE4A !important;
+}
+
+*/
+
+
+
+
+
+.downtime .ui-btn-text a {
+    color: #888;
+    text-shadow: none;
+}
+
+.ui-field-contain {
+    border-bottom-width: 0;
+    padding: 0.5em 0;
+}
+
+#footer {bottom: 0px; position: absolute; }
