@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "NagiosMobile"
+AuthUserFile /var/www/htpasswd
+Require valid-user
+
