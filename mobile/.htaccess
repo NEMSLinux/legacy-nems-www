@@ -1,5 +1,5 @@
 AuthType Basic
-AuthName "NagiosMobile"
+AuthName "NEMS Mobile UI"
 AuthUserFile /var/www/htpasswd
 Require valid-user
 
