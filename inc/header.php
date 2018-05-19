@@ -88,7 +88,8 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 				</button>
 
 				<a class="navbar-brand" href="/">
-					<span>N</span>EMS Linux
+					<!--<span>N</span>EMS Linux-->
+                                        <img src="/img/nems_logo.png" id="logo-header" />
 				</a>
 			</div>
 
@@ -125,20 +126,18 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 							<ul class="dropdown-menu">
  							  <li><a href="/monitorix/">Monitorix</a></li>
-							  <?php if (ver('nems') >= 1.4) echo '<li><a href="https://' . $self->host . ':9090">Cockpit</a></li>'; ?>
+							  <?php if (ver('nems') >= 1.4) echo '<li><a href="https://' . $self->host . ':9090" target="_blank">Cockpit</a></li>'; ?>
 							  <li><a href="http://<?= $self->host ?>:8888" target="_blank">RPi-Monitor</a></li>
 							  <li><a href="https://<?= $self->host ?>:10000" target="_blank">Webmin</a></li>
 							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . ':2812" target="_blank"><em>monit</em> Service Monitor</a></li>'; ?>
 							</ul>
 						</li>
 
-						<li>
-						</li>
-						<li>
+						<li class="dropdown">
 							<a href="/backup/nems-migrator/">Migrator</a>
 						</li>
 
-						<li>
+						<li class="dropdown">
 							<a href="https://cat5.tv/pi" target="_blank">Buy a Pi</a>
 						</li>
 						<li class="dropdown">

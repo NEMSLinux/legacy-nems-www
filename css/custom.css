@@ -1,3 +1,27 @@
+#logo-header {
+  max-height: 44px;
+}
+
+.navbar, .top-nav-collapse {
+  background: #0d0d0d !important;
+}
+
+body.dark .top-nav-collapse #logo-header {
+  max-height: 30px;
+}
+
+.dropdown-menu>li {
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.dropdown-menu li a {
+  color: #eee !important;
+}
+
+.one-page-header.top-nav-collapse .navbar-nav a.dropdown-toggle {
+  color: #fff !important;
+}
+
 .parallax-counter-v4 {
     z-index: 1;
     height: auto;
