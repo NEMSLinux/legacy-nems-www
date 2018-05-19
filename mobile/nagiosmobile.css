@@ -94,3 +94,12 @@ div.result {
 }
 
 #footer {bottom: 0px; position: absolute; }
+
+# NEMS Mobile Background
+.ui-page { 
+  background: url("/img/wallpaper/server_room_dark.jpg") no-repeat center center fixed !important;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

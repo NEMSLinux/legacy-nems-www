@@ -83,10 +83,12 @@ $WEBKIT = (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'webkit')) ? true : f
 <meta name="viewport" content="height=device-height,width=device-width" />
 <title>NEMS Mobile UI</title>
 <link rel="apple-touch-icon" href="nagios.png" />
-<link rel="stylesheet" href="nagiosmobile.css" />
+
 <script src="js/jquery-1.5.2.min.js"></script>
 
 <link rel="stylesheet" href="jquery.mobile-1.0/jquery.mobile-1.0.min.css" />
+<link rel="stylesheet" href="nagiosmobile.css" />
+
 <script type='text/javascript' src="jquery.mobile-1.0/jquery.mobile-1.0.min.js"></script>
 <script type='text/javascript' src="js/nagiosmobile.js"></script>
 <style>
