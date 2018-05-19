@@ -1,5 +1,7 @@
 #logo-header {
   max-height: 44px;
+  position: relative;
+  bottom: 12px;
 }
 
 .navbar, .top-nav-collapse {
@@ -8,6 +10,8 @@
 
 body.dark .top-nav-collapse #logo-header {
   max-height: 30px;
+  position: relative;
+  bottom: 4px;
 }
 
 .dropdown-menu>li {
