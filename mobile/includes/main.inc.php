@@ -96,7 +96,7 @@ $s_6 = class_by_state(($global_stats['service_problems'] > 0 ? STATE_CRITICAL : 
 	  <div data-role="header">
 
 		<h1>NEMS Mobile UI</h1>
-		<a href="index.php?page=about" data-icon="info" data-iconpos="notext" data-rel="dialog" class="ui-btn-right">About</a>
+		<a style="display:none;" href="index.php?page=about" data-icon="info" data-iconpos="notext" data-rel="dialog" class="ui-btn-right">About</a>
 	  </div> <!-- end header -->
 
 		<div data-role="listview" data-inset="true" data-theme="b" data-dividertheme="f"> <!-- CLOSING TAG???? -->
