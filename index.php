@@ -1,5 +1,4 @@
 <?php
-exit();
   include('/var/www/html/inc/functions.php');
   if (!file_exists('/var/www/htpasswd')) {
     include('init.php');
