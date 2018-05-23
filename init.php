@@ -47,7 +47,7 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"a95554d929ae933c89ce32e02e06c022fd9
 
 <div class="call-action-v1 call-action-v1-boxed bg-color-darker margin-bottom-40 rounded-4x">
 
-<div style="margin: 0 auto; width: 80%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" /></div>
+<div style="margin: 0 auto; width: 60%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" /></div>
 
 <div class="call-action-v1-box">
 <div class="call-action-v1-in">

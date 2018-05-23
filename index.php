@@ -14,11 +14,7 @@
 			<div class="container valign__middle">
 				<div class="row">
 				  <div class="col-sm-10 col-sm-offset-1 text-center-xs">
-					<h2><span class="color-green"><b>N</b>agios</span> <b>E</b>nterprise <b>M</b>onitoring <b>S</b>erver</h2>
 					<div class="promo-text">
-						<span style="padding:10px 20px;background:rgba(0,0,0,.9);" class="rounded-4x"><span class="color-green">N</span>EMS Linux Version <?= ver('nems') ?></span><br />
-                                                <span style="color: #aaa">Running on <?php $platform = ver('platform'); echo $platform->name; ?></span>
-						<?php if (ver('nems-available') > ver('nems')) echo '<div class="alert alert-warning fade in"><strong>Note:</strong> NEMS ' . ver('nems-available') . ' is available. Please review the changelog on <a href="http://baldnerd.com/nems" target="_blank">our web site</a>.</div></div>'; ?>
 					<div class="promo-next">
 
 
@@ -28,7 +24,10 @@
 
 
 		<div class="parallax-counter-v4 parallaxBg1" id="facts">
-
+						<span style="padding:10px 20px;"><span class="color-green">N</span>EMS Linux Version <?= ver('nems') ?></span><br />
+						<span style="color: #aaa;font-size:0.6em;">Running on <?php $platform = ver('platform'); echo $platform->name; ?></span>
+						<?php if (ver('nems-available') > ver('nems')) echo '<div class="alert alert-warning fade in"><strong>Note:</strong> NEMS ' . ver('nems-available') . ' is available. Please review the changelog on <a href="http://baldnerd.com/nems" target="_blank">our web site</a>.</div></div>'; ?>
+						<br /><br />
 <?php /*			<div class="container content-sm">
 */
 ?>
