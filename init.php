@@ -45,14 +45,20 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"a95554d929ae933c89ce32e02e06c022fd9
 <div class="col-md-8 col-md-offset-2">
 <div class="error-v4">
 
-<div class="call-action-v1 call-action-v1-boxed bg-color-darker margin-bottom-40 rounded-4x">
+<div class="call-action-v1 call-action-v1-boxed margin-bottom-40 rounded-4x">
 
 <div style="margin: 0 auto; width: 60%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" /></div>
 
 <div class="call-action-v1-box">
 <div class="call-action-v1-in">
 <h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
-<p class="color-light">SSH to your NEMS server and run:<br /><em>sudo nems-init</em></p>
+<?php
+  if (ver('nems') < 1.4) {
+    echo '<p class="color-light">SSH to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
+  } else {
+    echo '<p class="color-light">SSH or <a href="https://192.168.123.113:9090/system/terminal">open a terminal session</a> to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
+  }
+?>
 </div>
 <div class="call-action-v1-in inner-btn page-scroll">
 <a href="https://docs.nemslinux.com/commands/nems-init" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>

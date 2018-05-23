@@ -239,13 +239,19 @@ function sanitize($string) {
     <fieldset>
         <section>
 		<?php
+
 		  // Only for Raspberry Pi
 		  if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
 			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
 			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
 		  }
+
 		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
 		  echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>';
+
+		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+		  echo '<label class="toggle"><input ' . $checked . ' name="webmin" type="checkbox" class="services"><i></i>Webmin</label>';
+
 		?>
 		<script>
 		window.onload = function() {
