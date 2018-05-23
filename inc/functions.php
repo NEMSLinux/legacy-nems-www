@@ -175,4 +175,16 @@
       return round($bytes, $precision) . $units[$pow];
   }
 
+  function initialized() {
+    $initialized = 0;
+    $htpasswd = '/var/www/htpasswd';
+    if (file_exists($htpasswd)) {
+      $initialized = strlen(file_get_contents($htpasswd));
+    }
+    if ($initialized > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 ?>

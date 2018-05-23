@@ -24,7 +24,7 @@
 */
 
   include('/var/www/html/inc/functions.php');
-  if (!file_exists('/var/www/htpasswd')) {
+  if (!initialized()) {
     include('../init.php');
     exit();
   }
