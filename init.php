@@ -46,6 +46,9 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"a95554d929ae933c89ce32e02e06c022fd9
 <div class="error-v4">
 
 <div class="call-action-v1 call-action-v1-boxed bg-color-darker margin-bottom-40 rounded-4x">
+
+<div style="margin: 0 auto; width: 80%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" /></div>
+
 <div class="call-action-v1-box">
 <div class="call-action-v1-in">
 <h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
@@ -82,7 +85,7 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"a95554d929ae933c89ce32e02e06c022fd9
 	</script>
 <script type="text/rocketscript">
 		$.backstretch([
-			"/img/wallpaper/server_room.jpg"
+			"/img/wallpaper/server_room_dark.jpg"
 			])
 	</script>
 <!--[if lt IE 9]>
