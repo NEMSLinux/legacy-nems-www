@@ -34,7 +34,11 @@
   include('/var/www/html/inc/header.php');
 
 // Nagios config
-$resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
+if (ver('nems') < 1.4) {
+  $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
+} else {
+  $resourcefile = '/usr/local/nagios/etc/resource.cfg';
+}
 
 if (isset($_POST) && isset($_POST['email'])) {
   if ($_POST['port'] == '') $_POST['port'] = 25;
