@@ -1,3 +1,18 @@
+body {
+    animation: myfadeInAnimation 2s;
+}
+div {
+    width: 300px;
+}
+@keyframe myfadeInAnimation {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@-webkit-keyframes myfadeInAnimation {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 #logo-header {
   max-height: 44px;
   position: relative;
