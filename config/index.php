@@ -35,15 +35,19 @@
 
 // Nagios config
 if (ver('nems') < 1.4) {
+  # LEGACY VERSION
   $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
+  $pluginfolder = '/usr/lib/nagios/plugins';
 } else {
+  # MODERN VERSION
   $resourcefile = '/usr/local/nagios/etc/resource.cfg';
+  $pluginfolder = '/usr/local/nagios/libexec';
 }
 
 if (isset($_POST) && isset($_POST['email'])) {
   if ($_POST['port'] == '') $_POST['port'] = 25;
   $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings Tool ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
-  $output .= '$USER1$=/usr/lib/nagios/plugins' . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
+  $output .= '$USER1$=' . $pluginfolder . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
   $output .= '$USER2$=/usr/share/nagios3/plugins/eventhandlers' . PHP_EOL; // A default setting, not user-configurable: the path to event handlers
   $output .= '$USER3$=' . (sanitize($_POST['domainuser']) ?: 'NULL') . PHP_EOL;
   $output .= '$USER4$=' . (sanitize($_POST['domainpassword']) ?: 'NULL') . PHP_EOL;
