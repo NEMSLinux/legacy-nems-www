@@ -116,6 +116,7 @@
 		  <!-- Promo Content END -->
 		</div>
 		<!-- Fullscreen Static Image END -->
+		</div>
 	</section>
 	<!-- Promo block END -->
 
