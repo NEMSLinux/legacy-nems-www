@@ -56,7 +56,7 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"a95554d929ae933c89ce32e02e06c022fd9
   if (ver('nems') < 1.4) {
     echo '<p class="color-light">SSH to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
   } else {
-    echo '<p class="color-light">SSH or <a href="https://192.168.123.113:9090/system/terminal">open a terminal session</a> to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
+    echo '<p class="color-light">SSH or <a href="https://' .  $self->host . ':9090/system/terminal">open a terminal session</a> to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
   }
 ?>
 </div>
