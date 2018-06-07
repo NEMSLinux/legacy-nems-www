@@ -269,6 +269,9 @@ function sanitize($string) {
 		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
 		  echo '<label class="toggle"><input ' . $checked . ' name="webmin" type="checkbox" class="services"><i></i>Webmin</label>';
 
+		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+		  echo '<label class="toggle"><input ' . $checked . ' name="monitorix" type="checkbox" class="services"><i></i>Monitorix</label>';
+
 		?>
 		<script>
 		window.onload = function() {
