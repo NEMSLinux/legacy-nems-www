@@ -272,6 +272,11 @@ function sanitize($string) {
 		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
 		  echo '<label class="toggle"><input ' . $checked . ' name="monitorix" type="checkbox" class="services"><i></i>Monitorix</label>';
 
+                  if (ver('nems') >= 1.4) {
+		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+		    echo '<label class="toggle"><input ' . $checked . ' name="cockpit" type="checkbox" class="services"><i></i>Cockpit</label>';
+                  }
+
 		?>
 		<script>
 		window.onload = function() {
