@@ -162,7 +162,8 @@ function sanitize($string) {
         </section>
     </fieldset>
 </div>
-<div class="col-md-12">
+
+<div>
    <header>NEMS Migrator <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
    <fieldset>
         <section>
@@ -250,11 +251,11 @@ function sanitize($string) {
         </section>
     </fieldset>
   </div>
+</div>
 
-  <div class="col-md-4">
     <header>Optional Services</header>
     <fieldset>
-        <section>
+        <section class="col-md-4">
 		<?php
 
 		  // Only for Raspberry Pi
@@ -300,10 +301,7 @@ function sanitize($string) {
 		</script>
         </section>
     </fieldset>
-  </div>
 
-
-</div>
 
     <header>SMTP Email Configuration</header>
     <fieldset>
