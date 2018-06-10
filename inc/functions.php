@@ -5,12 +5,22 @@
         $nemsver = shell_exec('/usr/local/share/nems/nems-scripts/info.sh nemsver');
         return trim($nemsver); // version of NEMS
         break;
+      case 'nems-branch':
+        $nemsbranch = shell_exec('/usr/local/share/nems/nems-scripts/info.sh nemsbranch');
+        return trim($nemsbranch);
+        break;
       case 'nems-available': // obtained from our site each day via root cron
         $ver = file_get_contents('/var/www/html/inc/ver-available.txt');
         return trim($ver); // version of NEMS currently available on our site
         break;
+      case 'nems-branch-avail':
+        $ver = file_get_contents('/var/www/html/inc/ver-available.txt');
+        $tmp = explode('.',$ver);
+        $nems_branch_avail = $tmp[0] . '.' . $tmp[1];
+        return trim($nems_branch_avail);
+        break;
       case 'nagios': // /usr/sbin/nagios3 --version
-        return '3.5.1';
+        return '3.5.1'; // is this used anywhere?! If yes, need to fix this as it's completely wrong.
 	break;
       case 'platform': // which platform is this for
         $platform_num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));

@@ -4,6 +4,7 @@
     include('init.php');
     exit();
   }
+  $online = shell_exec('/usr/local/bin/nems-info online');
   include('/var/www/html/inc/header.php');
 ?>
 	<!-- Promo block BEGIN -->
@@ -26,7 +27,8 @@
 		<div class="parallax-counter-v4 parallaxBg1" id="facts">
 						<span style="padding:10px 20px;"><span class="color-green">N</span>EMS Linux Version <?= ver('nems') ?></span><br />
 						<span style="color: #aaa;font-size:0.6em;">Running on <?php $platform = ver('platform'); echo $platform->name; ?></span>
-						<?php if (ver('nems-available') > ver('nems')) echo '<div class="alert alert-warning fade in"><strong>Note:</strong> NEMS ' . ver('nems-available') . ' is available. Please review the changelog on <a href="http://baldnerd.com/nems" target="_blank">our web site</a>.</div></div>'; ?>
+						<?php if (ver('nems-available') > ver('nems')) echo '<div class="alert alert-warning fade in"><strong>Note:</strong> NEMS ' . ver('nems-available') . ' is available.<br /><a class="btn btn-u rounded" href="http://docs.nemslinux.com/changelogs/nems_' . ver('nems-branch-avail') . '" target="_blank">Changelog</a></div>'; ?>
+						<?php if ($online == 0) echo '<div class="alert alert-danger fade in"><strong>Warning:</strong> NEMS can\'t connect to the update servers. Please make sure Internet is properly configured for your NEMS server.</div>'; ?>
 						<br /><br />
 <?php /*			<div class="container content-sm">
 */
