@@ -4,8 +4,8 @@
     include('init.php');
     exit();
   }
-  $online = shell_exec('/usr/local/bin/nems-info online');
   include('/var/www/html/inc/header.php');
+  $online = shell_exec('/usr/local/bin/nems-info online');
 ?>
 	<!-- Promo block BEGIN -->
 	<section class="promo-section" id="intro">
