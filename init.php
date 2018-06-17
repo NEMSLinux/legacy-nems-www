@@ -61,8 +61,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 -->
 <body>
 
-	<div class="container content valign__middle">
+<script>
+var top = ($('.navbar').offset() || { "top": NaN }).top;
+</script>
+<div class="navbar" style="display:none;"></div>
 
+	<div class="container content valign__middle">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="error-v4">
@@ -122,12 +126,8 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 			LoginForm.initLoginForm();
 			ContactForm.initContactForm();
 			OwlCarousel.initOwlCarousel();
-$(".fullscreen-static-image").backstretch([
+$("body").backstretch([
     "/img/wallpaper/server_room_dark.jpg",
-    "/monitorix/img/raspberrypi1z.1day.png",
-    "/monitorix/img/system1z.1day.png",
-    "/monitorix/img/net01z.1day.png",
-    "/monitorix/img/apache01z.1day.png"   
   ], {duration: 10000,transition: 'fade',speed: '1000'});
 
 
