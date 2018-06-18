@@ -1,5 +1,11 @@
 <?php
   function ver($product='nems') {
+    $arrContextOptions=array(
+        "ssl"=>array(
+          "verify_peer"=>false,
+          "verify_peer_name"=>false,
+        ),
+    );
     switch ($product) {
       case 'nems':
         $nemsver = shell_exec('/usr/local/share/nems/nems-scripts/info.sh nemsver');
@@ -24,7 +30,7 @@
 	break;
       case 'platform': // which platform is this for
         $platform_num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));
-        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/' . $platform_num));
+        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/' . $platform_num, false, stream_context_create($arrContextOptions)));
         return $platform; // version of NEMS currently available on our site
 	break;
     }
