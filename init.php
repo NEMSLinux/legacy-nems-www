@@ -131,6 +131,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 			LoginForm.initLoginForm();
 			ContactForm.initContactForm();
 			OwlCarousel.initOwlCarousel();
+		});
 	</script>
         <?php
           $backgroundElem = 'body';
