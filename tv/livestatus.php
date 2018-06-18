@@ -88,9 +88,15 @@ function queryLivestatus($query) {
 
     $read = readSocket(16);
 
-    if($read === false)
-        die("Livestatus error: ".socket_strerror(socket_last_error($sock)));
-    
+    if($read === false) {
+	$init = shell_exec('/usr/local/bin/nems-info init');
+	if ($init == 0) {
+	  die("NEMS is not yet initilized. Please run: sudo nems-init");
+	} else {
+          die("Livestatus error: ".socket_strerror(socket_last_error($sock)));
+	}
+    }
+
     $status = substr($read, 0, 3);
     $len = intval(trim(substr($read, 4, 11)));
 
