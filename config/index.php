@@ -261,27 +261,32 @@ function sanitize($string) {
 		  // Only for Raspberry Pi
 		  if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
 			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services"><i></i>RPi-Monitor</label>';
+			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
 		  }
 
 		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services"><i></i>Nagios API</label>';
+		  echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services reboot"><i></i>Nagios API</label>';
 
 		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="webmin" type="checkbox" class="services"><i></i>Webmin</label>';
+		  echo '<label class="toggle"><input ' . $checked . ' name="webmin" type="checkbox" class="services reboot"><i></i>Webmin</label>';
 
 		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="monitorix" type="checkbox" class="services"><i></i>Monitorix</label>';
+		  echo '<label class="toggle"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
 
                   if (ver('nems') >= 1.4) {
+
 		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		    echo '<label class="toggle"><input ' . $checked . ' name="cockpit" type="checkbox" class="services"><i></i>Cockpit</label>';
+		    echo '<label class="toggle"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
+
+		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+		    echo '<label class="toggle"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
+
                   }
 
 		?>
 		<script>
 		window.onload = function() {
-		  $(".services").on('click', function(){
+		  $(".services.reboot").on('click', function(){
 		      var thename = $(this).attr('name');
 		      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
 		      $.ajax({

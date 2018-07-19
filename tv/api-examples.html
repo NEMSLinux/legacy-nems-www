@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 transitional//EN">
+<html>
+  <head>
+    <title>
+      Dashboard Examples
+    </title>
+  </head>
+<body bgcolor="#FFFFFF">
+<h2>Dashboard Examples</h2>
+<p>
+<ul>
+<li><a href='op5monitor.php'>ALL</a></li>
+<li><a href='op5monitor.php?hosts=groups>%3D"win-servers"'>Hostgroup 'Windows Servers'</a></li>
+<li><a href='op5monitor.php?hosts=name%3D"monitor"'>Host monitor</a></li>
+<li><a href='op5monitor.php?hosts=groups>%3D"Linux%20servers"&services=host.groups%20>%3D%20"Linux%20servers"%20and%20not%20groups%20>%3D%20"Exclude%20services"'>Hostgroup 'Linux Servers' - services in servicegroup 'Exclude Services' are excluded.</a></li>
+</ul>
+<p>Note that you will need to pass <b>both</b> hosts and services filters to get a consistent view.
+</body>
+</html>
