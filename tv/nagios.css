@@ -226,7 +226,7 @@ h2 {
 }
 
 .nagios_statusbar_item {
-    border-left: 2px groove #000;
+    /*border-left: 2px groove #000;*/
     height: 60px;
     line-height: 60px;
     padding: 0 1em;
@@ -259,7 +259,7 @@ h2 {
 }
 
 #loading {
-    background: transparent url(throbber.gif) no-repeat center center;
+    background: transparent url(ajax-loader.gif) no-repeat center center;
     width: 32px;
     height: 60px;
     position: absolute;

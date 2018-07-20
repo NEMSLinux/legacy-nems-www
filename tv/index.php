@@ -18,7 +18,7 @@
 #
 # See: http://www.gnu.org/copyleft/gpl.html
 
-    $refreshvalue = 60; //value in seconds to refresh page
+    $refreshvalue = 9; //value in seconds to refresh page
     $pagetitle = "NEMS TV Dashboard";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -26,7 +26,8 @@
     <head>
 		<link type="image/ico" rel="icon" href="op5.ico" />
         <title><?php echo($pagetitle); ?></title>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         </script>
 		<link rel="stylesheet" type="text/css" href="nagios.css" />
     </head>
@@ -92,6 +93,19 @@
             <p id="refreshing">Refresh in <span id="refreshing_countdown"><?php print $refreshvalue; ?></span> seconds</p>
         </div>
     </div>
-	
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+
+<script>
+  jQuery(document).ready(function() {
+
+    $("body").backstretch([
+      "/img/wallpaper/server_room_dark.jpg",
+    ], {duration: 10000,transition: 'fade',speed: '1000'});
+
+  });
+</script>
+
+
     </body>
 </html>
