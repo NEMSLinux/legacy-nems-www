@@ -46,26 +46,12 @@
             
             
             // timestamp stuff
-		
-		function tConvert (time) {
-		  // Check correct time format and split into components
-		  time = time.toString ().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-
-		  if (time.length > 1) { // If time format correct
-		    time = time.slice (1);  // Remove full string match value
-		    time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-		    time[0] = +time[0] % 12 || 12; // Adjust hours
-		  }
-		  return time.join (''); // return adjusted time or original string
-		}
             
             function createTimeStamp() {
                 // create timestamp
                 var ts = new Date();
-                ts = ts.toTimeString();
-                ts = ts.replace(/\s+GMT.+/ig, "");
-//                ts = ts.replace(/\:\d+(?=$)/ig, "");
-                $("#timestamp_wrap").empty().append("<div class=\"timestamp_drop\"></div><div class=\"timestamp_stamp\">" + tConvert(ts) +"</div>");
+		ts = ts.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}).replace(/(:\d{2}| [AP]M)$/, "");
+                $("#timestamp_wrap").empty().append("<div class=\"timestamp_drop\"></div><div class=\"timestamp_stamp\">" + ts +"</div>");
             }
             
             function updateNagiosData(block){
