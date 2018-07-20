@@ -18,7 +18,7 @@
 #
 # See: http://www.gnu.org/copyleft/gpl.html
 
-    $refreshvalue = 9; //value in seconds to refresh page
+    $refreshvalue = 30; //value in seconds to refresh page
     $pagetitle = "NEMS TV Dashboard";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -90,7 +90,7 @@
         </div>
         <div class="nagios_statusbar_item">
             <div id="loading"></div>
-            <p id="refreshing">Refresh in <span id="refreshing_countdown"><?php print $refreshvalue; ?></span> seconds</p>
+            <p id="refreshing"><span id="refreshing_countdown"><?php print $refreshvalue; ?></span> seconds to next check</p>
         </div>
     </div>
 
