@@ -259,7 +259,7 @@ h2 {
 }
 
 #loading {
-    background: transparent url(ajax-loader.gif) no-repeat center center;
+    background: transparent url(/img/ajax-loader.gif) no-repeat center center;
     width: 32px;
     height: 60px;
     position: absolute;
