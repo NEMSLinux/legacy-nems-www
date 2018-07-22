@@ -33,6 +33,8 @@
   }
   include('/var/www/html/inc/header.php');
 
+  $platform_num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));
+
 // Nagios config
 if (ver('nems') < 1.4) {
   # LEGACY VERSION
@@ -259,7 +261,7 @@ function sanitize($string) {
 		<?php
 
 		  // Only for Raspberry Pi
-		  if ($platform == 0 || $platform == 1 || $platform == 2 || $platform == 3) {
+		  if ($platform_num == 0 || $platform_num == 1 || $platform_num == 2 || $platform_num == 3) {
 			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
 			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
 		  }
