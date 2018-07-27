@@ -5,3 +5,5 @@ Require valid-user
 RewriteEngine On
 Redirect 301 /backup/backup.nems /backup/
 
+RewriteRule support.nems snapshot/support.nems [NC]
+
