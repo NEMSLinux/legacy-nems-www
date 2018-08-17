@@ -108,7 +108,6 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  <li><a href="/nagvis/" target="_blank">NagVis</a></li>
 							  <?php if (ver('nems') < 1.4) echo '<li><a href="/check_mk/" target="_blank">Check_MK Multisite</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/adagios/" target="_blank">Adagios</a></li>'; ?>
-							  <?php if (ver('nems') >= 1.4 && file_exists('/var/log/nems/phoronix/index.php')) echo '<li><a href="/phoronix/" target="_blank">Server Benchmarks</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/mobile/" target="_blank">NEMS Mobile UI</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/tv/" target="_blank">NEMS TV Dashboard</a></li>'; ?>
 							</ul>
@@ -125,6 +124,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  <?php if (checkConfEnabled('rpi-monitor')) { echo '<li><a href="http://' . $self->host . ':8888" target="_blank">RPi-Monitor</a></li>'; } ?>
 							  <?php if (checkConfEnabled('webmin')) { echo '<li><a href="https://' . $self->host . ':10000" target="_blank">Webmin</a></li>'; } ?>
 							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . ':2812" target="_blank"><em>monit</em> Service Monitor</a></li>'; ?>
+							  <?php if (ver('nems') >= 1.4 && file_exists('/var/log/nems/phoronix/index.php')) echo '<li><a href="/phoronix/" target="_blank">Server Benchmarks</a></li>'; ?>
 							</ul>
 						</li>
 
