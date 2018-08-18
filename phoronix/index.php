@@ -6,7 +6,7 @@
     rsort($logs);
     echo '<ul>' . PHP_EOL;
     foreach ($logs as $log) {
-      echo '  <li><a href="./' . $log . '">' . date('F j, Y',strtotime($log)) . '</a></li>' . PHP_EOL;
+      echo '  <li><a href="./stats/' . $log . '">' . date('F j, Y',strtotime($log)) . '</a></li>' . PHP_EOL;
     }
     echo '</ul>' . PHP_EOL;
   } else {
