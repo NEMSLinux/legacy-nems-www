@@ -1,5 +1,27 @@
 <?php
 
+$guest = $_SERVER['REMOTE_ADDR'];
+
+// only allow local access
+$allowed = 0;
+if(
+  substr($guest, 0, 3) == '10.' ||
+  substr($guest, 0, 7) == '172.16.' ||
+  substr($guest, 0, 8) == '192.168.' ||
+  $guest == '127.0.0.1'
+) {
+    $allowed = 1;
+  }
+if ($allowed == 0) {
+  $response = array(
+    'success'=>false,
+    'content'=>array(
+      'error'=>'Remote host not allowed'
+    )
+  );
+  echo json_encode($response);
+  exit();
+}
 require "livestatus_client.php";
 
 // FIXME: Do we really want unlimited memory?
