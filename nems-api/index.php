@@ -37,16 +37,17 @@ if (is_array($path_parts)) {
     if ($part == '' || $part == 'nems-api') unset($path_parts[$key]);
   }
   sort($path_parts);
+  $action = $path_parts[0];
+  $tmp = explode('?',$action);
+  $action = $tmp[0];
 }
 
 $client = new LiveStatusClient('/usr/local/nagios/var/rw/live.sock');
 $client->pretty_print = true;
 
-$action = $path_parts[0];
-
 $response = [ 'success' => true ];
-
 $args = json_decode(file_get_contents("php://input"),true);
+//$args = $_GET;
 
 try {
     switch ($action) {
@@ -54,7 +55,7 @@ try {
     case 'acknowledge_problem':
         $client->acknowledgeProblem($args);
         break;
-       
+
     case 'cancel_downtime':
         $client->cancelDowntime($args);
         break;
