@@ -29,7 +29,7 @@
         return '3.5.1'; // is this used anywhere?! If yes, need to fix this as it's completely wrong.
 	break;
       case 'platform': // which platform is this for
-//        $platform_num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));
+        $platform->num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));
 //        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/' . $platform_num, false, stream_context_create($arrContextOptions)));
         $platform->name = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform-name'));
         return $platform; // version of NEMS currently available on our site
