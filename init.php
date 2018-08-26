@@ -77,6 +77,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 
 					<div class="call-action-v1-box">
 						<div class="call-action-v1-in">
+							<span style="color: #aaa;font-size:0.6em;">Running on <?php $platform = ver('platform'); echo $platform->name; ?></span>
 							<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
 							<?php
 							  if (ver('nems') < 1.4) {
