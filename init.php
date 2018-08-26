@@ -73,11 +73,12 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 
 				<div class="call-action-v1 call-action-v1-boxed margin-bottom-40 rounded-4x">
 
-					<div style="margin: 0 auto; width: 60%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" /></div>
+					<div style="margin: 0 auto; width: 60%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" />
+						<span style="color: #aaa;font-size:1.2em;">For <?php $platform = ver('platform'); echo $platform->name; ?></span>
+					</div>
 
 					<div class="call-action-v1-box">
 						<div class="call-action-v1-in">
-							<span style="color: #aaa;font-size:0.6em;">Running on <?php $platform = ver('platform'); echo $platform->name; ?></span>
 							<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
 							<?php
 							  if (ver('nems') < 1.4) {
