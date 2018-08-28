@@ -81,3 +81,9 @@ p {
   color: #cecece !important;
 }
 
+#tail {
+    border: 1px solid #ddd;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+}
