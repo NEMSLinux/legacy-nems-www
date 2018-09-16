@@ -88,12 +88,17 @@ p {
     overflow: hidden;
 }
 
-li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdown-toggle {
+/* Unselected menu item */
+li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdown-toggle, .one-page-header.top-nav-collapse .navbar-nav a.dropdown-toggle {
   color: #aaa !important;
 }
+
+/* Hovering menu item */
 .one-page-header .navbar-nav a.dropdown-toggle:hover, a.dropdown-toggle:hover, li a:hover {
   color: #cecece !important;
 }
+
+/* Selected menu item */
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background: #222 !important;
 }
