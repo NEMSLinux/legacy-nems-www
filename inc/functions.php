@@ -1,4 +1,6 @@
 <?php
+  $functions_loaded=1;
+
   function ver($product='nems') {
     $arrContextOptions=array(
         "ssl"=>array(

@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+  if (isset($functions_loaded) && $functions_loaded == 1) {
+?><!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -84,7 +86,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 							  if (ver('nems') < 1.4) {
 							    echo '<p class="color-light">SSH to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
 							  } else {
-							    echo '<p class="color-light">SSH<!-- or <a href="https://' .  $self->host . ':9090/system/terminal">open a terminal session</a>--> to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
+							    echo '<p class="color-light">SSH or <a href="https://' .  $self->host . ':9090/system/terminal">open a terminal session</a> to your NEMS server and run:<br /><em>sudo nems-init</em></p>';
 							  }
 							?>
 						</div>
@@ -147,3 +149,10 @@ $("body").backstretch([
 	<![endif]-->
 </body>
 </html>
+<?php
+  } else {
+    // Someone tried to open init.php directly, which is not included so missing functions
+    header('location:/');
+    exit();
+  }
+?>

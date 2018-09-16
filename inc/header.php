@@ -74,7 +74,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 				<a class="navbar-brand" href="/">
 					<!--<span>N</span>EMS Linux-->
-                                        <img src="/img/nems_logo.png" id="logo-header" />
+                                        <img src="/img/nems_logo.png" id="logo-header" alt="NEMS Linux" />
 				</a>
 			</div>
 
