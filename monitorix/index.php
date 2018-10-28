@@ -5,6 +5,7 @@
     exit();
   }
   include('/var/www/html/inc/header.php');
+  $platform = ver('platform');
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -118,24 +119,30 @@
 
                                                                                 <div class="row">
 
-                                                                                  <div class="text-center col-md-6 col-xs-12">
-                                                                                    <img src="./img/raspberrypi1.1week.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                  </div>
+                                                                                  <?php if ($platform->num < 10) { ?>
+                                                                                    <div class="text-center col-md-6 col-xs-12">
+                                                                                      <img src="./img/raspberrypi1.1week.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                    </div>
+										  <?php } ?>
 
                                                                                   <div class="col-md-6">
 										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi2.1week.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
+                                                                                      <?php if ($platform->num < 10) { ?>
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi2.1week.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+                                                                                      <?php } ?>
                                                                                       <div class="text-center col-md-6 col-xs-6">
                                                                                         <img src="./img/system2.1week.png" style="margin: 10px auto;" class="img-responsive" />
                                                                                       </div>
 										    </div>
-										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi3.1week.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
-										    </div>
+                                                                                    <?php if ($platform->num < 10) { ?>
+										      <div class="row">
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi3.1week.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+										      </div>
+                                                                                    <?php } ?>
                                                                                   </div>
 
                                                                                 </div>
@@ -169,7 +176,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<h4>NEMS Linux &ndash; <b>One Month Overview</b></h4>
-                                                                                <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1month.png')) ?></p>
+                                                                                <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/system1z.1month.png')) ?></p>
 
 										<div class="row">
                                                                                   <div class="text-center col-md-12 col-xs-12">
@@ -185,24 +192,30 @@
 
                                                                                 <div class="row">
 
-                                                                                  <div class="text-center col-md-6 col-xs-12">
-                                                                                    <img src="./img/raspberrypi1.1month.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                  </div>
+                                                                                  <?php if ($platform->num < 10) { ?>
+                                                                                    <div class="text-center col-md-6 col-xs-12">
+                                                                                      <img src="./img/raspberrypi1.1month.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                    </div>
+                                                                                  <?php } ?>
 
                                                                                   <div class="col-md-6">
 										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi2.1month.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
+                                                                                      <?php if ($platform->num < 10) { ?>
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi2.1month.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+                                                                                      <?php } ?>
                                                                                       <div class="text-center col-md-6 col-xs-6">
                                                                                         <img src="./img/system2.1month.png" style="margin: 10px auto;" class="img-responsive" />
                                                                                       </div>
 										    </div>
-										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi3.1month.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
-										    </div>
+                                                                                    <?php if ($platform->num < 10) { ?>
+  										      <div class="row">
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi3.1month.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+	  									      </div>
+                                                                                    <?php } ?>
                                                                                   </div>
 
                                                                                 </div>
@@ -235,7 +248,7 @@
 								<div class="row">
 									<div class="col-md-12">
 										<h4>NEMS Linux &ndash; <b>One Year Overview</b></h4>
-                                                                                <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/raspberrypi1.1year.png')) ?></p>
+                                                                                <p>Updated <?= date ("F d Y H:i:s T", filemtime('./img/system1z.1year.png')) ?></p>
 
 										<div class="row">
                                                                                   <div class="text-center col-md-12 col-xs-12">
@@ -251,24 +264,30 @@
 
                                                                                 <div class="row">
 
-                                                                                  <div class="text-center col-md-6 col-xs-12">
-                                                                                    <img src="./img/raspberrypi1.1year.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                  </div>
+                                                                                  <?php if ($platform->num < 10) { ?>
+                                                                                    <div class="text-center col-md-6 col-xs-12">
+                                                                                      <img src="./img/raspberrypi1.1year.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                    </div>
+                                                                                  <?php } ?>
 
                                                                                   <div class="col-md-6">
 										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi2.1year.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
+                                                                                      <?php if ($platform->num < 10) { ?>
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi2.1year.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+                                                                                      <?php } ?>
                                                                                       <div class="text-center col-md-6 col-xs-6">
                                                                                         <img src="./img/system2.1year.png" style="margin: 10px auto;" class="img-responsive" />
                                                                                       </div>
 										    </div>
-										    <div class="row">
-                                                                                      <div class="text-center col-md-6 col-xs-6">
-                                                                                        <img src="./img/raspberrypi3.1year.png" style="margin: 10px auto;" class="img-responsive" />
-                                                                                      </div>
-										    </div>
+                                                                                    <?php if ($platform->num < 10) { ?>
+  										      <div class="row">
+                                                                                        <div class="text-center col-md-6 col-xs-6">
+                                                                                          <img src="./img/raspberrypi3.1year.png" style="margin: 10px auto;" class="img-responsive" />
+                                                                                        </div>
+  										      </div>
+                                                                                    <?php } ?>
                                                                                   </div>
 
                                                                                 </div>
