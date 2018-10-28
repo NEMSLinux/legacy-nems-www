@@ -1,6 +1,8 @@
 <?php
   $functions_loaded=1;
 
+  $alias = shell_exec('/usr/local/bin/nems-info alias');
+
   function ver($product='nems') {
     $arrContextOptions=array(
         "ssl"=>array(
