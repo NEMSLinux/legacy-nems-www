@@ -101,12 +101,14 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	// only need to include the conf options that are included in NEMS SST. The rest will be re-written from existing values.
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
+	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
 	}
         file_put_contents($nemsconffile,$nemsconfoutput); // overwrite the existing config
 }
+if (!isset($nemsconf['alias'])) $nemsconf['alias'] = 'NEMS';
 
 function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
@@ -160,6 +162,20 @@ function sanitize($string) {
                 ?>
               </select>
               <i></i>
+            </label>
+        </section>
+    </fieldset>
+</div>
+
+<div>
+   <header>This NEMS Server</header>
+   <fieldset>
+        <section>
+            <label class="label">NEMS Server Alias</label>
+            <label class="input">
+                <i class="icon-append fa fa-key"></i>
+                <input type="text" name="alias" value="<?= $nemsconf['alias'] ?>">
+                <b class="tooltip tooltip-bottom-right">Give This NEMS Server a Unique Name</b>
             </label>
         </section>
     </fieldset>
