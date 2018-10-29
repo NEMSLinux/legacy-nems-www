@@ -90,7 +90,6 @@
 			OwlCarousel.initOwlCarousel();
 $(".fullscreen-static-image").backstretch([
     "/img/wallpaper/server_room_dark.jpg",
-    "/monitorix/img/raspberrypi1z.1day.png",
     "/monitorix/img/system1z.1day.png",
     "/monitorix/img/net01z.1day.png",
     "/monitorix/img/apache01z.1day.png"   

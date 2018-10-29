@@ -68,6 +68,9 @@ if (isset($_POST) && isset($_POST['email'])) {
   $output .= '$USER13$=' . (sanitize($_POST['pushover_apikey']) ?: 'NULL') . PHP_EOL;
   $output .= '$USER14$=' . (sanitize($_POST['pushover_userkey']) ?: 'NULL') . PHP_EOL;
 
+  # TLS for SMTP enabled (1) or not (0), default 1
+  $output .= '$USER15$=' . (sanitize($_POST['smtp_tls']) ?: '1') . PHP_EOL;
+
   file_put_contents($resourcefile,$output); // overwrite the existing config
 
   # Restart Nagios
@@ -346,6 +349,18 @@ function sanitize($string) {
                 <input type="text" name="port" placeholder="For example: 25" value="<?= $port ?>">
             </label>
         </section>
+        <?php if (ver('nems') >= 1.5) { ?>
+          <section>
+            <label class="label">SMTP Secure Authentication</label>
+            <label class="select">
+              <select name="smtptls">
+		<option value="1"<?php if ($USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
+		<option value="0"<?php if ($USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
+              </select>
+              <i></i>
+            </label>
+          </section>
+        <?php } ?>
         <section>
             <label class="label">"From" Sender Email Address</label>
             <label class="input">
