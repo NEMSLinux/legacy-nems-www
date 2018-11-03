@@ -354,8 +354,8 @@ function sanitize($string) {
             <label class="label">SMTP Secure Authentication</label>
             <label class="select">
               <select name="smtptls">
-		<option value="1"<?php if ($USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
-		<option value="0"<?php if ($USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
+		<option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
+		<option value="0"<?php if (isset($USER15) && $USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
               </select>
               <i></i>
             </label>
