@@ -10,7 +10,8 @@ body {
     overflow-x: hidden;
     background: #404040;
     padding: .5em 1em;
-	margin-bottom: 65px;
+    margin-bottom: 65px;
+    cursor: none;
 }
 
 table {
