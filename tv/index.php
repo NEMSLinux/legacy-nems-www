@@ -103,6 +103,43 @@
       "/img/wallpaper/server_room_dark.jpg",
     ], {duration: 10000,transition: 'fade',speed: '1000'});
 
+    $(function() {
+      var timer;
+      var fadeInBuffer = false;
+      $(document).mousemove(function() {
+        if (!fadeInBuffer) {
+            if (timer) {
+                console.log("clearTimer");
+                clearTimeout(timer);
+                timer = 0;
+            }
+
+            console.log("fadeIn");
+            $('html').css({
+                cursor: ''
+            });
+        } else {
+            $('body').css({
+                cursor: 'default'
+            });
+            fadeInBuffer = false;
+        }
+
+
+        timer = setTimeout(function() {
+            console.log("fadeout");
+            $('body').css({
+                cursor: 'none'
+            });
+
+            fadeInBuffer = true;
+        }, 1000)
+      });
+      $('body').css({
+        cursor: 'default'
+      });
+    });
+
   });
 </script>
 
