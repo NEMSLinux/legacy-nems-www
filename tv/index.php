@@ -24,7 +24,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-		<link type="image/ico" rel="icon" href="op5.ico" />
+	<link type="image/ico" rel="icon" href="favicon.ico" />
         <title><?php echo($pagetitle); ?></title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
