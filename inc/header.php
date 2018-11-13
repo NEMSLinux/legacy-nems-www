@@ -124,7 +124,6 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  <?php if ((ver('platform')->num < 10) && checkConfEnabled('rpi-monitor')) { echo '<li><a href="http://' . $self->host . ':8888" target="_blank">RPi-Monitor</a></li>'; } ?>
 							  <?php if (checkConfEnabled('webmin')) { echo '<li><a href="https://' . $self->host . ':10000" target="_blank">Webmin</a></li>'; } ?>
 							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . ':2812" target="_blank"><em>monit</em> Service Monitor</a></li>'; ?>
-							  <?php if (ver('nems') >= 1.4 && file_exists('/var/log/nems/phoronix/index.php')) echo '<li><a href="/phoronix/" target="_blank">Server Benchmarks</a></li>'; ?>
 							</ul>
 						</li>
 
