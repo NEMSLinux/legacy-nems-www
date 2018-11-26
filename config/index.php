@@ -109,7 +109,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
-        $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 1;
+        $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -191,8 +191,11 @@ function sanitize($string) {
             <label class="label">NEMS Update</label>
             <label class="select">
               <select name="allowupdate">
-		<option value="1"<?php if (!isset($nemsconf['allowupdate']) || $nemsconf['allowupdate'] == 1) echo ' SELECTED'; ?>>Keep this NEMS server up to date</option>
-		<option value="2"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 2) echo ' SELECTED'; ?>>Do not update this NEMS server</option>
+		<option value="5"<?php if (!isset($nemsconf['allowupdate']) || $nemsconf['allowupdate'] == 5) echo ' SELECTED'; ?>>Install Updates As Released</option>
+		<option value="4"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 4) echo ' SELECTED'; ?>>Install Updates Every Week</option>
+		<option value="3"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 3) echo ' SELECTED'; ?>>Install Updates Every Two Weeks</option>
+		<option value="2"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 2) echo ' SELECTED'; ?>>Install Updates Once Per Month</option>
+		<option value="1"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 1) echo ' SELECTED'; ?>>Do Not Automatically Install Updates</option>
               </select>
               <i></i>
             </label>
