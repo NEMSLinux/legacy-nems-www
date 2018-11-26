@@ -109,6 +109,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
+        $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 1;
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -185,6 +186,18 @@ function sanitize($string) {
                 <b class="tooltip tooltip-bottom-right">Give This NEMS Server a Unique Name</b>
             </label>
         </section>
+        <?php if (ver('nems') >= 1.5) { ?>
+          <section>
+            <label class="label">NEMS Update</label>
+            <label class="select">
+              <select name="allowupdate">
+		<option value="1"<?php if (!isset($nemsconf['allowupdate']) || $nemsconf['allowupdate'] == 1) echo ' SELECTED'; ?>>Keep this NEMS server up to date</option>
+		<option value="2"<?php if (isset($nemsconf['allowupdate']) && $nemsconf['allowupdate'] == 2) echo ' SELECTED'; ?>>Do not update this NEMS server</option>
+              </select>
+              <i></i>
+            </label>
+          </section>
+        <?php } ?>
     </fieldset>
 </div>
 
