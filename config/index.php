@@ -71,6 +71,10 @@ if (isset($_POST) && isset($_POST['email'])) {
   # TLS for SMTP enabled (1) or not (0), default 1
   $output .= '$USER15$=' . (sanitize($_POST['smtp_tls']) ?: '1') . PHP_EOL;
 
+  # IPMI credentials
+  $output .= '$USER16$=' . (sanitize($_POST['ipmi_user']) ?: 'NULL') . PHP_EOL;
+  $output .= '$USER17$=' . (sanitize($_POST['ipmi_pass']) ?: 'NULL') . PHP_EOL;
+
   file_put_contents($resourcefile,$output); // overwrite the existing config
 
   # Restart Nagios
@@ -272,6 +276,35 @@ function sanitize($string) {
         </section>
     </fieldset>
   </div>
+
+<?php 
+  if (ver('nems') >= 1.5) {
+?>
+  <div class="col-md-4">
+    <header>IPMI Credentials</header>
+    <fieldset>
+        <section>
+            <label class="label">IPMI Username</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="ipmi_user" placeholder="" value="<?= $USER16 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your IPMI username</b>
+            </label>
+        </section>
+        <section>
+            <label class="label">IPMI Password</label>
+            <label class="input">
+                <i class="icon-append fa fa-lock"></i>
+                <input type="text" name="ipmi_pass" placeholder="" value="<?= $USER17 ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your IPMI password</b>
+            </label>
+        </section>
+    </fieldset>
+  </div>
+<?php
+}
+?>
+
 </div>
 
     <header>Optional Services</header>
