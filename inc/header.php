@@ -88,6 +88,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  Configuration
 							</a>
 							<ul class="dropdown-menu">
+							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . '/info/">NEMS Server Overview</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . '/config/">NEMS System Settings Tool</a></li>'; ?>
 							  <li><a href="/nconf/" target="_blank">NEMS Configurator (NConf)</a></li>
 							</ul>
