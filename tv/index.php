@@ -27,6 +27,7 @@
 	<link type="image/ico" rel="icon" href="favicon.ico" />
         <title><?php echo($pagetitle); ?></title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.6/loadingoverlay.min.js"></script>
 
         </script>
 		<link rel="stylesheet" type="text/css" href="nagios.css" />
@@ -109,12 +110,12 @@
       $(document).mousemove(function() {
         if (!fadeInBuffer) {
             if (timer) {
-                console.log("clearTimer");
+//                console.log("clearTimer");
                 clearTimeout(timer);
                 timer = 0;
             }
 
-            console.log("fadeIn");
+//            console.log("fadeIn");
             $('html').css({
                 cursor: ''
             });
@@ -127,7 +128,7 @@
 
 
         timer = setTimeout(function() {
-            console.log("fadeout");
+//            console.log("fadeout");
             $('body').css({
                 cursor: 'none'
             });
@@ -140,9 +141,30 @@
       });
     });
 
-  });
-</script>
 
+    check_connect();
+
+  });
+
+    function check_connect() {
+    $.ajax({
+      type: 'GET',
+      url: '/tv/',
+      timeout: 5000,  // allow this many milisecs for network connect to succeed
+      success: function(data) {
+        // we have a connection
+        $.LoadingOverlay("hide");
+        window.setTimeout(check_connect, 15000)  // try again after 15 minutes
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        // no connection, refresh every 15 seconds until resolved
+        $.LoadingOverlay("show");
+        window.setTimeout(check_connect, 15000) 
+      }
+      });
+    };
+
+</script>
 
     </body>
 </html>
