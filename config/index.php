@@ -303,6 +303,10 @@ function sanitize($string) {
     </fieldset>
   </div>
 
+</div>
+
+<div class="row" style="background: #fff; margin: 0;">
+
 <?php 
   if (ver('nems') >= 1.5) {
 ?>
@@ -335,31 +339,31 @@ function sanitize($string) {
 
     <header>Optional Services</header>
     <fieldset>
-        <section class="col-md-4">
+        <section class="col-md-6">
 		<?php
 
 		  // Only for Raspberry Pi
 		  if ($platform->num < 10) {
 			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-			echo '<label class="toggle"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
+			echo '<label class="toggle text-right"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
 		  }
 
 		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services reboot"><i></i>Nagios API</label>';
+		  echo '<label class="toggle text-right"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services reboot"><i></i>Nagios API</label>';
 
 		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="webmin" type="checkbox" class="services reboot"><i></i>Webmin</label>';
+		  echo '<label class="toggle text-right"><input ' . $checked . ' name="webmin" type="checkbox" class="services reboot"><i></i>Webmin</label>';
 
 		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
+		  echo '<label class="toggle text-right"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
 
                   if (ver('nems') >= 1.4) {
 
 		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		    echo '<label class="toggle"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
+		    echo '<label class="toggle text-right"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
 
 		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		    echo '<label class="toggle"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
+		    echo '<label class="toggle text-right"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
 
                   }
 
