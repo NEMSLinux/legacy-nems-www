@@ -217,6 +217,18 @@ function sanitize($string) {
                 <i class="icon-append fa fa-key"></i>
                 <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
                 <b class="tooltip tooltip-bottom-right">Your Off-Site Backup License Key</b>
+                <?php
+                  if (isset($nemsconf['osbkey']) && strlen($nemsconf['osbkey'])) {
+                    echo '<span style="font-size: 0.8em;">';
+                    if (shell_exec('/usr/local/bin/nems-info cloudauth') == 1) {
+                      echo '<span class="nems-green">Connected</span>';
+                    } else {
+                      echo '<span class="color-red">Authorization Failed</span>';
+                    }
+                    echo '</span>';
+                  }
+                ?>
+
             </label>
         </section>
     </fieldset>

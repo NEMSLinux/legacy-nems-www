@@ -46,7 +46,7 @@
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Network Interface:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nic'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Hosts:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hosts'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Services:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info services'); ?></span></p>
-  <p style="padding:4px 6px; color: #aaa !important;"><b>Authorized for Cloud:</b> <span class="nems-green"><?php if (shell_exec('/usr/local/bin/nems-info cloud') == 1) echo 'Yes'; else echo 'No'; ?></span></p>
+  <p style="padding:4px 6px; color: #aaa !important;"><b>Authorized for Cloud:</b> <span class="nems-green"><?php if (shell_exec('/usr/local/bin/nems-info cloudauth') == 1) echo 'Yes'; else echo 'No'; ?></span></p>
 
   <?php
     if (isset($statlog) && is_array($statlog)) {
