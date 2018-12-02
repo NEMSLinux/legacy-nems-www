@@ -199,6 +199,21 @@ function sanitize($string) {
             </label>
           </section>
         <?php } ?>
+        <?php
+          if (ver('nems') >= 1.4 && $disabled == 1) {
+            $wifi = json_decode(trim(shell_exec('/usr/local/bin/nems-info wifi')));
+            if (is_object($wifi) && count((array)$wifi) > 0) {
+              echo '<section><label class="label"><b>Wireless Connection</b><br />SSID:</label><label class="select"><select name="wifi">' . PHP_EOL;
+              foreach ($wifi as $ssid=>$wifidata) {
+                echo '<option value="' . $ssid . '">' . $ssid . '</option>' . PHP_EOL;
+              }
+            }
+        ?>
+              </select>
+              <i></i>
+            </label>
+          </section>
+        <?php } ?>
     </fieldset>
 </div>
 
