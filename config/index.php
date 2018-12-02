@@ -150,7 +150,22 @@ function sanitize($string) {
 ?>
 
 
-<form method="post" id="sky-form4" class="sky-form">
+<form method="post" id="sky-form4" class="sky-form" style="border:none;">
+
+
+					<div class="tab-v1">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#general" data-toggle="tab">General</a></li>
+							<li><a href="#networking" data-toggle="tab">Networking</a></li>
+							<li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+						</ul>
+						<div class="tab-content">
+
+							<div class="tab-pane fade in active" id="general">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
 
 <div class="col-md-12" style="display:none;">
     <header>Storage Options</header>
@@ -464,6 +479,32 @@ function sanitize($string) {
             </label>
         </section>
     </fieldset>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+							<div class="tab-pane fade in" id="networking">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+<p>Coming Soon...</p>
+</div></div></div></div>
+
+							<div class="tab-pane fade in" id="notifications">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+<p>Coming Soon...</p>
+</div></div></div></div>
+
+
+<!-- close tabs-->
+</div>
+</div>
     <footer>
         <button type="submit" class="btn-u">Save All Settings</button>
     </footer>

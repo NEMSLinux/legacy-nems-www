@@ -98,6 +98,10 @@ li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdow
   color: #cecece !important;
 }
 
+.nav-tabs li.active a {
+  color: #222 !important;
+}
+
 /* Selected menu item */
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background: #222 !important;
