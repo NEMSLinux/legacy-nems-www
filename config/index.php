@@ -110,6 +110,9 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
         $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
+        $nemsconf['checkin.enabled'] = intval($_POST['checkin.enabled']) ?: 0;
+        $nemsconf['checkin.email'] = filter_var($_POST['checkin.email'], FILTER_VALIDATE_EMAIL) ?: '';
+        $nemsconf['checkin.interval'] = intval($_POST['checkin.interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -213,6 +216,42 @@ function sanitize($string) {
               <i></i>
             </label>
           </section>
+        <?php } ?>
+        <?php if (ver('nems') >= 1.5) { ?>
+          <section>
+            <label class="label">NEMS Checkin</label>
+            <p>Receive an email if your NEMS server goes offline or crashes.</p>
+            <label class="select">
+              <select name="checkin.enabled">
+		<option value="0"<?php if (!isset($nemsconf['checkin.enabled']) || $nemsconf['checkin.enabled'] == 0) echo ' SELECTED'; ?>>Disabled</option>
+		<option value="1"<?php if (isset($nemsconf['checkin.enabled']) && $nemsconf['checkin.enabled'] == 1) echo ' SELECTED'; ?>>Enabled</option>
+              </select>
+              <i></i>
+            </label>
+          </section>
+          <section>
+            <label class="label">Email Address for Checkin Alerts</label>
+            <label class="input">
+                <i class="icon-append fa fa-envelope"></i>
+                <input type="checkin.email" name="checkin.email" placeholder="Checkin email address" value="<?= $nemsconf['checkin.email'] ?>">
+                <b class="tooltip tooltip-bottom-right">Email Address for Checkin Alerts</b>
+            </label>
+          </section>
+          <section>
+            <label class="label">When to Notify</label>
+            <label class="select">
+              <select name="checkin.enabled">
+		<option value="96"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 96) echo ' SELECTED'; ?>>After 1 Day</option>
+		<option value="24"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 24) echo ' SELECTED'; ?>>After 6 Hours</option>
+		<option value="8"<?php if (!isset($nemsconf['checkin.interval']) || $nemsconf['checkin.interval'] == 8) echo ' SELECTED'; ?>>After 2 Hours</option>
+		<option value="4"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 4) echo ' SELECTED'; ?>>After 1 Hour</option>
+		<option value="2"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 2) echo ' SELECTED'; ?>>After 30 Minutes</option>
+		<option value="1"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 1) echo ' SELECTED'; ?>>After 15 Minutes</option>
+              </select>
+              <i></i>
+            </label>
+          </section>
+
         <?php } ?>
         <?php
           if (ver('nems') >= 1.4 && $disabled == 1) {
