@@ -32,6 +32,19 @@
 
   $platform = ver('platform');
 
+  exec('/usr/local/share/nems/nems-scripts/speedtest --list',$servernum_tmp);
+  if (is_array($servernum_tmp)) {
+    foreach ($servernum_tmp as $line) {
+      $tmp = explode(')',$line);
+      if (intval($tmp[0]) > 0) {
+        $speedtestservers[] = array(
+          'num'=>intval($tmp[0]),
+        );
+        break; // we only need one
+      }
+    }
+  }
+
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -47,6 +60,8 @@
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Hosts:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hosts'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Services:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info services'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Authorized for Cloud:</b> <span class="nems-green"><?php if (shell_exec('/usr/local/bin/nems-info cloudauth') == 1) echo 'Yes'; else echo 'No'; ?></span></p>
+
+  <p style="padding:4px 6px; color: #aaa !important;"><b>Local Speedtest Server Number:</b> <span class="nems-green"><?= $speedtestservers[0]['num'] ?></span></p>
 
   <?php
     if (isset($statlog) && is_array($statlog)) {
