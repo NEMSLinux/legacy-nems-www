@@ -108,6 +108,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	// only need to include the conf options that are included in NEMS SST. The rest will be re-written from existing values.
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
+	$nemsconf['webhook'] = sanitize($_POST['webhook']);
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
         $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
@@ -396,6 +397,30 @@ function sanitize($string) {
                 <i class="icon-append fa fa-lock"></i>
                 <input type="text" name="ipmi_pass" placeholder="" value="<?= $USER17 ?>">
                 <b class="tooltip tooltip-bottom-right">Enter your IPMI password</b>
+            </label>
+        </section>
+    </fieldset>
+  </div>
+<?php
+}
+?>
+
+</div>
+
+<div class="row" style="background: #fff; margin: 0;">
+
+<?php 
+  if (ver('nems') >= 1.5) {
+?>
+  <div class="col-md-4">
+    <header>Webhook URL</header>
+    <fieldset>
+        <section>
+            <label class="label">Webhook URL</label>
+            <label class="input">
+                <i class="icon-append fa fa-user"></i>
+                <input type="text" name="webhook" placeholder="" value="<?= $nemsconf['webhook'] ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your webhook URL</b>
             </label>
         </section>
     </fieldset>
