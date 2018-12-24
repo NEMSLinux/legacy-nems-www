@@ -155,9 +155,14 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 <?php
   if (strlen($response) > 0) echo '<div class="col-md-12 alert alert-danger fade in">' . $response . '</div>';
 ?>
-
-
-<form method="post" id="sky-form4" class="sky-form" style="border:none;">
+<script src="/js/jquery.are-you-sure.js"></script>
+<script src="/js/ays-beforeunload-shim.js"></script>
+<script>
+  $(function() {
+    $('#sst').areYouSure();
+  });
+</script>
+<form method="post" id="sst" class="sky-form" style="border:none;">
 
 
 					<div class="tab-v1">
