@@ -2,12 +2,12 @@
 /*
 ###########################################################################
 #
-# RESOURCE.CFG - Resource File for Nagios 
+# RESOURCE.CFG - Resource File for Nagios
 #
 # You can define $USERx$ macros in this file, which can in turn be used
 # in command definitions in your host config file(s).  $USERx$ macros are
-# useful for storing sensitive information such as usernames, passwords, 
-# etc.  They are also handy for specifying the path to plugins and 
+# useful for storing sensitive information such as usernames, passwords,
+# etc.  They are also handy for specifying the path to plugins and
 # event handlers - if you decide to move the plugins or event handlers to
 # a different directory in the future, you can just update one or two
 # $USERx$ macros, instead of modifying a lot of command definitions.
@@ -144,6 +144,9 @@ function sanitize($string) {
   }
 // print_r($drivestmp);
 
+// do this AFTER storing changes
+$cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
+
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -160,8 +163,10 @@ function sanitize($string) {
 					<div class="tab-v1">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#general" data-toggle="tab">General</a></li>
-							<li><a href="#networking" data-toggle="tab">Networking</a></li>
-							<li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+              <li><a href="#cloud" data-toggle="tab">NEMS Cloud Services</a></li>
+							<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
+              <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+              <li><a href="#options" data-toggle="tab">Optional Services</a></li>
 						</ul>
 						<div class="tab-content">
 
@@ -178,7 +183,7 @@ function sanitize($string) {
             <label class="label">Realtime Data Storage <font color="red">This feature is coming soon but doesn't do anything yet</font></label>
             <label class="select">
               <select name="budget">
-                
+
                 <?php
                   echo '<option value="' . $partitions['usable'][$partitions['default']]['name'] . '">Default - ' . $partitions['usable'][$partitions['default']]['name'] . ' | ' . $partitions['usable'][$partitions['default']]['size'] . ' | ' . $partitions['usable'][$partitions['default']]['fstype'] . ' | Mounted on ' . $partitions['usable'][$partitions['default']]['mountpoint'] . '</option>';
                   foreach ($partitions['usable'] as $uuid=>$partition) {
@@ -218,42 +223,6 @@ function sanitize($string) {
             </label>
           </section>
         <?php } ?>
-        <?php if (ver('nems') >= 1.5) { ?>
-          <section>
-            <label class="label">NEMS Checkin</label>
-            <p>Receive an email if your NEMS server goes offline or crashes.</p>
-            <label class="select">
-              <select name="checkin.enabled">
-		<option value="0"<?php if (!isset($nemsconf['checkin.enabled']) || $nemsconf['checkin.enabled'] == 0) echo ' SELECTED'; ?>>Disabled</option>
-		<option value="1"<?php if (isset($nemsconf['checkin.enabled']) && $nemsconf['checkin.enabled'] == 1) echo ' SELECTED'; ?>>Enabled</option>
-              </select>
-              <i></i>
-            </label>
-          </section>
-          <section>
-            <label class="label">Email Address for Checkin Alerts</label>
-            <label class="input">
-                <i class="icon-append fa fa-envelope"></i>
-                <input type="email" name="checkin.email" placeholder="Checkin email address" value="<?= $nemsconf['checkin.email'] ?>">
-                <b class="tooltip tooltip-bottom-right">Email Address for Checkin Alerts</b>
-            </label>
-          </section>
-          <section>
-            <label class="label">When to Notify</label>
-            <label class="select">
-              <select name="checkin.interval">
-		<option value="96"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 96) echo ' SELECTED'; ?>>After 1 Day</option>
-		<option value="24"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 24) echo ' SELECTED'; ?>>After 6 Hours</option>
-		<option value="8"<?php if (!isset($nemsconf['checkin.interval']) || $nemsconf['checkin.interval'] == 8) echo ' SELECTED'; ?>>After 2 Hours</option>
-		<option value="4"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 4) echo ' SELECTED'; ?>>After 1 Hour</option>
-		<option value="2"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 2) echo ' SELECTED'; ?>>After 30 Minutes</option>
-		<option value="1"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 1) echo ' SELECTED'; ?>>After 15 Minutes</option>
-              </select>
-              <i></i>
-            </label>
-          </section>
-
-        <?php } ?>
         <?php
           if (ver('nems') >= 1.4 && $disabled == 1) {
             $wifi = json_decode(trim(shell_exec('/usr/local/bin/nems-info wifi')));
@@ -272,37 +241,20 @@ function sanitize($string) {
     </fieldset>
 </div>
 
-<div>
-   <header>NEMS Migrator <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
-   <fieldset>
-        <section>
-            <label class="label">Personal Encryption/Decryption Password</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
-                <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
-            </label>
-            <label class="label">NEMS Migrator OSB License Key (If Registered)</label>
-            <label class="input">
-                <i class="icon-append fa fa-key"></i>
-                <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
-                <b class="tooltip tooltip-bottom-right">Your Off-Site Backup License Key</b>
-                <?php
-                  if (isset($nemsconf['osbkey']) && strlen($nemsconf['osbkey'])) {
-                    echo '<span style="font-size: 0.8em;">';
-                    if (shell_exec('/usr/local/bin/nems-info cloudauth') == 1) {
-                      echo '<span class="nems-green">Connected</span>';
-                    } else {
-                      echo '<span class="color-red">Authorization Failed</span>';
-                    }
-                    echo '</span>';
-                  }
-                ?>
 
-            </label>
-        </section>
-    </fieldset>
-</div>
+                      <div>
+                         <header>NEMS Migrator<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
+                         <fieldset>
+                              <section>
+                                  <label class="label">Personal Encryption/Decryption Password</label>
+                                  <label class="input">
+                                      <i class="icon-append fa fa-lock"></i>
+                                      <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
+                                      <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
+                                  </label>
+                              </section>
+                          </fieldset>
+                      </div>
 
 <div class="row" style="background: #fff; margin: 0;">
 
@@ -329,55 +281,7 @@ function sanitize($string) {
 
   </div>
 
-  <div class="col-md-4">
-    <header>Telegram Account Info</header>
-    <fieldset>
-        <section>
-            <label class="label">Your Bot</label>
-            <label class="input">
-                <i class="icon-append fa fa-user"></i>
-                <input type="text" name="telegram_bot" placeholder="bot123" value="<?= $USER11 ?>">
-                <b class="tooltip tooltip-bottom-right">Enter the name of your bot as provided in the Telegram interface</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">Telegram Chat ID</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-                <input type="text" name="telegram_chatid" placeholder="chat123" value="<?= $USER12 ?>">
-                <b class="tooltip tooltip-bottom-right">Enter your Telegram Chat ID</b>
-            </label>
-        </section>
-    </fieldset>
-  </div>
-
-  <div class="col-md-4">
-    <header>Pushover Account Info</header>
-    <fieldset>
-        <section>
-            <label class="label">API Key</label>
-            <label class="input">
-                <i class="icon-append fa fa-user"></i>
-                <input type="text" name="pushover_apikey" placeholder="" value="<?= $USER13 ?>">
-                <b class="tooltip tooltip-bottom-right">Enter your Pushover API key</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">User Key</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-                <input type="text" name="pushover_userkey" placeholder="" value="<?= $USER14 ?>">
-                <b class="tooltip tooltip-bottom-right">Enter your Pushover User key</b>
-            </label>
-        </section>
-    </fieldset>
-  </div>
-
-</div>
-
-<div class="row" style="background: #fff; margin: 0;">
-
-<?php 
+<?php
   if (ver('nems') >= 1.5) {
 ?>
   <div class="col-md-4">
@@ -407,142 +311,9 @@ function sanitize($string) {
 
 </div>
 
-<div class="row" style="background: #fff; margin: 0;">
-
-<?php 
-  if (ver('nems') >= 1.5) {
-?>
-  <div class="col-md-4">
-    <header>Webhook URL</header>
-    <fieldset>
-        <section>
-            <label class="label">Webhook URL</label>
-            <label class="input">
-                <i class="icon-append fa fa-user"></i>
-                <input type="text" name="webhook" placeholder="" value="<?= $nemsconf['webhook'] ?>">
-                <b class="tooltip tooltip-bottom-right">Enter your webhook URL</b>
-            </label>
-        </section>
-    </fieldset>
-  </div>
-<?php
-}
-?>
-
-</div>
-
-    <header>Optional Services</header>
-    <fieldset>
-        <section class="col-md-6">
-		<?php
-
-		  // Only for Raspberry Pi
-		  if ($platform->num < 10) {
-			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-			echo '<label class="toggle text-right"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
-		  }
-
-		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle text-right"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services reboot"><i></i>Nagios API</label>';
-
-		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle text-right"><input ' . $checked . ' name="webmin" type="checkbox" class="services reboot"><i></i>Webmin</label>';
-
-		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		  echo '<label class="toggle text-right"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
-
-                  if (ver('nems') >= 1.4) {
-
-		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		    echo '<label class="toggle text-right"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
-
-		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-		    echo '<label class="toggle text-right"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
-
-                  }
-
-		?>
-		<script>
-		window.onload = function() {
-		  $(".services.reboot").on('click', function(){
-		      var thename = $(this).attr('name');
-		      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
-		      $.ajax({
-			  url: 'services.php',
-			  type: 'post',
-			  data: {
-			    name: thename,
-			    value: onoff
-			  },
-			  success: function(response) {
-			     console.log(thename+' set to '+onoff);
-			  }
-		      });
-		    alert('You have turned ' + onoff + ' ' + thename + '. Please reboot your NEMS server for the change to take effect.');
-		  });
-		}
-		</script>
-        </section>
-    </fieldset>
 
 
-    <header>SMTP Email Configuration</header>
-    <fieldset>
-	<?php
-		// figure out the server and port from config or use default port
-		$smtptmp = explode(':',$USER7);
-		if (count($smtptmp) > 1) $port = intval($smtptmp[1]); else $port = 25;
-		$smtp = trim($smtptmp[0]);
-	?>
-        <section>
-            <label class="label">SMTP Server Address</label>
-            <label class="input">
-                <input type="text" name="smtp" placeholder="For example: smtp.gmail.com" value="<?= $smtp ?>">
-            </label>
-        </section>
-        <section>
-            <label class="label">SMTP Server Port</label>
-            <label class="input">
-                <input type="text" name="port" placeholder="For example: 25" value="<?= $port ?>">
-            </label>
-        </section>
-        <?php if (ver('nems') >= 1.5) { ?>
-          <section>
-            <label class="label">SMTP Secure Authentication</label>
-            <label class="select">
-              <select name="smtptls">
-		<option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
-		<option value="0"<?php if (isset($USER15) && $USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
-              </select>
-              <i></i>
-            </label>
-          </section>
-        <?php } ?>
-        <section>
-            <label class="label">"From" Sender Email Address</label>
-            <label class="input">
-                <i class="icon-append fa fa-envelope"></i>
-                <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
-                <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">SMTP Authentication Username (Typically an email address)</label>
-            <label class="input">
-                <i class="icon-append fa fa-envelope"></i>
-                <input type="email" name="smtpuser" placeholder="Email address" value="<?= $USER9 ?>">
-                <b class="tooltip tooltip-bottom-right">SMTP Username</b>
-            </label>
-        </section>
-        <section>
-            <label class="label">SMTP Password</label>
-            <label class="input">
-                <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="smtppassword" placeholder="Password" id="password" value="<?= $USER10 ?>">
-                <b class="tooltip tooltip-bottom-right">SMTP Password</b>
-            </label>
-        </section>
-    </fieldset>
+
 
 </div>
 </div>
@@ -550,6 +321,79 @@ function sanitize($string) {
 </div>
 
 
+							<div class="tab-pane fade in" id="cloud">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
+                      <div>
+                         <header>NEMS Cloud Services<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/cloud" target="_blank">Learn More</a></header>
+                         <fieldset>
+                              <section>
+                                  <label class="label">NEMS Cloud Services License Key (If Registered)</label>
+                                  <label class="input">
+                                      <i class="icon-append fa fa-key"></i>
+                                      <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
+                                      <b class="tooltip tooltip-bottom-right">Your Off-Site Backup License Key</b>
+                                      <?php
+                                        if (isset($nemsconf['osbkey']) && strlen($nemsconf['osbkey'])) {
+                                          echo '<span style="font-size: 0.8em;">';
+                                          if ($cloudauth == 1) {
+                                            echo '<span class="nems-green">Connected</span>';
+                                          } else {
+                                            echo '<span class="color-red">Authorization Failed</span>';
+                                          }
+                                          echo '</span>';
+                                        }
+                                      ?>
+                                  </label>
+                              </section>
+                              <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the General tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
+                          </fieldset>
+                      </div>
+
+
+                                            <?php if (ver('nems') >= 1.5) { ?>
+                                                <header>NEMS Checkin Notifications</header>
+                                                <fieldset>
+                                                  <section>
+                                                    <p>Receive an email if your NEMS server goes offline or crashes.</p>
+                                                    <label class="label">State</label>
+                                                    <label class="select">
+                                                      <select name="checkin.enabled">
+                                                <option value="0"<?php if (!isset($nemsconf['checkin.enabled']) || $nemsconf['checkin.enabled'] == 0) echo ' SELECTED'; ?>>Disabled</option>
+                                                <option value="1"<?php if (isset($nemsconf['checkin.enabled']) && $nemsconf['checkin.enabled'] == 1) echo ' SELECTED'; ?>>Enabled</option>
+                                                      </select>
+                                                      <i></i>
+                                                    </label>
+                                                  </section>
+                                                  <section>
+                                                    <label class="label">Email Address for Checkin Alerts</label>
+                                                    <label class="input">
+                                                        <i class="icon-append fa fa-envelope"></i>
+                                                        <input type="email" name="checkin.email" placeholder="Checkin email address" value="<?= $nemsconf['checkin.email'] ?>">
+                                                        <b class="tooltip tooltip-bottom-right">Email Address for Checkin Alerts</b>
+                                                    </label>
+                                                  </section>
+                                                  <section>
+                                                    <label class="label">When to Notify</label>
+                                                    <label class="select">
+                                                      <select name="checkin.interval">
+                                                <option value="96"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 96) echo ' SELECTED'; ?>>After 1 Day</option>
+                                                <option value="24"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 24) echo ' SELECTED'; ?>>After 6 Hours</option>
+                                                <option value="8"<?php if (!isset($nemsconf['checkin.interval']) || $nemsconf['checkin.interval'] == 8) echo ' SELECTED'; ?>>After 2 Hours</option>
+                                                <option value="4"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 4) echo ' SELECTED'; ?>>After 1 Hour</option>
+                                                <option value="2"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 2) echo ' SELECTED'; ?>>After 30 Minutes</option>
+                                                <option value="1"<?php if (isset($nemsconf['checkin.interval']) && $nemsconf['checkin.interval'] == 1) echo ' SELECTED'; ?>>After 15 Minutes</option>
+                                                      </select>
+                                                      <i></i>
+                                                    </label>
+                                                  </section>
+                                                </fieldset>
+                                            <?php } ?>
+
+
+</div></div></div></div>
 
 							<div class="tab-pane fade in" id="networking">
 								<div class="row">
@@ -562,15 +406,211 @@ function sanitize($string) {
 								<div class="row">
 									<div class="col-md-12">
 										<div class="row">
-<p>Coming Soon...</p>
-</div></div></div></div>
 
+<div>
+
+
+    <div class="col-md-12">
+
+          <header>SMTP Email Configuration</header>
+          <fieldset>
+        <?php
+          // figure out the server and port from config or use default port
+          $smtptmp = explode(':',$USER7);
+          if (count($smtptmp) > 1) $port = intval($smtptmp[1]); else $port = 25;
+          $smtp = trim($smtptmp[0]);
+        ?>
+              <section>
+                  <label class="label">SMTP Server Address</label>
+                  <label class="input">
+                      <input type="text" name="smtp" placeholder="For example: smtp.gmail.com" value="<?= $smtp ?>">
+                  </label>
+              </section>
+              <section>
+                  <label class="label">SMTP Server Port</label>
+                  <label class="input">
+                      <input type="text" name="port" placeholder="For example: 25" value="<?= $port ?>">
+                  </label>
+              </section>
+              <?php if (ver('nems') >= 1.5) { ?>
+                <section>
+                  <label class="label">SMTP Secure Authentication</label>
+                  <label class="select">
+                    <select name="smtptls">
+          <option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
+          <option value="0"<?php if (isset($USER15) && $USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+              <?php } ?>
+              <section>
+                  <label class="label">"From" Sender Email Address</label>
+                  <label class="input">
+                      <i class="icon-append fa fa-envelope"></i>
+                      <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
+                      <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
+                  </label>
+              </section>
+              <section>
+                  <label class="label">SMTP Authentication Username (Typically an email address)</label>
+                  <label class="input">
+                      <i class="icon-append fa fa-envelope"></i>
+                      <input type="email" name="smtpuser" placeholder="Email address" value="<?= $USER9 ?>">
+                      <b class="tooltip tooltip-bottom-right">SMTP Username</b>
+                  </label>
+              </section>
+              <section>
+                  <label class="label">SMTP Password</label>
+                  <label class="input">
+                      <i class="icon-append fa fa-lock"></i>
+                      <input type="password" name="smtppassword" placeholder="Password" id="password" value="<?= $USER10 ?>">
+                      <b class="tooltip tooltip-bottom-right">SMTP Password</b>
+                  </label>
+              </section>
+          </fieldset>
+
+          <div class="row" style="background: #fff; margin: 0;">
+
+            <div class="col-md-4">
+              <header>Telegram Account Info</header>
+              <fieldset>
+                  <section>
+                      <label class="label">Your Bot</label>
+                      <label class="input">
+                          <i class="icon-append fa fa-user"></i>
+                          <input type="text" name="telegram_bot" placeholder="bot123" value="<?= $USER11 ?>">
+                          <b class="tooltip tooltip-bottom-right">Enter the name of your bot as provided in the Telegram interface</b>
+                      </label>
+                  </section>
+                  <section>
+                      <label class="label">Telegram Chat ID</label>
+                      <label class="input">
+                          <i class="icon-append fa fa-lock"></i>
+                          <input type="text" name="telegram_chatid" placeholder="chat123" value="<?= $USER12 ?>">
+                          <b class="tooltip tooltip-bottom-right">Enter your Telegram Chat ID</b>
+                      </label>
+                  </section>
+              </fieldset>
+            </div>
+
+            <div class="col-md-4">
+              <header>Pushover Account Info</header>
+              <fieldset>
+                  <section>
+                      <label class="label">API Key</label>
+                      <label class="input">
+                          <i class="icon-append fa fa-user"></i>
+                          <input type="text" name="pushover_apikey" placeholder="" value="<?= $USER13 ?>">
+                          <b class="tooltip tooltip-bottom-right">Enter your Pushover API key</b>
+                      </label>
+                  </section>
+                  <section>
+                      <label class="label">User Key</label>
+                      <label class="input">
+                          <i class="icon-append fa fa-lock"></i>
+                          <input type="text" name="pushover_userkey" placeholder="" value="<?= $USER14 ?>">
+                          <b class="tooltip tooltip-bottom-right">Enter your Pushover User key</b>
+                      </label>
+                  </section>
+              </fieldset>
+            </div>
+
+    <?php
+      if (ver('nems') >= 1.5) {
+    ?>
+    <div class="col-md-4">
+        <header>Webhook Notifications</header>
+        <fieldset>
+            <section>
+              <p>Send notifications to a Webhook.</p>
+                <label class="label">Webhook URL</label>
+                <label class="input">
+                    <i class="icon-append fa fa-globe"></i>
+                    <input type="text" name="webhook" placeholder="" value="<?= $nemsconf['webhook'] ?>">
+                    <b class="tooltip tooltip-bottom-right">Enter your webhook URL</b>
+                </label>
+            </section>
+        </fieldset>
+    </div>
+    <?php
+    }
+    ?>
+</div>
+
+
+</div>
+
+</div></div></div></div>
+</div>
+
+
+							<div class="tab-pane fade in" id="options">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
+                          <header>Optional Services</header>
+                          <fieldset>
+                              <section class="col-md-6">
+                      		<?php
+
+                      		  // Only for Raspberry Pi
+                      		  if ($platform->num < 10) {
+                      			if (checkConfEnabled('rpi-monitor') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      			echo '<label class="toggle text-right"><input ' . $checked . ' name="rpi-monitor" type="checkbox" class="services reboot"><i></i>RPi-Monitor</label>';
+                      		  }
+
+                      		  if (checkConfEnabled('nagios-api') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      		  echo '<label class="toggle text-right"><input ' . $checked . ' name="nagios-api" type="checkbox" class="services reboot"><i></i>Nagios API</label>';
+
+                      		  if (checkConfEnabled('webmin') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      		  echo '<label class="toggle text-right"><input ' . $checked . ' name="webmin" type="checkbox" class="services reboot"><i></i>Webmin</label>';
+
+                      		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      		  echo '<label class="toggle text-right"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
+
+                                        if (ver('nems') >= 1.4) {
+
+                      		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      		    echo '<label class="toggle text-right"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
+
+                      		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+                      		    echo '<label class="toggle text-right"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
+
+                                        }
+
+                      		?>
+                      		<script>
+                      		window.onload = function() {
+                      		  $(".services.reboot").on('click', function(){
+                      		      var thename = $(this).attr('name');
+                      		      if ( $(this).is( ":checked" ) ) var onoff = 'on'; else var onoff = 'off';
+                      		      $.ajax({
+                      			  url: 'services.php',
+                      			  type: 'post',
+                      			  data: {
+                      			    name: thename,
+                      			    value: onoff
+                      			  },
+                      			  success: function(response) {
+                      			     console.log(thename+' set to '+onoff);
+                      			  }
+                      		      });
+                      		    alert('You have turned ' + onoff + ' ' + thename + '. Please reboot your NEMS server for the change to take effect.');
+                      		  });
+                      		}
+                      		</script>
+                              </section>
+                          </fieldset>
+
+</div></div></div></div>
 
 <!-- close tabs-->
 </div>
 </div>
     <footer>
-        <button type="submit" class="btn-u">Save All Settings</button>
+        <button type="submit" class="btn-u">Save All Settings (All Pages)</button>
     </footer>
 </form>
 
