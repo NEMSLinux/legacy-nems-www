@@ -159,7 +159,12 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 <script src="/js/ays-beforeunload-shim.js"></script>
 <script>
   $(function() {
-    $('#sst').areYouSure();
+    $('#sst').areYouSure(
+      {
+        message: 'If you do not save your changes you will lose them. '
+               + 'Please cancel and save if you want to keep them.'
+      }
+    );
   });
 </script>
 <form method="post" id="sst" class="sky-form" style="border:none;">
