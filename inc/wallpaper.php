@@ -5,15 +5,19 @@
     7 = color picker
     8 = user uploaded
   */
+
+  // defaults
+  $background=5;
+  $backgroundBlur=2; // 2 = disabled, 1 = enabled
+
   $conftmp = file('/usr/local/share/nems/nems.conf');
   if (is_array($conftmp) && count($conftmp) > 0) {
     foreach ($conftmp as $line) {
       $tmp = explode('=',$line);
       if (trim($tmp[0]) == 'background') {
         $background=trim($tmp[1]);
-        break;
-      } else {
-        $background=5;
+      } elseif (trim($tmp[0]) == 'backgroundBlur') {
+        $backgroundBlur=trim($tmp[1]);
       }
     }
   }
@@ -65,4 +69,8 @@
 
   }
   echo $output;
+  if ($backgroundBlur == 1) {
+    $bluramt = 15;
+    echo "<style>div.backstretch { -webkit-filter: blur(" . $bluramt . "px); -moz-filter: blur(" . $bluramt . "px); -o-filter: blur(" . $bluramt . "px); -ms-filter: blur(" . $bluramt . "px); filter: blur(" . $bluramt . "px); margin: -" . ($bluramt*2) . "px; }</style>";
+  }
 ?>
