@@ -88,16 +88,12 @@
 			LoginForm.initLoginForm();
 			ContactForm.initContactForm();
 			OwlCarousel.initOwlCarousel();
-$(".fullscreen-static-image").backstretch([
-    "/img/wallpaper/server_room_dark.jpg",
-    "/monitorix/img/system1z.1day.png",
-    "/monitorix/img/net01z.1day.png",
-    "/monitorix/img/apache01z.1day.png"   
-  ], {duration: 10000,transition: 'fade',speed: '1000'});
-
-
 		});
 	</script>
+        <?php
+          $backgroundElem = '.fullscreen-static-image';
+          require_once('/var/www/html/inc/wallpaper.php');
+        ?>
 	<!--[if lt IE 9]>
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/respond.js"></script>
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/html5shiv.js"></script>

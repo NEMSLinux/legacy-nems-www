@@ -97,12 +97,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 
+   <?php
+     $backgroundElem = 'body';
+     require_once('/var/www/html/inc/wallpaper.php');
+   ?>
+
 <script>
   jQuery(document).ready(function() {
-
-    $("body").backstretch([
-      "/img/wallpaper/server_room_dark.jpg",
-    ], {duration: 10000,transition: 'fade',speed: '1000'});
 
     $(function() {
       var timer;
