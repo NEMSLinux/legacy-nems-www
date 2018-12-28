@@ -112,7 +112,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
         $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
         $nemsconf['background'] = intval($_POST['background']) ?: 5;
-        $nemsconf['backgroundBlur'] = intval($_POST['backgroundBlur']) ?: 2;
+        $nemsconf['backgroundBlur'] = intval($_POST['backgroundBlur']) ?: 1;
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
         $nemsconf['checkin.email'] = filter_var(trim($_POST['checkin_email']), FILTER_VALIDATE_EMAIL) ?: '';
         $nemsconf['checkin.interval'] = intval($_POST['checkin_interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).
@@ -250,8 +250,10 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <label class="label">Blur Background</label>
             <label class="select">
               <select name="backgroundBlur">
-		<option value="2"<?php if (!isset($nemsconf['backgroundBlur']) || $nemsconf['backgroundBlur'] == 2) echo ' SELECTED'; ?>>Disabled</option>
-		<option value="1"<?php if (isset($nemsconf['backgroundBlur']) && $nemsconf['backgroundBlur'] == 1) echo ' SELECTED'; ?>>Enabled</option>
+		<option value="1"<?php if (!isset($nemsconf['backgroundBlur']) || $nemsconf['backgroundBlur'] == 1) echo ' SELECTED'; ?>>Disabled</option>
+		<option value="2"<?php if (isset($nemsconf['backgroundBlur']) && $nemsconf['backgroundBlur'] == 2) echo ' SELECTED'; ?>>Enabled, Slight Blur</option>
+		<option value="3"<?php if (isset($nemsconf['backgroundBlur']) && $nemsconf['backgroundBlur'] == 3) echo ' SELECTED'; ?>>Enabled, Medium Blur</option>
+		<option value="4"<?php if (isset($nemsconf['backgroundBlur']) && $nemsconf['backgroundBlur'] == 4) echo ' SELECTED'; ?>>Enabled, Heavy Blur</option>
               </select>
               <i></i>
             </label>

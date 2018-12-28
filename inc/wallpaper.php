@@ -8,7 +8,7 @@
 
   // defaults
   $background=5;
-  $backgroundBlur=2; // 2 = disabled, 1 = enabled
+  $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
 
   $conftmp = file('/usr/local/share/nems/nems.conf');
   if (is_array($conftmp) && count($conftmp) > 0) {
@@ -69,8 +69,20 @@
 
   }
   echo $output;
-  if ($backgroundBlur == 1) {
-    $bluramt = 15;
-    echo "<style>div.backstretch { -webkit-filter: blur(" . $bluramt . "px); -moz-filter: blur(" . $bluramt . "px); -o-filter: blur(" . $bluramt . "px); -ms-filter: blur(" . $bluramt . "px); filter: blur(" . $bluramt . "px); margin: -" . ($bluramt*2) . "px; }</style>";
+  if ($backgroundBlur > 1) {
+    switch ($backgroundBlur) {
+      case 4:
+        $bluramt = 80;
+        break;
+
+      case 3:
+        $bluramt = 30;
+        break;
+
+      case 2:
+      default:
+        $bluramt = 15;
+    }
+    echo "<style>div.backstretch { -webkit-filter: blur(" . $bluramt . "px); -moz-filter: blur(" . $bluramt . "px); -o-filter: blur(" . $bluramt . "px); -ms-filter: blur(" . $bluramt . "px); filter: blur(" . $bluramt . "px); margin: -" . ($bluramt*3) . "px; }</style>";
   }
 ?>
