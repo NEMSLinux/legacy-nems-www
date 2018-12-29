@@ -85,4 +85,39 @@
     }
     echo "<style>div.backstretch { -webkit-filter: blur(" . $bluramt . "px); -moz-filter: blur(" . $bluramt . "px); -o-filter: blur(" . $bluramt . "px); -ms-filter: blur(" . $bluramt . "px); filter: blur(" . $bluramt . "px); margin: -" . ($bluramt*3) . "px; }</style>";
   }
+  if ($backgroundElem == 'body') {
+    echo "<style>
+      .backstretch:after {
+        content: '\A';
+        position: absolute;
+        width: 100%; 
+        height:100%;
+        top:0;
+        left:0;
+        background:rgba(0,0,0,0.7);
+        opacity: 1;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        box-shadow: inset 0px 0px 600px black;
+      }
+    </style>";
+  } else {
+    // just a vignette, but don't darken the overall image (Unify will do that)
+    echo "<style>
+      .backstretch:after {
+        content: '';
+        position: absolute;
+        width: 100%; 
+        height:100%;
+        top:0;
+        left:0;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        box-shadow: inset 0px 0px 600px black;
+      }
+    </style>";
+  }
+
 ?>
