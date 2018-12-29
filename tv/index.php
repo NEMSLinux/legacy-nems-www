@@ -18,7 +18,7 @@
 #
 # See: http://www.gnu.org/copyleft/gpl.html
 
-    $refreshvalue = 30; //value in seconds to refresh page
+    $refreshvalue = 30; //value in seconds to refresh data
     $pagetitle = "NEMS TV Dashboard";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -58,7 +58,7 @@
             
             function updateNagiosData(block){
                 $("#loading").fadeIn(200);
-    			block.load("./livestatus.php", function(response){
+    		block.load("./livestatus.php", function(response){
                     $(this).html(response);
                     $("#loading").fadeOut(200);
                     createTimeStamp();
@@ -79,7 +79,25 @@
                     countdown.text(remaining - 1);
                 }
             }
-            
+
+            function refreshAt(hours, minutes, seconds) {
+              var now = new Date();
+              var then = new Date();
+
+              if ( now.getHours() > hours || (now.getHours() == hours && now.getMinutes() > minutes) || now.getHours() == hours && now.getMinutes() == minutes && now.getSeconds() >= seconds ) {
+                then.setDate(now.getDate() + 1);
+              }
+              then.setHours(hours);
+              then.setMinutes(minutes);
+              then.setSeconds(seconds);
+
+              var timeout = (then.getTime() - now.getTime());
+              setTimeout(function() { window.location.reload(true); }, timeout);
+            }
+
+            // force a page reload at 4am every day (for those who leave the TV Dashboard open 24/7 to see the day's background)
+            refreshAt(4,0,0);
+
         </script>
 	<div id="nagios_placeholder"></div>
     <div class="nagios_statusbar">
