@@ -31,8 +31,9 @@
     case 6:
       $key = strtotime('today');
       // caches the response each day
-      if (file_exists('/tmp/wallpaper-' . $key)) {
-        $result = trim(file_get_contents('/tmp/wallpaper-' . $key));
+      $cachefile = '/tmp/wallpaper-' . $key;
+      if (file_exists($cachefile)) {
+        $result = trim(file_get_contents($cachefile));
       } else {
         $json_url = 'https://cloud.nemslinux.com/wallpaper/' . $key . '.json';
         $ch = curl_init( $json_url );
@@ -42,7 +43,7 @@
         );
         curl_setopt_array( $ch, $options );
         $result = curl_exec($ch);
-        file_put_contents('/tmp/wallpaper-' . $key,$result);
+        file_put_contents($cachefile,$result);
       }
       $resultobj = json_decode($result);
       if (isset($resultobj->$key)) {
@@ -50,7 +51,6 @@
       } else {
         $img = $defaultimg;
       }
-
 
       $output = "<script>jQuery(document).ready(function() {
         $('" . $backgroundElem . "').backstretch([

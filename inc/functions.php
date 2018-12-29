@@ -4,6 +4,7 @@
   $alias = shell_exec('/usr/local/bin/nems-info alias');
 
   function ver($product='nems') {
+    $platform = new stdClass();
     $arrContextOptions=array(
         "ssl"=>array(
           "verify_peer"=>false,
