@@ -33,6 +33,9 @@
   }
   include('/var/www/html/inc/header.php');
 
+  // Add the color chooser
+  echo "<script src='/js/spectrum.js'></script><link rel='stylesheet' href='/css/spectrum.css' />";
+
   $platform = ver('platform');
 
 // Nagios config
@@ -113,6 +116,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
         $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
         $nemsconf['background'] = intval($_POST['background']) ?: 5;
         $nemsconf['backgroundBlur'] = intval($_POST['backgroundBlur']) ?: 1;
+        $nemsconf['backgroundColor'] = sanitize($_POST['backgroundColor']) ?: '#0d0b3f';
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
         $nemsconf['checkin.email'] = filter_var(trim($_POST['checkin_email']), FILTER_VALIDATE_EMAIL) ?: '';
         $nemsconf['checkin.interval'] = intval($_POST['checkin_interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).
@@ -242,11 +246,25 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <select name="background">
 		<option value="5"<?php if (!isset($nemsconf['background']) || $nemsconf['background'] == 5) echo ' SELECTED'; ?>>Default</option>
 		<option value="6"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 6) echo ' SELECTED'; ?>>Daily Image</option>
-		<option value="7"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 7) echo ' SELECTED'; ?>>Color Picker</option>
+		<option value="7"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 7) echo ' SELECTED'; ?>>Custom Color</option>
 		<option value="8"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 8) echo ' SELECTED'; ?>>Upload Image</option>
               </select>
               <i></i>
             </label>
+          </section>
+          <section id="colorpicker"
+            <label class="label">Custom Background Color</label>
+            <label class="input">
+              <input type="text" id="bgcolor" name="backgroundColor" value="<?= $nemsconf['backgroundColor'] ?>">
+            </label>
+            <script>
+              $("#bgcolor").spectrum({
+                color: "<?= $nemsconf['backgroundColor'] ?>",
+                chooseText: "Ok"
+              });
+            </script>
+          </section>
+          <section>
             <label class="label">Blur Background</label>
             <label class="select">
               <select name="backgroundBlur">

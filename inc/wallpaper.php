@@ -18,6 +18,8 @@
         $background=trim($tmp[1]);
       } elseif (trim($tmp[0]) == 'backgroundBlur') {
         $backgroundBlur=trim($tmp[1]);
+      } elseif (trim($tmp[0]) == 'backgroundColor') {
+        $backgroundColor=trim($tmp[1]);
       }
     }
   }
@@ -27,6 +29,20 @@
   if (!isset($backgroundElem)) $backgroundElem = 'body';
 
   switch ($background) {
+
+    case 7:
+      $tmp=explode(',',str_replace(array('hsv(',')'),array('',''),$backgroundColor));
+      $h = trim($tmp[0]);
+      $s = trim($tmp[1]);
+      $v = trim($tmp[2]);
+      $rgb=hsv2rgb($h,$s,$v);
+      $vDark = ($v-40);
+      if ($vDark < 1) $vDark = 1;
+      $rgbDark=hsv2rgb($h,$s,$vDark);
+      $output = "
+        <style>$backgroundElem { background-image: radial-gradient(" . $rgb['html'] . "," . $rgbDark['html'] . "); }</style>
+      ";
+      break;
 
     case 6:
       $key = strtotime('today');
@@ -121,5 +137,25 @@
       }
     </style>";
   }
+
+function hsv2rgb($hue,$sat,$val) {;
+    $rgb = array(0,0,0);
+    //calc rgb for 100% SV, go +1 for BR-range
+    for($i=0;$i<4;$i++) {
+      if (abs($hue - $i*120)<120) {
+        $distance = max(60,abs($hue - $i*120));
+        $rgb[$i % 3] = 1 - (($distance-60) / 60);
+      }
+    }
+    //desaturate by increasing lower levels
+    $max = max($rgb);
+    $factor = 255 * ($val/100);
+    for($i=0;$i<3;$i++) {
+      //use distance between 0 and max (1) and multiply with value
+      $rgb[$i] = round(($rgb[$i] + ($max - $rgb[$i]) * (1 - $sat/100)) * $factor);
+    }
+    $rgb['html'] = sprintf('#%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
+    return $rgb;
+}
 
 ?>
