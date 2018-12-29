@@ -99,6 +99,7 @@
         transition: all 0.5s;
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s;
+        /*background: radial-gradient(circle, transparent 20%, black 170%);*/
         box-shadow: inset 0px 0px 600px black;
       }
     </style>";
@@ -115,7 +116,8 @@
         transition: all 0.5s;
         -webkit-transition: all 0.5s;
         -moz-transition: all 0.5s;
-        box-shadow: inset 0px 0px 600px black;
+        background: radial-gradient(circle, transparent 20%, black 100%);
+        /*box-shadow: inset 0px 0px 600px black;*/
       }
     </style>";
   }
