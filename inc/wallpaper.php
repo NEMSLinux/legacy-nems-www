@@ -76,12 +76,12 @@
         break;
 
       case 3:
-        $bluramt = 30;
+        $bluramt = 15;
         break;
 
       case 2:
       default:
-        $bluramt = 15;
+        $bluramt = 5;
     }
     echo "<style>div.backstretch { -webkit-filter: blur(" . $bluramt . "px); -moz-filter: blur(" . $bluramt . "px); -o-filter: blur(" . $bluramt . "px); -ms-filter: blur(" . $bluramt . "px); filter: blur(" . $bluramt . "px); margin: -" . ($bluramt*3) . "px; }</style>";
   }
