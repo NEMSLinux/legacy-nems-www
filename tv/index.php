@@ -129,34 +129,41 @@
       $(document).mousemove(function() {
         if (!fadeInBuffer) {
             if (timer) {
-//                console.log("clearTimer");
                 clearTimeout(timer);
                 timer = 0;
             }
 
-//            console.log("fadeIn");
             $('html').css({
-                cursor: ''
+                cursor: '',
+                overflow: 'auto'
             });
         } else {
             $('body').css({
-                cursor: 'default'
+                cursor: 'default',
+                overflow: 'auto'
             });
             fadeInBuffer = false;
         }
 
 
         timer = setTimeout(function() {
-//            console.log("fadeout");
             $('body').css({
-                cursor: 'none'
+                cursor: 'none',
+                overflow: 'hidden'
+            });
+            $('html').css({
+                overflow: 'hidden'
             });
 
             fadeInBuffer = true;
         }, 1000)
       });
       $('body').css({
-        cursor: 'default'
+        cursor: 'default',
+        overflow: 'auto'
+      });
+      $('html').css({
+        overflow: 'auto'
       });
     });
 
