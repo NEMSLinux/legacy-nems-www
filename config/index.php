@@ -22,7 +22,7 @@
 #
 ###########################################################################
 */
-print_r($_FILES);
+
   include('/var/www/html/inc/functions.php');
   if (!initialized()) {
     include('../init.php');
