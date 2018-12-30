@@ -22,7 +22,7 @@
 #
 ###########################################################################
 */
-
+print_r($_FILES);
   include('/var/www/html/inc/functions.php');
   if (!initialized()) {
     include('../init.php');
@@ -132,7 +132,6 @@ function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
 }
 
-
 // File storage devices
   $drivestmp = shell_exec('/usr/local/share/nems/nems-scripts/info.sh drives');
   $drivestmp = json_decode($drivestmp, true);
@@ -173,7 +172,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
     );
   });
 </script>
-<form method="post" id="sst" class="sky-form" style="border:none;">
+<form method="post" id="sst" class="sky-form" style="border:none;" enctype="multipart/form-data">
 
 
 					<div class="tab-v1">
@@ -261,6 +260,11 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                 } else {
                   $("#colorpicker").slideUp();
                 }
+                if(val === "8") {
+                  $("#fileupload").slideDown();
+                } else {
+                  $("#fileupload").slideUp();
+                }
               });
             });
           </script>
@@ -276,6 +280,16 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               });
             </script>
           </section>
+
+          <section id="fileupload" <?php if (!isset($nemsconf['background']) || $nemsconf['background'] != 8) echo 'style="display:none;"'; ?>>
+            <label class="label">Upload Your Image</label>
+            <label for="file" class="input input-file">
+              <div class="button"><input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>
+            </label>
+          </section>
+
+
+
           <section>
             <label class="label">Blur Background</label>
             <label class="select">
