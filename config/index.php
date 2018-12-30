@@ -264,7 +264,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               });
             });
           </script>
-          <section id="colorpicker" style="display:none;">
+          <section id="colorpicker" <?php if (!isset($nemsconf['background']) || $nemsconf['background'] != 7) echo 'style="display:none;"'; ?>>
             <label class="label">Custom Background Color</label>
             <label class="input">
               <input type="text" id="bgcolor" name="backgroundColor" value="<?= $nemsconf['backgroundColor'] ?>">
