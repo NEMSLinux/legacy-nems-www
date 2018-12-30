@@ -38,6 +38,8 @@
 
   $platform = ver('platform');
 
+  $uploaddir = '/var/www/html/userfiles/';
+
 // Nagios config
 if (ver('nems') < 1.4) {
   # LEGACY VERSION
@@ -50,6 +52,52 @@ if (ver('nems') < 1.4) {
 }
 
 if (isset($_POST) && isset($_POST['email'])) {
+
+  if (isset($_FILES)) {
+    $verifyimg = getimagesize($_FILES['file']['tmp_name']);
+
+    if ( // only allow png and jpg
+      $verifyimg['mime'] == 'image/png' ||
+      $verifyimg['mime'] == 'image/jpeg'
+    ) {
+
+// Re-size large images
+$maxDim = 1900;
+$file_name = $_FILES['file']['tmp_name'];
+list($width, $height, $type, $attr) = getimagesize( $file_name );
+if ( $width > $maxDim || $height > $maxDim ) {
+    $target_filename = $file_name;
+    $ratio = $width/$height;
+    if( $ratio > 1) {
+        $new_width = $maxDim;
+        $new_height = $maxDim/$ratio;
+    } else {
+        $new_width = $maxDim*$ratio;
+        $new_height = $maxDim;
+    }
+    $src = imagecreatefromstring( file_get_contents( $file_name ) );
+    $dst = imagecreatetruecolor( $new_width, $new_height );
+    imagecopyresampled( $dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height );
+    imagedestroy( $src );
+    if ($verifyimg['mime'] == 'image/png') {
+      imagepng( $dst, $target_filename, 9 );
+    } elseif ($verifyimg['mime'] == 'image/jpeg') {
+      imagejpeg( $dst, $target_filename, 60 );
+    }
+    imagedestroy( $dst );
+}
+
+      $uploadfile = $uploaddir . basename($_FILES['file']['name']);
+
+      if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+        $imguploadresp = "Image succesfully uploaded.";
+        $bgfileNEW = basename($_FILES['file']['name']);
+      } else {
+        $imguploadresp = "Image uploading failed.";
+      }
+    }
+  }
+
   if ($_POST['port'] == '') $_POST['port'] = 25;
   $output  = '###########################################################################' . PHP_EOL . '#' . PHP_EOL . '# RESOURCE.CFG - Resource File for Nagios' . PHP_EOL . '#' . PHP_EOL . '# This file is configured using the NEMS System Settings Tool ' . PHP_EOL . '# Please do not edit it directly.' . PHP_EOL . '#' . PHP_EOL . '###########################################################################' . PHP_EOL;
   $output .= '$USER1$=' . $pluginfolder . PHP_EOL; // A default setting, not user-configurable: the path to the plugins
@@ -115,6 +163,14 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	$nemsconf['alias'] = preg_replace("/&#?[a-z0-9]{2,8};/i","",sanitize($_POST['alias']));
         $nemsconf['allowupdate'] = intval($_POST['allowupdate']) ?: 5;
         $nemsconf['background'] = intval($_POST['background']) ?: 5;
+        if (isset($bgfileNEW) && strlen($bgfileNEW) > 0) {
+          // delete the previous image and replace with the new
+          if (isset($nemsconf['backgroundImage']) && file_exists($uploaddir . $nemsconf['backgroundImage'])) {
+            // only unlink if the filename differs - re-uploading the same filename replaces so no need to unlink
+            if ($nemsconf['backgroundImage'] != $bgfileNEW) unlink ($uploaddir . $nemsconf['backgroundImage']);
+          }
+          $nemsconf['backgroundImage'] = $bgfileNEW;
+        }
         $nemsconf['backgroundBlur'] = intval($_POST['backgroundBlur']) ?: 1;
         $nemsconf['backgroundColor'] = sanitize($_POST['backgroundColor']) ?: '#0d0b3f';
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
@@ -282,6 +338,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
           </section>
 
           <section id="fileupload" <?php if (!isset($nemsconf['background']) || $nemsconf['background'] != 8) echo 'style="display:none;"'; ?>>
+            <?php if (strlen($nemsconf['backgroundImage']) > 0 && file_exists($uploaddir . $nemsconf['backgroundImage'])) { echo 'Current: <a href="' . str_replace('/var/www/html/', '/', $uploaddir) . $nemsconf['backgroundImage'] . '" target="_blank">' . $nemsconf['backgroundImage'] . '</a>'; } ?>
             <label class="label">Upload Your Image</label>
             <label for="file" class="input input-file">
               <div class="button"><input type="file" id="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>

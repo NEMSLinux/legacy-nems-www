@@ -20,6 +20,8 @@
         $backgroundBlur=trim($tmp[1]);
       } elseif (trim($tmp[0]) == 'backgroundColor') {
         $backgroundColor=trim($tmp[1]);
+      } elseif (trim($tmp[0]) == 'backgroundImage') {
+        $backgroundImage=trim($tmp[1]);
       }
     }
   }
@@ -29,6 +31,15 @@
   if (!isset($backgroundElem)) $backgroundElem = 'body';
 
   switch ($background) {
+
+    case 8:
+      $bgimg = '/userfiles/' . $backgroundImage;
+      $output = "<script>jQuery(document).ready(function() {
+        $('" . $backgroundElem . "').backstretch([
+            '" . $bgimg . "',
+          ], {duration: 10000,transition: 'fade',speed: '1000'});
+        });</script>";
+      break;
 
     case 7:
       $tmp=explode(',',str_replace(array('hsv(',')'),array('',''),$backgroundColor));

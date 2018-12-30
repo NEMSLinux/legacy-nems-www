@@ -1,3 +1,5 @@
 RewriteEngine on
 RewriteRule ^nagios/(.*)$ /nagios3/$1 [R=301,NC,L]
 
+php_value upload_max_filesize 40M
+php_value post_max_size 42M
