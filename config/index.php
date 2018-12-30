@@ -243,7 +243,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
           <section>
             <label class="label">Background Image</label>
             <label class="select">
-              <select name="background">
+              <select name="background" id="background">
 		<option value="5"<?php if (!isset($nemsconf['background']) || $nemsconf['background'] == 5) echo ' SELECTED'; ?>>Default</option>
 		<option value="6"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 6) echo ' SELECTED'; ?>>Daily Image</option>
 		<option value="7"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 7) echo ' SELECTED'; ?>>Custom Color</option>
@@ -252,7 +252,19 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <i></i>
             </label>
           </section>
-          <section id="colorpicker"
+          <script>
+            $(function () {
+              $("#background").change(function() {
+                var val = $(this).val();
+                if(val === "7") {
+                  $("#colorpicker").slideDown();
+                } else {
+                  $("#colorpicker").slideUp();
+                }
+              });
+            });
+          </script>
+          <section id="colorpicker" style="display:none;">
             <label class="label">Custom Background Color</label>
             <label class="input">
               <input type="text" id="bgcolor" name="backgroundColor" value="<?= $nemsconf['backgroundColor'] ?>">
