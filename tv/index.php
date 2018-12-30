@@ -156,7 +156,7 @@
             });
 
             fadeInBuffer = true;
-        }, 1000)
+        }, 5000)
       });
       $('body').css({
         cursor: 'default',
