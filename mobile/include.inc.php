@@ -11,7 +11,7 @@ $STATUS_FILE  = "/var/cache/nagios/status.dat";
 $COMMAND_FILE = "/usr/local/nagios/var/rw/nagios.cmd";
 $CGI_FILE = "/usr/local/nagios/etc/cgi.cfg";
 $OBJECTS_FILE = "/var/lib/nagios/objects.precache"; 
-$BASE_URL = '/nagiosmobile';
+$BASE_URL = '/mobile';
 $TTL = 30; //Time to live for cached data parsed from status and objects file 
 $USER = ''; //you can hard-code the 'nagiosadmin' if you don't want any authentication: NOT RECOMMENDED!! 
 ///////////////////////////////////////////////////////////////////////////////////
