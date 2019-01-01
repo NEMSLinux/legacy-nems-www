@@ -1,7 +1,7 @@
 <?php
   $functions_loaded=1;
 
-  $alias = shell_exec('/usr/local/bin/nems-info alias');
+  $alias = trim(shell_exec('/usr/local/bin/nems-info alias'));
 
   function ver($product='nems') {
     $platform = new stdClass();
