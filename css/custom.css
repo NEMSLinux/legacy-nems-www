@@ -106,3 +106,8 @@ li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdow
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background: #222 !important;
 }
+
+/* Hide horizontal line after promo-text div */
+.promo-text:after {
+  background: transparent !important;
+}
