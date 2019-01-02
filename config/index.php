@@ -182,7 +182,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
 	}
         file_put_contents($nemsconffile,$nemsconfoutput); // overwrite the existing config
 }
-if (!isset($nemsconf['alias'])) $nemsconf['alias'] = 'NEMS';
+if (!isset($nemsconf['alias']) || strlen($nemsconf['alias']) == 0) $nemsconf['alias'] = 'NEMS';
 
 function sanitize($string) {
   return filter_var(trim($string),FILTER_SANITIZE_STRING);
