@@ -19,6 +19,11 @@
       exit('Error. Either your OSB account is invalid, or our server is not responding.');
     }
   }
+
+  if (file_exists('/var/www/html/backup/snapshot/size.log')) {
+    $currentsize = intval(trim(file_get_contents('/var/www/html/backup/snapshot/size.log')));
+  }
+
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -32,7 +37,7 @@
 
   <div class="col-md-12 margin-bottom-40">
     <p style="color: #333 !important;">Your local backup is always available to you. You can even access it via Windows networking (samba) and automate your backup. See <a href="https://docs.nemslinux.com/features/nems-migrator" target="_blank" class="color-blue">the NEMS Migrator documentation</a> for more details.</p>
-    <a href="/backup" target="_blank" class="btn-u btn-u-lg btn-brd-hover btn-u-green btn-u-block"><i class="fa fa-download"></i> DOWNLOAD</a>
+    <a href="/backup" target="_blank" class="btn-u btn-u-lg btn-brd-hover btn-u-green btn-u-block"><i class="fa fa-download"></i> DOWNLOAD<?php if (isset($currentsize) && $currentsize > 0) echo ' (' . formatBytes($currentsize) . ')'; ?></a>
   </div>
 
 </form>
