@@ -479,6 +479,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                                             echo '<span class="nems-green">Connected</span>';
                                           } else {
                                             echo '<span class="color-red">Authorization Failed</span>';
+                                            if (!isset($nemsconf['osbpass']) || $nemsconf['osbpass'] == '') echo ' (NEMS Cloud Services requires encryption, but you haven\'t set a Personal Encryption/Decryption Password on the <em>General</em> tab.)';
                                           }
                                           echo '</span>';
                                         }
