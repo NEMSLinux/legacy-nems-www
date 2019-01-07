@@ -40,6 +40,13 @@
 
   $uploaddir = '/var/www/html/userfiles/';
 
+  // define variables
+  $v=1;
+  while ($v<=32) {
+    ${'USER' . $v} = '';
+    $v++;
+  }
+
 // Nagios config
 if (ver('nems') < 1.4) {
   # LEGACY VERSION
@@ -193,7 +200,7 @@ function sanitize($string) {
   $drivestmp = json_decode($drivestmp, true);
   if (is_array($drivestmp['blockdevices']) && count($drivestmp['blockdevices']) > 0) {
     foreach ($drivestmp['blockdevices'] as $blockdevice) {
-      if (is_array($blockdevice['children']) && count($blockdevice['children']) > 0) {
+      if (isset($blockdevice['children']) && is_array($blockdevice['children']) && count($blockdevice['children']) > 0) {
         foreach ($blockdevice['children'] as $partition) {
           if ($partition['fstype'] != 'swap' && $partition['mountpoint'] != '/boot') {
             $partitions['usable'][$partition['uuid']] = $partition;
