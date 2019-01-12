@@ -7,7 +7,7 @@
   */
 
   // defaults
-  $background=5;
+  $background=6;
   $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
 
   $conftmp = file('/usr/local/share/nems/nems.conf');
