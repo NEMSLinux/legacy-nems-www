@@ -3,8 +3,16 @@
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-	<title>NEMS Linux</title>
-
+  <?php
+    $nemsalias = trim(shell_exec('/usr/local/bin/nems-info alias'));
+    echo '  <title>NEMS';
+    if (isset($nemsalias) && strtoupper($nemsalias) != 'NEMS') {
+      echo ': ' . $nemsalias;
+    } else {
+      echo ' Server';
+    }
+    echo '</title>';
+  ?>
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
