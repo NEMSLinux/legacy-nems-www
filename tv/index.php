@@ -20,6 +20,13 @@
 
     $refreshvalue = 30; //value in seconds to refresh data
     $pagetitle = "NEMS TV Dashboard";
+
+    $nemsalias = trim(shell_exec('/usr/local/bin/nems-info alias'));
+    if (isset($nemsalias) && strtoupper($nemsalias) != 'NEMS') {
+       $pagetitle = 'NEMS TV: ' . $nemsalias;
+    }
+
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
