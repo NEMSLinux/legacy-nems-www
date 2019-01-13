@@ -6,25 +6,31 @@
     8 = user uploaded
   */
 
-  // defaults
-  $background=6;
-  $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
+  $nemsver = shell_exec('/usr/local/bin/nems-info nemsver');
 
-  $conftmp = file('/usr/local/share/nems/nems.conf');
-  if (is_array($conftmp) && count($conftmp) > 0) {
-    foreach ($conftmp as $line) {
-      $tmp = explode('=',$line);
-      if (trim($tmp[0]) == 'background') {
-        $background=trim($tmp[1]);
-      } elseif (trim($tmp[0]) == 'backgroundBlur') {
-        $backgroundBlur=trim($tmp[1]);
-      } elseif (trim($tmp[0]) == 'backgroundColor') {
-        $backgroundColor=trim($tmp[1]);
-      } elseif (trim($tmp[0]) == 'backgroundImage') {
-        $backgroundImage=trim($tmp[1]);
+  // defaults
+  $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
+  $background=5;
+  // only allow >= NEMS 1.5 to change these defaults
+  if ($nemsver >= 1.5) {
+    $background=6;
+    $conftmp = file('/usr/local/share/nems/nems.conf');
+    if (is_array($conftmp) && count($conftmp) > 0) {
+      foreach ($conftmp as $line) {
+        $tmp = explode('=',$line);
+        if (trim($tmp[0]) == 'background') {
+          $background=trim($tmp[1]);
+        } elseif (trim($tmp[0]) == 'backgroundBlur') {
+          $backgroundBlur=trim($tmp[1]);
+        } elseif (trim($tmp[0]) == 'backgroundColor') {
+          $backgroundColor=trim($tmp[1]);
+        } elseif (trim($tmp[0]) == 'backgroundImage') {
+          $backgroundImage=trim($tmp[1]);
+        }
       }
     }
   }
+
   // default image within nems-www
   $defaultimg = '/img/wallpaper/server_room_dark.jpg';
   // Set the default background element to replace
