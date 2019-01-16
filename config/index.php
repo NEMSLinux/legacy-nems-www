@@ -601,7 +601,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="label">SMTP Authentication Username (Typically an email address)</label>
                   <label class="input">
                       <i class="icon-append fa fa-envelope"></i>
-                      <input type="email" name="smtpuser" placeholder="Email address" value="<?= $USER9 ?>">
+                      <input type="text" name="smtpuser" placeholder="Username" value="<?= $USER9 ?>">
                       <b class="tooltip tooltip-bottom-right">SMTP Username</b>
                   </label>
               </section>
