@@ -417,7 +417,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <label class="label">Administrator Password</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="password" name="domainpassword" placeholder="Password" id="password" value="<?= $USER4 ?>">
+                <input type="password" name="domainpassword" placeholder="Password" id="domainpassword" value="<?= $USER4 ?>">
                 <b class="tooltip tooltip-bottom-right">Administrator password</b>
             </label>
         </section>
@@ -609,7 +609,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="label">SMTP Password</label>
                   <label class="input">
                       <i class="icon-append fa fa-lock"></i>
-                      <input type="password" name="smtppassword" placeholder="Password" id="password" value="<?= $USER10 ?>">
+                      <input type="password" name="smtppassword" placeholder="Password" id="smtppassword" value="<?= $USER10 ?>">
                       <b class="tooltip tooltip-bottom-right">SMTP Password</b>
                   </label>
               </section>
