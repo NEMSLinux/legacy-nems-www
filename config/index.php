@@ -474,11 +474,11 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                          <header>NEMS Cloud Services<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/cloud" target="_blank">Learn More</a></header>
                          <fieldset>
                               <section>
-                                  <label class="label">NEMS Cloud Services License Key (If Registered)</label>
+                                  <label class="label">NEMS Cloud Services Key (If Registered)</label>
                                   <label class="input">
                                       <i class="icon-append fa fa-key"></i>
                                       <input type="text" name="osbkey" value="<?= $nemsconf['osbkey'] ?>">
-                                      <b class="tooltip tooltip-bottom-right">Your Off-Site Backup License Key</b>
+                                      <b class="tooltip tooltip-bottom-right">Your NEMS Cloud Services Key</b>
                                       <?php
                                         if (isset($nemsconf['osbkey']) && strlen($nemsconf['osbkey'])) {
                                           echo '<span style="font-size: 0.8em;">';
