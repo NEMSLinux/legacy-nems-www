@@ -131,13 +131,12 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 			LoginForm.initLoginForm();
 			ContactForm.initContactForm();
 			OwlCarousel.initOwlCarousel();
-$("body").backstretch([
-    "/img/wallpaper/server_room_dark.jpg",
-  ], {duration: 10000,transition: 'fade',speed: '1000'});
-
-
-		});
 	</script>
+        <?php
+          $backgroundElem = 'body';
+          require_once('/var/www/html/inc/wallpaper.php');
+        ?>
+
 	<!--[if lt IE 9]>
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/respond.js"></script>
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/html5shiv.js"></script>
