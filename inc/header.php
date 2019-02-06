@@ -107,11 +107,11 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  Reporting
 							</a>
 							<ul class="dropdown-menu">
-&nbsp;Modern
+&nbsp;<a>Modern</a>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/adagios/" target="_blank">Adagios</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/mobile/" target="_blank">NEMS Mobile UI</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/tv/" target="_blank">NEMS TV Dashboard</a></li>'; ?>
-&nbsp;Legacy
+&nbsp;<a>Legacy</a>
 							  <?php
 							    if (ver('nems') >= 1.4) {
 							      echo '<li><a href="/nagios/" target="_blank">Nagios Core</a></li>';
