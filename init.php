@@ -148,6 +148,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 	<!--[if lt IE 10]>
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
 	<![endif]-->
+        <span style="color: #333; position: absolute; right:0; bottom: 0; padding: 8px;">NEMS Linux <?php echo ver('nems'); ?></span>
 </body>
 </html>
 <?php
