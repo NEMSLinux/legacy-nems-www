@@ -499,7 +499,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
 
                                             <?php if (ver('nems') >= 1.5) { ?>
-                                                <header>NEMS Checkin Notifications</header>
+                                                <header>NEMS CheckIn Notifications</header>
                                                 <fieldset>
                                                   <section>
                                                     <p>Receive an email if your NEMS server goes offline or crashes.</p>
@@ -513,11 +513,11 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                                                     </label>
                                                   </section>
                                                   <section>
-                                                    <label class="label">Email Address for Checkin Alerts</label>
+                                                    <label class="label">Email Address for CheckIn Alerts</label>
                                                     <label class="input">
                                                         <i class="icon-append fa fa-envelope"></i>
-                                                        <input type="email" name="checkin.email" placeholder="Checkin email address" value="<?= $nemsconf['checkin.email'] ?>">
-                                                        <b class="tooltip tooltip-bottom-right">Email Address for Checkin Alerts</b>
+                                                        <input type="email" name="checkin.email" placeholder="CheckIn email address" value="<?= $nemsconf['checkin.email'] ?>">
+                                                        <b class="tooltip tooltip-bottom-right">Email Address for CheckIn Alerts</b>
                                                     </label>
                                                   </section>
                                                   <section>
