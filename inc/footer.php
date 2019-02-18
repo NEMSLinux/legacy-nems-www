@@ -45,10 +45,13 @@
 	<div class="footsie">
 	  <div class="container">
 		<div class="row">
-		  <div class="col-md-6 col-sm-4 col-xs-5">
-			<p><a href="https://nemslinux.com/" target="_blank">NEMS Linux</a> <?= ver() ?> <span style="color: #777">by</span> <a target="_blank" href="http://www.baldnerd.com/who-is-the-bald-nerd/">Robbie Ferguson</a></p>
+		  <div class="col-md-4 col-sm-4 col-xs-5">
+			<p><a href="https://nemslinux.com/" target="_blank">NEMS Linux</a> <span style="color: #777">by</span> <a target="_blank" href="http://www.baldnerd.com/who-is-the-bald-nerd/">Robbie Ferguson</a></p>
 		  </div>
-		  <div class="col-md-6 col-sm-8 col-xs-7 text-right pull-right">
+                  <div class="col-md-4 col-sm-4 col-xs-5 img-center text-center">
+                    <p>Version <?= ver() ?></p>
+                  </div>
+		  <div class="col-md-4 col-sm-8 col-xs-7 text-right pull-right">
 			<ul class="social-icons">
 				<li style="display:none;"><a target="_blank" class="social_facebook rounded-x" data-original-title="Facebook" href="https://www.facebook.com/Robbie-Ferguson-22827508923/"></a></li>
 				<li><a target="_blank" class="social_twitter rounded-x" data-original-title="Twitter" href="https://twitter.com/NEMSLinux"></a></li>

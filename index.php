@@ -105,6 +105,12 @@
 
 	<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>
 
+            <div class="text-center img-center">
+              <p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Sponsored By:</p>
+              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="https://nemslinux.com/img/sponsors/xrnit.png.pagespeed.ic.DeVGhHCiav.png" class="img-responsive" style="max-height:30px;" /></a>
+            </div>
+
+
 			</div><!--/end container-->
 
 		</div>
@@ -116,9 +122,11 @@
 				  </div>
 				</div>
 			</div>
+
 		  <!-- Promo Content END -->
 		</div>
 		<!-- Fullscreen Static Image END -->
+
 	  </div>
 	</section>
 	<!-- Promo block END -->
