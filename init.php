@@ -1,6 +1,7 @@
 <?php
   if (isset($functions_loaded) && $functions_loaded == 1) {
   $ip = trim(shell_exec('/usr/local/bin/nems-info ip'));
+  $platform = ver('platform');
 ?><!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -84,7 +85,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 						<div class="call-action-v1-in">
 							<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
 							<?php
-							  if (ver('nems') < 1.4) {
+							  if (ver('nems') < 1.4 || $platform->num == 0 || $platform->num == 1) {
 							    echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') and run:<br /><em>sudo nems-init</em></p>';
 							  } else {
 							    echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') or <a href="https://' .  $self->host . ':9090/system/terminal">open a browser-based terminal session</a> and run:<br /><em>sudo nems-init</em></p>';

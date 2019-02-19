@@ -717,15 +717,15 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                       		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
                       		  echo '<label class="toggle text-right"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
 
-                                        if (ver('nems') >= 1.4) {
-
+                                  if (ver('nems') >= 1.4 && $platform->num != 0 && $platform->num != 1 ) { // not included on Pi 1 or Zero
                       		    if (checkConfEnabled('cockpit') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
                       		    echo '<label class="toggle text-right"><input ' . $checked . ' name="cockpit" type="checkbox" class="services reboot"><i></i>Cockpit</label>';
+                                  }
 
+                                  if (ver('nems') >= 1.4) {
                       		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
                       		    echo '<label class="toggle text-right"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
-
-                                        }
+                                  }
 
                       		?>
                       		<script>
