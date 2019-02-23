@@ -56,6 +56,7 @@
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Version Running:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nemsver'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Version Available:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nemsveravail'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Platform:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info platform-name'); ?></span></p>
+  <?php if ($platform->num < 10) { ?><p style="padding:4px 6px; color: #aaa !important;"><b>piWatcher Present:</b> <span class="nems-green"><?php $piwatcher=shell_exec('/usr/local/bin/nems-info piwatcher'); if ($piwatcher == 1) { echo 'Yes'; } else { echo 'No <a class="btn btn-xs rounded btn-default" href="https://cat5.tv/piwatcher" target="_blank">Order</a>'; } } ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Network Interface:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nic'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Hosts:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hosts'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Services:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info services'); ?></span></p>
