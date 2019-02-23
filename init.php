@@ -83,6 +83,13 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 
 					<div class="call-action-v1-box">
 						<div class="call-action-v1-in">
+<?php
+  if (file_exists('/tmp/nems-build.cur')) {
+    $build_cur=trim(file_get_contents('/tmp/nems-build.cur'));
+    echo '<h3 class="color-light" style="font-weight: bold;">NEMS Linux ' . ver('nems') . ' is being compiled.</h3>';
+    echo '<p class="color-light">Current Build Script:<br /><em>' . $build_cur . '</em></p>';
+  } else {
+?>
 							<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>
 							<?php
 							  if (ver('nems') < 1.4 || $platform->num == 0 || $platform->num == 1) {
@@ -90,7 +97,9 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 							  } else {
 							    echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') or <a href="https://' .  $self->host . ':9090/system/terminal">open a browser-based terminal session</a> and run:<br /><em>sudo nems-init</em></p>';
 							  }
+}
 							?>
+
 						</div>
 						<div class="call-action-v1-in inner-btn page-scroll">
 							<a href="https://docs.nemslinux.com/commands/nems-init" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
