@@ -84,8 +84,8 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 					<div class="call-action-v1-box">
 						<div class="call-action-v1-in">
 <?php
-  if (file_exists('/tmp/nems-build.cur')) {
-    $build_cur=trim(file_get_contents('/tmp/nems-build.cur'));
+  if (file_exists('userfiles/nems-build.cur')) {
+    $build_cur=trim(file_get_contents('userfiles/nems-build.cur'));
     echo '<h3 class="color-light" style="font-weight: bold;">NEMS Linux ' . ver('nems') . ' is being compiled.</h3>';
     echo '<p class="color-light">Current Build Script:<br /><em>' . $build_cur . '</em></p>';
   } else {
