@@ -98,7 +98,7 @@
   <div id="calendar" class="col-md-12"></div>
 
         <!-- Fullcalendar -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js"></script>
+        <script src="/js/fullcalendar.min.js"></script>
 
 <script>
 

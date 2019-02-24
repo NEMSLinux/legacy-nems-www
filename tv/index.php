@@ -33,8 +33,8 @@
     <head>
 	<link type="image/ico" rel="icon" href="favicon.ico" />
         <title><?php echo($pagetitle); ?></title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-loading-overlay/2.1.6/loadingoverlay.min.js"></script>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/loadingoverlay.min.js"></script>
 
         </script>
 		<link rel="stylesheet" type="text/css" href="nagios.css" />
@@ -120,7 +120,7 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script src="/js/jquery.backstretch.min.js"></script>
 
    <?php
      $backgroundElem = 'body';
