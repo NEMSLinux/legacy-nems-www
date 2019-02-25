@@ -1,5 +1,5 @@
 <?php
-  $bgcolor = '040111';
+  require_once('bgcolor.php');
 ?><!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -116,7 +116,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/mobile/" target="_blank">NEMS Mobile UI</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/tv/" target="_blank">NEMS TV Dashboard</a></li>'; ?>
 
-                                                          <li><h4 style="padding: 0 0 4px 4px; margin-bottom: 0;">Legacy</h4></li>
+                                                          <li><h4 style="padding: 0 0 4px 4px; margin: 0;">Legacy</h4></li>
 							  <?php
 							    if (ver('nems') >= 1.4) {
 							      echo '<li><a href="/nagios/" target="_blank">Nagios Core</a></li>';
@@ -138,7 +138,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 
 							<ul class="dropdown-menu">
  							  <?php if (checkConfEnabled('monitorix')) { echo '<li><a href="/monitorix/">Monitorix</a></li>'; } ?>
-							  <?php if (ver('nems') >= 1.4 && checkConfEnabled('cockpit')) echo '<li><a href="https://' . $self->host . ':9090" target="_blank">Cockpit</a></li>'; ?>
+							  <?php if (ver('nems') >= 1.4) echo '<li><a href="https://' . $self->host . ':9090" target="_blank">Cockpit</a></li>'; ?>
 							  <?php if ((ver('platform')->num < 10) && checkConfEnabled('rpi-monitor')) { echo '<li><a href="http://' . $self->host . ':8888" target="_blank">RPi-Monitor</a></li>'; } ?>
 							  <?php if (ver('nems') <= 1.4 && checkConfEnabled('webmin')) { echo '<li><a href="https://' . $self->host . ':10000" target="_blank">Webmin</a></li>'; } ?>
 							  <?php if (ver('nems') >= 1.3) echo '<li><a href="https://' . $self->host . ':2812" target="_blank"><em>monit</em> Service Monitor</a></li>'; ?>

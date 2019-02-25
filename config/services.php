@@ -37,14 +37,6 @@ if (is_array($conftmp) && count($conftmp) > 0) {
         }
         break;
 
-      case 'cockpit':
-        if ($_POST['value'] == 'off') {
-          $config['service.' . $name] = 0;
-	} elseif ($_POST['value'] == 'on') {
-          $config['service.' . $name] = 1;
-        }
-        break;
-
       case 'rpi-monitor':
         if ($_POST['value'] == 'off') {
           $config['service.' . $name] = 0;
