@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+  $bgcolor = '040111';
+?><!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
@@ -21,6 +23,7 @@
 
 	<!-- Favicon -->
         <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="theme-color" content="#<?= $bgcolor ?>">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
