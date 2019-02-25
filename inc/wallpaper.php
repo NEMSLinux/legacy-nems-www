@@ -33,6 +33,10 @@
 
   // default image within nems-www
   $defaultimg = '/img/wallpaper/server_room_dark.jpg';
+
+  // default background color
+  $defaultbgcolor = '040111';
+
   // Set the default background element to replace
   if (!isset($backgroundElem)) $backgroundElem = 'body';
 
@@ -53,6 +57,40 @@
       $s = trim($tmp[1]);
       $v = trim($tmp[2]);
       $rgb=hsv2rgb($h,$s,$v);
+      $vDark = ($v-40);
+      if ($vDark < 1) $vDark = 1;
+      $rgbDark=hsv2rgb($h,$s,$vDark);
+      $output = "
+        <style>$backgroundElem { background-image: radial-gradient(" . $rgb['html'] . "," . $rgbDark['html'] . "); }</style>
+      ";
+      break;
+
+    case 9:
+      $key = strtotime('today');
+      // caches the response each day
+      $cachefile = '/tmp/bgcolor-' . $key;
+      if (file_exists($cachefile)) {
+        $result = trim(file_get_contents($cachefile));
+      } else {
+        $json_url = 'https://cloud.nemslinux.com/bgcolor/' . $key . '.json';
+        $ch = curl_init( $json_url );
+        $options = array(
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_HTTPHEADER => array('Content-type: application/json') ,
+        );
+        curl_setopt_array( $ch, $options );
+        $result = curl_exec($ch);
+        file_put_contents($cachefile,$result);
+      }
+      $resultobj = json_decode($result);
+      if (isset($resultobj->$key)) {
+        $bgcolor = $resultobj->$key;
+      } else {
+        $bgcolor = $defaultbgcolor;
+      }
+
+      list($rgb[0], $rgb[1], $rgb[2]) = sscanf($bgcolor, "%02x%02x%02x");
+      $rgb['html'] = sprintf('#%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
       $vDark = ($v-40);
       if ($vDark < 1) $vDark = 1;
       $rgbDark=hsv2rgb($h,$s,$vDark);

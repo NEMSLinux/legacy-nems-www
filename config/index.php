@@ -307,6 +307,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <label class="select">
               <select name="background" id="background">
 		<option value="6"<?php if (!isset($nemsconf['background']) || $nemsconf['background'] == 6) echo ' SELECTED'; ?>>Daily Image (Default)</option>
+		<option value="9"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 9) echo ' SELECTED'; ?>>Daily Color</option>
 		<option value="5"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 5) echo ' SELECTED'; ?>>NEMS Legacy</option>
 		<option value="7"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 7) echo ' SELECTED'; ?>>Custom Color</option>
 		<option value="8"<?php if (isset($nemsconf['background']) && $nemsconf['background'] == 8) echo ' SELECTED'; ?>>Upload Image</option>
