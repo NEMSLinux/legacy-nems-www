@@ -193,7 +193,8 @@
     </style>";
   }
 
-function hsv2rgb($hue,$sat,$val) {;
+if (!function_exists('hsv2rgb')) {
+  function hsv2rgb($hue,$sat,$val) {;
     $rgb = array(0,0,0);
     //calc rgb for 100% SV, go +1 for BR-range
     for($i=0;$i<4;$i++) {
@@ -211,6 +212,7 @@ function hsv2rgb($hue,$sat,$val) {;
     }
     $rgb['html'] = sprintf('#%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
     return $rgb;
+  }
 }
 
 ?>
