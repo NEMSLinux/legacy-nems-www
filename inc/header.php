@@ -23,6 +23,8 @@
 
 	<!-- Favicon -->
         <link rel="shortcut icon" href="/favicon.ico">
+
+        <!-- Nav bar color -->
         <meta name="theme-color" content="#<?= $bgcolor ?>">
 
 	<!-- Web Fonts -->
@@ -64,6 +66,7 @@
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
   }
 </script>
+
 </head>
 
 <!--
