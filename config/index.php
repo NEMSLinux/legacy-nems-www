@@ -47,6 +47,56 @@
     $v++;
   }
 
+
+function hex2rgb($color){
+    $color = str_replace('#', '', $color);
+    if (strlen($color) != 6){ return array(0,0,0); }
+    $rgb = array();
+    for ($x=0;$x<3;$x++){
+        $rgb[$x] = hexdec(substr($color,(2*$x),2));
+    }
+    return $rgb;
+}
+
+function rgb2hsv($rgb){
+    $r = $rgb[0] / 255;
+    $g = $rgb[1] / 255;
+    $b = $rgb[2] / 255;
+
+    $v = max($r, $g, $b);
+    $diff = $v - min($r, $g, $b);
+
+    $diffc = function($c) use ($v, $diff) {
+      return ($v - $c) / 6 / $diff + 1 / 2;
+    };
+
+    if($diff == 0){
+      $h = $s = 0;
+    }else{
+      $s = $diff / $v;
+      $rr = $diffc($r);
+      $gg = $diffc($g);
+      $bb = $diffc($b);
+
+      if($r === $v){
+          $h = $bb - $gg;
+      }else if($g === $v){
+          $h = (1 / 3) + $rr - $bb;
+      }else if($b === $v){
+          $h = (2 / 3) + $gg - $rr;
+      }
+
+      if($h < 0){
+          $h += 1;
+      }else if($h > 1){
+          $h -= 1;
+      }
+    }
+    $hsv = round($h * 360) . ',' . round($s * 100) . '%,' . round($v * 100) . '%';
+    return $hsv;
+}
+
+
 // Nagios config
 if (ver('nems') < 1.4) {
   # LEGACY VERSION
@@ -99,6 +149,10 @@ if ( $width > $maxDim || $height > $maxDim ) {
       if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
         $imguploadresp = "Image succesfully uploaded.";
         $bgfileNEW = basename($_FILES['file']['name']);
+        // create a hex color that is the most prominent color in the photo
+        $image=imagecreatefromjpeg($uploadfile);
+        $thumb=imagecreatetruecolor(1,1); imagecopyresampled($thumb,$image,0,0,0,0,1,1,imagesx($image),imagesy($image));
+        $mainColor='hsv(' . rgb2hsv(hex2rgb(strtoupper(dechex(imagecolorat($thumb,0,0))))) . ')';
       } else {
         $imguploadresp = "Image uploading failed.";
       }
@@ -179,7 +233,11 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
           $nemsconf['backgroundImage'] = $bgfileNEW;
         }
         $nemsconf['backgroundBlur'] = intval($_POST['backgroundBlur']) ?: 1;
-        $nemsconf['backgroundColor'] = sanitize($_POST['backgroundColor']) ?: '#0d0b3f';
+        if (isset($mainColor)) {
+          $nemsconf['backgroundColor'] = $mainColor;
+        } else {
+          $nemsconf['backgroundColor'] = sanitize($_POST['backgroundColor']) ?: '0,100%,100%';
+        }
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
         $nemsconf['checkin.email'] = filter_var(trim($_POST['checkin_email']), FILTER_VALIDATE_EMAIL) ?: '';
         $nemsconf['checkin.interval'] = intval($_POST['checkin_interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).

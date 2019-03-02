@@ -43,6 +43,15 @@
   switch ($background) {
 
     case 8:
+      $tmp=explode(',',str_replace(array('hsv(',')'),array('',''),$backgroundColor));
+      $h = trim($tmp[0]);
+      $s = trim($tmp[1]);
+      $v = trim($tmp[2]);
+      $rgb=hsv2rgb($h,$s,$v);
+      $vDark = ($v-40);
+      if ($vDark < 1) $vDark = 1;
+      $rgbDark=hsv2rgb($h,$s,$vDark);
+      $bgcolor = $rgb['html'];
       $bgimg = '/userfiles/' . $backgroundImage;
       $output = "<script>jQuery(document).ready(function() {
         $('" . $backgroundElem . "').backstretch([
@@ -61,8 +70,9 @@
       if ($vDark < 1) $vDark = 1;
       $rgbDark=hsv2rgb($h,$s,$vDark);
       $output = "
-        <style>$backgroundElem { background-image: radial-gradient(" . $rgb['html'] . "," . $rgbDark['html'] . "); }</style>
+        <style>$backgroundElem { background-image: radial-gradient(#" . $rgb['html'] . ",#" . $rgbDark['html'] . "); }</style>
       ";
+      $bgcolor = $rgb['html'];
       break;
 
     case 9:
@@ -90,12 +100,12 @@
       }
 
       list($rgb[0], $rgb[1], $rgb[2]) = sscanf($bgcolor, "%02x%02x%02x");
-      $rgb['html'] = sprintf('#%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
+      $rgb['html'] = sprintf('%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
       $vDark = ($v-40);
       if ($vDark < 1) $vDark = 1;
       $rgbDark=hsv2rgb($h,$s,$vDark);
       $output = "
-        <style>$backgroundElem { background-image: radial-gradient(" . $rgb['html'] . "," . $rgbDark['html'] . "); }</style>
+        <style>$backgroundElem { background-image: radial-gradient(#" . $rgb['html'] . ",#" . $rgbDark['html'] . "); }</style>
       ";
       break;
 
