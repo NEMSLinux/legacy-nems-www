@@ -46,7 +46,7 @@
 	<link rel="stylesheet" href="https://cdn.zecheriah.com/site-assets/1.9.6/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 	<!--[if lt IE 9]><link rel="stylesheet" href="https://cdn.zecheriah.com/site-assets/1.9.6/assets/plugins/sky-forms-pro/skyforms/css/sky-forms-ie8.css"><![endif]-->
         <link rel="stylesheet" href="https://cdn.zecheriah.com/site-assets/1.9.6/assets/css/pages/page_error4_404.css">
-	
+
 	<!-- CSS Theme -->
 	<link rel="stylesheet" href="https://cdn.zecheriah.com/site-assets/1.9.6/assets/css/headers/header-v6.css">
 	<link rel="stylesheet" href="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/css/theme-skins/one.dark.css">
@@ -61,12 +61,18 @@
         <script src="/js/jquery.min.js"></script>
         <script src="/js/moment.min.js"></script>
 
-<script language="javascript" type="text/javascript">
-  function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-  }
-</script>
-
+        <script language="javascript" type="text/javascript">
+          function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+          }
+        </script>
+        <style>
+/* Disable until I implement bgDARK into header
+          .navbar, .top-nav-collapse {
+            background: rgba(<?= $bgcolorRGB[0] ?>,<?= $bgcolorRGB[1] ?>,<?= $bgcolorRGB[2] ?>,90%) !important;
+          }
+*/
+        </style>
 </head>
 
 <!--
