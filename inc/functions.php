@@ -223,7 +223,7 @@
     return $rgb;
   }
 
-  function rgb2hsv($rgb){
+  function rgb2hsv($rgb,$version='string'){
     $r = $rgb[0] / 255;
     $g = $rgb[1] / 255;
     $b = $rgb[2] / 255;
@@ -257,8 +257,12 @@
           $h -= 1;
       }
     }
-    $hsv = round($h * 360) . ',' . round($s * 100) . '%,' . round($v * 100) . '%';
-    return $hsv;
+    if ($version == 'array') {
+      return [ round($h * 360), round($s * 100), round($v * 100) ];
+    } else {
+      $hsv = round($h * 360) . ',' . round($s * 100) . '%,' . round($v * 100) . '%';
+      return $hsv;
+    }
   }
 
   function hsv2rgb($hue,$sat,$val) {;

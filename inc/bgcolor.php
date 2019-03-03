@@ -52,5 +52,16 @@
     }
 
   $bgcolorRGB = hex2rgb($bgcolor);
+  $bgcolorHSV = rgb2hsv($bgcolorRGB);
+
+  $tmp=explode(',',str_replace(array('hsv(',')'),array('',''),$bgcolorHSV));
+  $h = intval(trim($tmp[0]));
+  $s = intval(trim($tmp[1]));
+  $v = intval(trim($tmp[2]));
+  $rgb=hsv2rgb($h,$s,$v);
+  $vDark = ($v-40);
+  if ($vDark < 1) $vDark = 1;
+  $bgcolorDarkRGB=hsv2rgb($h,$s,$vDark);
+  $bgcolorDark=$bgcolorDarkRGB['html'];
 
 ?>

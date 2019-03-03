@@ -25,7 +25,7 @@
         <link rel="shortcut icon" href="/favicon.ico">
 
         <!-- Nav bar color -->
-        <meta name="theme-color" content="#<?= $bgcolor ?>">
+        <meta name="theme-color" content="#<?= $bgcolorDark ?>">
 
 	<!-- Web Fonts -->
 	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
@@ -67,11 +67,9 @@
           }
         </script>
         <style>
-/* Disable until I implement bgDARK into header
           .navbar, .top-nav-collapse {
-            background: rgba(<?= $bgcolorRGB[0] ?>,<?= $bgcolorRGB[1] ?>,<?= $bgcolorRGB[2] ?>,90%) !important;
+            background: rgba(<?= $bgcolorDarkRGB[0] ?>,<?= $bgcolorDarkRGB[1] ?>,<?= $bgcolorDarkRGB[2] ?>,90%) !important;
           }
-*/
         </style>
 </head>
 
