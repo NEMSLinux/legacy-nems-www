@@ -35,7 +35,7 @@
 */
 ?>
 <div>
-				<div class="row">
+				<div class="row hidden-xs">
 
 					<div class="col-md-3 col-xs-6 md-margin-bottom-50">
 
