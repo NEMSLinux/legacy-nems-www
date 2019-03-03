@@ -1,30 +1,7 @@
 <?php
 
   $defaultbgcolor = '040111';
-
-  if (!function_exists('hsv2rgb')) {
-    function hsv2rgb($hue,$sat,$val) {;
-      $rgb = array(0,0,0);
-      //calc rgb for 100% SV, go +1 for BR-range
-      for($i=0;$i<4;$i++) {
-        if (abs($hue - $i*120)<120) {
-          $distance = max(60,abs($hue - $i*120));
-          $rgb[$i % 3] = 1 - (($distance-60) / 60);
-        }
-      }
-      //desaturate by increasing lower levels
-      $max = max($rgb);
-      $factor = 255 * ($val/100);
-      for($i=0;$i<3;$i++) {
-        //use distance between 0 and max (1) and multiply with value
-        $rgb[$i] = round(($rgb[$i] + ($max - $rgb[$i]) * (1 - $sat/100)) * $factor);
-      }
-      $rgb['html'] = sprintf('%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
-      return $rgb;
-    }
-  }
-
-
+  include_once('/var/www/html/inc/functions.php');
 
     $conftmp = file('/usr/local/share/nems/nems.conf');
     if (is_array($conftmp) && count($conftmp) > 0) {
@@ -73,19 +50,6 @@
         $bgcolor = $defaultbgcolor;
       }
     }
-
-
-  if (!function_exists(hex2rgb)) {
-    function hex2rgb($color){
-      $color = str_replace('#', '', $color);
-      if (strlen($color) != 6){ return array(0,0,0); }
-      $rgb = array();
-      for ($x=0;$x<3;$x++){
-        $rgb[$x] = hexdec(substr($color,(2*$x),2));
-      }
-      return $rgb;
-    }
-  }
 
   $bgcolorRGB = hex2rgb($bgcolor);
 

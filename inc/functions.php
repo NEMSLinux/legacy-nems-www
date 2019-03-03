@@ -209,4 +209,79 @@
       return false;
     }
   }
+
+
+  // Theme color helpers
+
+  function hex2rgb($color){
+    $color = str_replace('#', '', $color);
+    if (strlen($color) != 6){ return array(0,0,0); }
+    $rgb = array();
+    for ($x=0;$x<3;$x++){
+      $rgb[$x] = hexdec(substr($color,(2*$x),2));
+    }
+    return $rgb;
+  }
+
+  function rgb2hsv($rgb){
+    $r = $rgb[0] / 255;
+    $g = $rgb[1] / 255;
+    $b = $rgb[2] / 255;
+
+    $v = max($r, $g, $b);
+    $diff = $v - min($r, $g, $b);
+
+    $diffc = function($c) use ($v, $diff) {
+      return ($v - $c) / 6 / $diff + 1 / 2;
+    };
+
+    if($diff == 0){
+      $h = $s = 0;
+    }else{
+      $s = $diff / $v;
+      $rr = $diffc($r);
+      $gg = $diffc($g);
+      $bb = $diffc($b);
+
+      if($r === $v){
+          $h = $bb - $gg;
+      }else if($g === $v){
+          $h = (1 / 3) + $rr - $bb;
+      }else if($b === $v){
+          $h = (2 / 3) + $gg - $rr;
+      }
+
+      if($h < 0){
+          $h += 1;
+      }else if($h > 1){
+          $h -= 1;
+      }
+    }
+    $hsv = round($h * 360) . ',' . round($s * 100) . '%,' . round($v * 100) . '%';
+    return $hsv;
+  }
+
+  function hsv2rgb($hue,$sat,$val) {;
+    $rgb = array(0,0,0);
+    //calc rgb for 100% SV, go +1 for BR-range
+    for($i=0;$i<4;$i++) {
+      if (abs($hue - $i*120)<120) {
+        $distance = max(60,abs($hue - $i*120));
+        $rgb[$i % 3] = 1 - (($distance-60) / 60);
+      }
+    }
+    //desaturate by increasing lower levels
+    $max = max($rgb);
+    $factor = 255 * (intval($val)/100);
+    for($i=0;$i<3;$i++) {
+      //use distance between 0 and max (1) and multiply with value
+      $rgb[$i] = round(($rgb[$i] + ($max - $rgb[$i]) * (1 - intval($sat)/100)) * $factor);
+    }
+    $rgb['html'] = sprintf('%02X%02X%02X', $rgb[0], $rgb[1], $rgb[2]);
+    return $rgb;
+  }
+
+
+
+
 ?>

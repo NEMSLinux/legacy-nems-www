@@ -111,3 +111,10 @@ li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdow
 .promo-text:after {
   background: transparent !important;
 }
+
+.parallax-counter-v4 {
+    background: rgba(0,0,0,1) !important;
+}
+.parallax-counter-v4:after {
+    background: rgba(0,0,0,1) !important;
+}
