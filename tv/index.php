@@ -1,4 +1,5 @@
-<?php 
+<?php
+  require_once('/var/www/html/inc/bgcolor.php');
 # The nagios-dashboard was written by Morten Bekkelund & Jonas G. Drange in 2010
 #
 # Patched, modified and added to by various people, see README
@@ -38,6 +39,11 @@
 
         </script>
 		<link rel="stylesheet" type="text/css" href="nagios.css" />
+        <style>
+          .nagios_statusbar {
+            background: rgba(<?= $bgcolorDarkRGB[0] ?>,<?= $bgcolorDarkRGB[1] ?>,<?= $bgcolorDarkRGB[2] ?>,.8) !important;
+          }
+        </style>
     </head>
     <body>
 	
