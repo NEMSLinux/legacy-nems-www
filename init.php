@@ -59,6 +59,11 @@
     obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
   }
 </script>
+<?php
+    if (file_exists('userfiles/nems-build.cur')) {
+      echo '<meta http-equiv="refresh" content="10" />';
+    }
+?>
 </head>
 
 <!--
