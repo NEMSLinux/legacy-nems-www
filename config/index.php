@@ -192,6 +192,10 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
         $nemsconf['checkin.enabled'] = intval($_POST['checkin_enabled']) ?: 0;
         $nemsconf['checkin.email'] = filter_var(trim($_POST['checkin_email']), FILTER_VALIDATE_EMAIL) ?: '';
         $nemsconf['checkin.interval'] = intval($_POST['checkin_interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).
+
+        $nemsconf['speedtestserver'] = intval($_POST['speedtestserver']);
+        $nemsconf['speedtestwhich'] = intval($_POST['speedtestwhich']) ?: 0;
+
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -438,6 +442,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 <?php
   if (ver('nems') >= 1.5) {
 ?>
+
   <div class="col-md-4">
     <header>IPMI Credentials</header>
     <fieldset>
@@ -459,6 +464,31 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
         </section>
     </fieldset>
   </div>
+
+  <div class="col-md-4">
+    <header>Internet Speedtest</header>
+    <fieldset>
+        <section>
+            <label class="label">Automatically Chosen Server</label>
+            <label class="input">
+                <i class="icon-append fa fa-server"></i>
+                <input type="hidden" name="speedtestserver" value="<?= $nemsconf['speedtestserver'] ?>" />
+                <input type="text" disabled="disabled" value="<?= $nemsconf['speedtestserver'] ?>" />
+            </label>
+        </section>
+        <section>
+           <label class="label">Which To Use</label>
+           <label class="select">
+             <select name="speedtestwhich">
+               <option value="0"<?php if (!isset($nemsconf['speedtestwhich']) || $nemsconf['speedtestwhich'] == 0) echo ' SELECTED'; ?>>Recommended Nearest Server (Dynamic)</option>
+               <option value="1"<?php if (isset($nemsconf['speedtestwhich']) && $nemsconf['speedtestwhich'] == 1) echo ' SELECTED'; ?>>ARG in NEMS NConf check command (Static)</option>
+             </select>
+             <i></i>
+           </label>
+        </section>
+    </fieldset>
+  </div>
+
 <?php
 }
 ?>
