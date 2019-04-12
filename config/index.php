@@ -132,8 +132,11 @@ if ( $width > $maxDim || $height > $maxDim ) {
   $output .= '$USER14$=' . (sanitize($_POST['pushover_userkey']) ?: 'NULL') . PHP_EOL;
 
   # TLS for SMTP enabled (1) or not (0), default 1
-  if (empty($_POST['smtp_tls'])) $smtp_tls = 0; // if 0 selected, _POST value will be empty
-  $smtp_tls = sanitize($_POST['smtp_tls']);
+  if (empty($_POST['smtp_tls'])) {
+    $smtp_tls = 0; // if 0 selected, _POST value will be empty
+  } else {
+    $smtp_tls = sanitize($_POST['smtp_tls']);
+  }
   $output .= '$USER15$=' . ($smtp_tls ?: '1') . PHP_EOL;
 
   # IPMI credentials
