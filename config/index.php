@@ -131,13 +131,8 @@ if ( $width > $maxDim || $height > $maxDim ) {
   $output .= '$USER13$=' . (sanitize($_POST['pushover_apikey']) ?: 'NULL') . PHP_EOL;
   $output .= '$USER14$=' . (sanitize($_POST['pushover_userkey']) ?: 'NULL') . PHP_EOL;
 
-  # TLS for SMTP enabled (1) or not (0), default 1
-  if (empty($_POST['smtp_tls'])) {
-    $smtp_tls = 0; // if 0 selected, _POST value will be empty
-  } else {
-    $smtp_tls = sanitize($_POST['smtp_tls']);
-  }
-  $output .= '$USER15$=' . ($smtp_tls ?: '1') . PHP_EOL;
+  # TLS for SMTP enabled (1) or not (2), default 1
+  $output .= '$USER15$=' . (sanitize($_POST['smtp_tls']) ?: '1') . PHP_EOL;
 
   # IPMI credentials
   $output .= '$USER16$=' . (sanitize($_POST['ipmi_user']) ?: 'NULL') . PHP_EOL;
@@ -628,7 +623,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="select">
                     <select name="smtp_tls">
                       <option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
-                      <option value="0"<?php if (isset($USER15) && $USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
+                      <option value="2"<?php if (isset($USER15) && $USER15 == 2) echo ' SELECTED'; ?>>Do not use TLS</option>
                     </select>
                     <i></i>
                   </label>
