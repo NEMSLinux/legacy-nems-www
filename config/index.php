@@ -621,7 +621,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                 <section>
                   <label class="label">SMTP Secure Authentication</label>
                   <label class="select">
-                    <select name="smtptls">
+                    <select name="smtp_tls">
           <option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
           <option value="0"<?php if (isset($USER15) && $USER15 == 0) echo ' SELECTED'; ?>>Do not use TLS</option>
                     </select>
