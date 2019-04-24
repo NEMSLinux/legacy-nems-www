@@ -481,7 +481,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
            <label class="select">
              <select name="speedtestwhich">
                <option value="0"<?php if (!isset($nemsconf['speedtestwhich']) || $nemsconf['speedtestwhich'] == 0) echo ' SELECTED'; ?>>Recommended Nearest Server (Dynamic)</option>
-               <option value="1"<?php if (isset($nemsconf['speedtestwhich']) && $nemsconf['speedtestwhich'] == 1) echo ' SELECTED'; ?>>ARG in NEMS NConf check command (Static)</option>
+               <option value="1"<?php if (isset($nemsconf['speedtestwhich']) && $nemsconf['speedtestwhich'] == 1) echo ' SELECTED'; ?>>Hard-set in NEMS NConf service (Static)</option>
              </select>
              <i></i>
            </label>
