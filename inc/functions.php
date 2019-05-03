@@ -30,15 +30,11 @@
         $nems_branch_avail = $tmp[0] . '.' . $tmp[1];
         return trim($nems_branch_avail);
         break;
-//      case 'nagios': // /usr/sbin/nagios3 --version
-//        return '3.5.1'; // is this used anywhere?! If yes, need to fix this as it's completely wrong.
-//	break;
       case 'platform': // which platform is this for
         $platform->num = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform'));
-//        $platform = json_decode(file_get_contents('https://nemslinux.com/api/platform/' . $platform_num, false, stream_context_create($arrContextOptions)));
         $platform->name = trim(shell_exec('/usr/local/share/nems/nems-scripts/info.sh platform-name'));
         return $platform; // version of NEMS currently available on our site
-	break;
+      	break;
     }
   }
 
@@ -285,7 +281,33 @@
     return $rgb;
   }
 
-
-
+  function loadMonitorix($dmy) {
+    $result = array();
+    switch (strtolower($dmy)) {
+      case 'd';
+        $which = 'day';
+        break;
+      case 'w';
+        $which = 'week';
+        break;
+      case 'm';
+        $which = 'month';
+        break;
+      case 'y';
+        $which = 'year';
+        break;
+    }
+    if (file_exists('/var/www/html/monitorix/img/system1z.1year.png')) { // wait until the files are created
+      if ($handle = opendir('/var/www/html/monitorix/img/')) {
+        while (false !== ($entry = readdir($handle))) {
+            if ( $entry != "." && $entry != ".." && strstr($entry,'z.1' . $which) ) {
+              $result[] = $entry;
+            }
+        }
+        closedir($handle);
+      }
+    }
+    return $result;
+  }
 
 ?>
