@@ -32,7 +32,7 @@
                       $images = loadMonitorix('d');
                       if (is_array($images) && count($images) > 0) {
                         foreach ($images as $image) {
-                          echo '<div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
+                          echo PHP_EOL . '                                                                                <div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
                         }
                       }
                     ?>
@@ -49,7 +49,7 @@
                       $images = loadMonitorix('w');
                       if (is_array($images) && count($images) > 0) {
                         foreach ($images as $image) {
-                          echo '<div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
+                          echo PHP_EOL . '                                                                                <div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
                         }
                       }
                     ?>
@@ -66,7 +66,7 @@
                       $images = loadMonitorix('m');
                       if (is_array($images) && count($images) > 0) {
                         foreach ($images as $image) {
-                          echo '<div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
+                          echo PHP_EOL . '                                                                                <div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
                         }
                       }
                     ?>
@@ -83,7 +83,7 @@
                       $images = loadMonitorix('y');
                       if (is_array($images) && count($images) > 0) {
                         foreach ($images as $image) {
-                          echo '<div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
+                          echo PHP_EOL . '                                                                                <div class="row"><div class="text-center col-md-12 col-xs-12"><img src="./img/' . $image . '" style="margin: 10px auto;" class="img-responsive" /></div></div>';
                         }
                       }
                     ?>
