@@ -465,7 +465,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
     </fieldset>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4" style="display: none;">
     <header>Internet Speedtest</header>
     <fieldset>
         <section>
