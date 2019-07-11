@@ -169,6 +169,8 @@ if (is_array($conf)) { // Load the existing conf data
 }
 if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite the existing conf data
 	// only need to include the conf options that are included in NEMS SST. The rest will be re-written from existing values.
+	$nemsconf['tv_require_notify'] = sanitize($_POST['tv_require_notify']);
+	$nemsconf['tv_24h'] = sanitize($_POST['tv_24h']);
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
 	$nemsconf['osbkey'] = sanitize($_POST['osbkey']);
 	$nemsconf['webhook'] = sanitize($_POST['webhook']);
@@ -255,8 +257,9 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#general" data-toggle="tab">General</a></li>
               <li><a href="#cloud" data-toggle="tab">NEMS Cloud Services</a></li>
-							<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
+		<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
               <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+              <li><a href="#tv" data-toggle="tab">TV Dashboard</a></li>
               <li><a href="#options" data-toggle="tab">Optional Services</a></li>
 						</ul>
 						<div class="tab-content">
@@ -730,6 +733,63 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 </div>
 
 
+
+
+<!-- tv dashboard -->
+<?php if (ver('nems') >= 1.4) { ?>
+
+							<div class="tab-pane fade in" id="tv">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
+<div>
+
+
+    <div class="col-md-12">
+
+          <header>NEMS TV Dashboard Configuration</header>
+          <fieldset>
+
+<?php
+      		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
+            		    echo '<div class="row" style="margin-bottom: 20px;"><label class="toggle col-md-4"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label></div>';
+?>
+
+                <section>
+                  <label class="label">When should issues appear on NEMS TV Dashboard?</label>
+                  <label class="select">
+                    <select name="tv_require_notify">
+                      <option value="1"<?php if (!isset($nemsconf['tv_require_notify']) || $nemsconf['tv_require_notify'] == 1) echo ' SELECTED'; ?>>Once they enter their individual notification period (Default)</option>
+                      <option value="2"<?php if ($nemsconf['tv_require_notify'] == 2) echo ' SELECTED'; ?>>Immediately</option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+
+                <section>
+                  <label class="label">Clock Format</label>
+                  <label class="select">
+                    <select name="tv_24h">
+                      <option value="3"<?php if (!isset($nemsconf['tv_24h']) || $nemsconf['tv_24h'] == 3) echo ' SELECTED'; ?>>3:25</option>
+                      <option value="2"<?php if ($nemsconf['tv_24h'] == 2) echo ' SELECTED'; ?>>3:25 PM</option>
+                      <option value="1"<?php if ($nemsconf['tv_24h'] == 1) echo ' SELECTED'; ?>>15:25</option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+
+          </fieldset>
+
+
+</div>
+
+</div></div></div></div>
+</div>
+<?php } ?>
+
+<!-- / tv dashboard -->
+
 							<div class="tab-pane fade in" id="options">
 								<div class="row">
 									<div class="col-md-12">
@@ -756,11 +816,6 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
                       		  if (checkConfEnabled('monitorix') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
                       		  echo '<label class="toggle text-right"><input ' . $checked . ' name="monitorix" type="checkbox" class="services reboot"><i></i>Monitorix</label>';
-
-                                  if (ver('nems') >= 1.4) {
-                      		    if (checkConfEnabled('tvpw') == true) $checked = 'CHECKED="CHECKED"'; else $checked = '';
-                      		    echo '<label class="toggle text-right"><input ' . $checked . ' name="tvpw" type="checkbox" class="services"><i></i>Allow TV Dashboard Without Password</label>';
-                                  }
 
                       		?>
                       		<script>

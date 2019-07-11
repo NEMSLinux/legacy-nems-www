@@ -63,9 +63,16 @@
             // timestamp stuff
             
             function createTimeStamp() {
+                <?php
+                  $tv_24h = intval(trim(shell_exec('/usr/local/bin/nems-info tv_24h')));
+                ?>
                 // create timestamp
                 var ts = new Date();
-		ts = ts.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}).replace(/(:\d{2}| [AP]M)$/, "");
+                // see if the user has set 24 hour or 12 hour format
+		var options = { <?php
+                  if ($tv_24h == 1) echo 'hour12: false';
+                ?> };
+		ts = ts.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}, options)<?php if ($tv_24h != 2) echo '.replace(/(:\d{2}| [AP]M)$/, "")'; ?>;
                 $("#timestamp_wrap").empty().append("<div class=\"timestamp_drop\"></div><div class=\"timestamp_stamp\">" + ts +"</div>");
             }
             
