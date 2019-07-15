@@ -166,9 +166,12 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							<ul class="dropdown-menu">
                 						<li><a href="https://patreon.com/nems" target="_blank"><i class="fa fa-fw fa-user"></i> Patreon</a></li>
 								<li><a href="https://teespring.com/stores/nems" target="_blank"><i class="fa fa-fw fa-shopping-cart"></i> NEMS Merch</a></li>
-								<li><a href="http://www.amazon.com/?tag=nems-linux-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.com</a></li>
-								<li><a href="http://www.amazon.ca/?tag=nemslinux-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.ca</a></li>
-								<li><a href="http://www.amazon.co.uk/?tag=nemslinux-21" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.co.uk</a></li>
+								
+								<li><a href="https://www.amazon.com/?tag=nems-linux-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.com</a></li>
+								<li><a href="https://www.amazon.ca/?tag=nemslinux-20" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.ca</a></li>
+								<li><a href="https://www.amazon.co.uk/?tag=nemslinux-21" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.co.uk</a></li>
+								<li><a href="https://www.amazon.de/?tag=nems-linux-21" target="_blank"><i class="fa fa-fw fa-amazon"></i> Shop on Amazon.de</a></li>
+								
                							<li><a href="https://donate.category5.tv/" target="_blank"><i class="fa fa-fw fa-credit-card"></i> Donate</a></li>
             						</ul>
 						</li>
