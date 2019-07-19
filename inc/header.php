@@ -122,6 +122,10 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/adagios/" target="_blank">Adagios</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/mobile/" target="_blank">NEMS Mobile UI</a></li>'; ?>
 							  <?php if (ver('nems') >= 1.4) echo '<li><a href="/tv/" target="_blank">NEMS TV Dashboard</a></li>'; ?>
+							  <?php
+  $cloudauth = intval(shell_exec('/usr/local/bin/nems-info cloudauthcache'));
+  if ($cloudauth == 1) echo '<li><a href="/cloud/" target="_blank">NEMS Cloud Services Dashboard</a></li>';
+?>
 
                                                           <li><h4 style="padding: 0 0 4px 4px; margin: 0;">Legacy</h4></li>
 							  <?php
