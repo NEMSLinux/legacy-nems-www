@@ -19,7 +19,7 @@
 
 echo '<html>
 <body onload="document.forms[\'redirect\'].submit()">
-<form action="https://cloud.nemslinux.com/dashboard/" method="post" name="redirect">
+<form action="https://cloud.nemslinux.com/dashboard/login.php" method="post" name="redirect">
 <input type="hidden" name="hwid" value="' . $hwid . '" />
 <input type="hidden" name="osbkey" value="' . $osbkey . '" />
 </form>
