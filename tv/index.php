@@ -74,7 +74,7 @@
             
             function updateNagiosData(block){
                 $("#loading").fadeIn(200);
-    		block.load("./livestatus.php", function(response){
+    		block.load("./connectors/livestatus.php", function(response){
                     $(this).html(response);
                     $("#loading").fadeOut(200);
                     createTimeStamp();
