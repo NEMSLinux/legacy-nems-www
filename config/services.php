@@ -48,10 +48,10 @@ if (is_array($conftmp) && count($conftmp) > 0) {
       case 'tvpw':
         if ($_POST['value'] == 'off') {
           $config['service.' . $name] = 0;
-	  file_put_contents('/var/www/html/tv/.htaccess','AuthType Basic' . PHP_EOL . 'AuthName "NEMS TV Dashboard"' . PHP_EOL . 'AuthUserFile /var/www/htpasswd' . PHP_EOL . 'Require valid-user');
+	  file_put_contents('/var/www/nems-tv/.htaccess','AuthType Basic' . PHP_EOL . 'AuthName "NEMS TV Dashboard"' . PHP_EOL . 'AuthUserFile /var/www/htpasswd' . PHP_EOL . 'Require valid-user');
 	} elseif ($_POST['value'] == 'on') {
           $config['service.' . $name] = 1;
-	  unlink('/var/www/html/tv/.htaccess');
+	  unlink('/var/www/nems-tv/.htaccess');
         }
         break;
 
