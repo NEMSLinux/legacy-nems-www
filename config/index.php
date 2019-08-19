@@ -666,11 +666,11 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <header>Telegram Account Info</header>
               <fieldset>
                   <section>
-                      <label class="label">Your Bot</label>
+                      <label class="label">Your Bot Username</label>
                       <label class="input">
                           <i class="icon-append fa fa-user"></i>
-                          <input type="text" name="telegram_bot" placeholder="bot123" value="<?= $USER11 ?>">
-                          <b class="tooltip tooltip-bottom-right">Enter the name of your bot as provided in the Telegram interface</b>
+                          <input type="text" name="telegram_bot" placeholder="mycoolbot_bot" value="<?= $USER11 ?>">
+                          <b class="tooltip tooltip-bottom-right">Enter the name of your bot as configured in the Telegram interface</b>
                       </label>
                   </section>
                   <section>
