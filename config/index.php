@@ -677,7 +677,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                       <label class="label">Telegram Chat ID</label>
                       <label class="input">
                           <i class="icon-append fa fa-lock"></i>
-                          <input type="text" name="telegram_chatid" placeholder="chat123" value="<?= $USER12 ?>">
+                          <input type="text" name="telegram_chatid" placeholder="gXXXXXXXXX" value="<?= $USER12 ?>">
                           <b class="tooltip tooltip-bottom-right">Enter your Telegram Chat ID</b>
                       </label>
                   </section>
