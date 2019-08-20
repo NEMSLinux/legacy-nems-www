@@ -666,10 +666,10 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <header>Telegram Account Info <a href="https://docs.nemslinux.com/usage/notify-host-by-telegram" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a></header>
               <fieldset>
                   <section>
-                      <label class="label">Your Bot Username</label>
+                      <label class="label">Bot API Token</label>
                       <label class="input">
                           <i class="icon-append fa fa-user"></i>
-                          <input type="text" name="telegram_bot" placeholder="mycoolbot_bot" value="<?= $USER11 ?>">
+                          <input type="text" name="telegram_bot" placeholder="XXXXXXXX:YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY" value="<?= $USER11 ?>">
                           <b class="tooltip tooltip-bottom-right">Enter the name of your bot as configured in the Telegram interface</b>
                       </label>
                   </section>
