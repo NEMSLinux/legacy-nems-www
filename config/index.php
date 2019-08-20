@@ -663,7 +663,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
           <div class="row" style="background: #fff; margin: 0;">
 
             <div class="col-md-4">
-              <header>Telegram Account Info</header>
+              <header>Telegram Account Info <a href="https://docs.nemslinux.com/usage/notify-host-by-telegram" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a></header>
               <fieldset>
                   <section>
                       <label class="label">Your Bot Username</label>
