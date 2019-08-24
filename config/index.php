@@ -50,13 +50,13 @@
 
 // Nagios config
 if (ver('nems') < 1.4) {
-  # LEGACY VERSION
+  // LEGACY VERSION
   $resourcefile = '/etc/nagios3/resource.cfg'; // www-admin must have access to read/write
   $pluginfolder = '/usr/lib/nagios/plugins';
 } else {
-  # MODERN VERSION
+  // MODERN VERSION
   $resourcefile = '/usr/local/nagios/etc/resource.cfg';
-  $pluginfolder = '/usr/local/nagios/libexec';
+  $pluginfolder = '/usr/lib/nagios/plugins';  // /usr/local/nagios/libexec is a symlink to that
 }
 
 if (isset($_POST) && isset($_POST['email'])) {
