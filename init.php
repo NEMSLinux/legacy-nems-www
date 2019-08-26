@@ -97,10 +97,15 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
     echo '<p class="color-light">Current Build Script:<br /><em>' . $build_cur . '</em></p>';
   } else {
     echo '<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>';
-    if (ver('nems') < 1.4 || $platform->num == 21) { // Docker and NEMS < 1.4 don't have Cockpit, so don't offer it.
-      echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') and run:<br /><em>sudo nems-init</em></p>';
+    if ($platform->num == 21) {
+      // Docker
+      echo '<p class="color-light">Initialize your NEMS Server container:<br /><em>docker exec -it nemslinux nems-init</em></p>';
     } else {
-      echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') or <a href="https://' .  $self->host . ':9090/system/terminal">open a browser-based terminal session</a> and run:<br /><em>sudo nems-init</em></p>';
+      if (ver('nems') < 1.4) {
+        echo '<p class="color-light">SSH to your NEMS Server (' . $ip . ') and run:<br /><em>sudo nems-init</em></p>';
+      } else {
+        echo '<p class="color-light">SSH to your NEMS Server (' . $ip . ') or <a href="https://' .  $self->host . ':9090/system/terminal">open a browser-based terminal session</a> and run:<br /><em>sudo nems-init</em></p>';
+      }
     }
   }
 ?>
