@@ -85,7 +85,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 				<div class="call-action-v1 call-action-v1-boxed margin-bottom-40 rounded-4x">
 
 					<div style="margin: 0 auto; width: 60%; padding-top: 40px;"><img src="/img/nems_logo.png" class="img-responsive" />
-						<span style="color: #aaa;font-size:1.2em;">For <?php $platform = ver('platform'); echo $platform->name; ?></span>
+						<span style="color: #aaa;font-size:1.2em;">For <?php echo $platform->name; ?></span>
 					</div>
 
 					<div class="call-action-v1-box">
@@ -97,7 +97,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
     echo '<p class="color-light">Current Build Script:<br /><em>' . $build_cur . '</em></p>';
   } else {
     echo '<h3 class="color-light" style="font-weight: bold;">Your NEMS server is not yet initialized.</h3>';
-    if (ver('nems') < 1.4) {
+    if (ver('nems') < 1.4 || $platform->num == 21) { // Docker and NEMS < 1.4 don't have Cockpit, so don't offer it.
       echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') and run:<br /><em>sudo nems-init</em></p>';
     } else {
       echo '<p class="color-light">SSH to your NEMS server (' . $ip . ') or <a href="https://' .  $self->host . ':9090/system/terminal">open a browser-based terminal session</a> and run:<br /><em>sudo nems-init</em></p>';
