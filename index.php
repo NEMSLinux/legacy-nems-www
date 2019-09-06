@@ -105,9 +105,24 @@
 
 	<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>
 
+        <?php
+          $sponsor_ratio = 1;
+          if (file_exists('/var/www/html/vendor/logo.png')) {
+            echo '<div class="text-center img-center"><p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Distributed By:</p>';
+            if (file_exists('/var/www/html/vendor/url.txt')) {
+              $vendorurl = trim(file_get_contents('/var/www/html/vendor/url.txt'));
+              echo '<a style="margin: 0; padding: 0 0 20px 0;" href="' . $vendorurl . '" target="_blank"><img src="/vendor/logo.png" class="img-responsive" style="max-height:60px;" /></a>';
+            } else {
+              echo '<img src="/vendor/logo.png" class="img-responsive" style="max-height:60px;" />';
+            }
+            echo '</div>';
+            $sponsor_ratio = 0.7; // shrink sponsor logos slightly when a distributor logo is included
+          }
+        ?>
+
             <div class="text-center img-center">
               <p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Sponsored By:</p>
-              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="https://nemslinux.com/img/sponsors/xrnit.png.pagespeed.ic.DeVGhHCiav.png" class="img-responsive" style="max-height:30px;" /></a>
+              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="https://nemslinux.com/img/sponsors/xrnit.png.pagespeed.ic.DeVGhHCiav.png" class="img-responsive" style="max-height:<?= (30*$sponsor_ratio) ?>px;" /></a>
             </div>
 
 
