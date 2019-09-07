@@ -116,6 +116,18 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 						</div>
 					</div>
 				</div>
+        <?php
+          if (file_exists('/var/www/html/vendor/logo.png')) {
+            echo '<div class="text-center img-center"><p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Distributed By:</p>';
+            if (file_exists('/var/www/html/vendor/url.txt')) {
+              $vendorurl = trim(file_get_contents('/var/www/html/vendor/url.txt'));
+              echo '<a style="margin: 0; padding: 0 0 20px 0;" href="' . $vendorurl . '" target="_blank"><img src="/vendor/logo.png" class="img-responsive" style="max-height:60px;" /></a>';
+            } else {
+              echo '<img src="/vendor/logo.png" class="img-responsive" style="max-height:60px;" />';
+            }
+            echo '</div>';
+          }
+        ?>
 
 				</div>
 			</div>
