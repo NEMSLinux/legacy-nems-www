@@ -169,6 +169,7 @@ if (is_array($conf)) { // Load the existing conf data
 }
 if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite the existing conf data
 	// only need to include the conf options that are included in NEMS SST. The rest will be re-written from existing values.
+        $nemsconf['perfdata_cutoff'] = intval($_POST['perfdata_cutoff']) ?: 0;
 	$nemsconf['tv_require_notify'] = sanitize($_POST['tv_require_notify']);
 	$nemsconf['tv_24h'] = sanitize($_POST['tv_24h']);
 	$nemsconf['osbpass'] = sanitize($_POST['osbpass']);
@@ -402,6 +403,30 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
     </fieldset>
 </div>
 
+
+<div class="row" style="background: #fff; margin: 0;">
+
+  <div class="col-md-4">
+    <header>Maintenance</header>
+    <fieldset>
+          <section>
+            <label class="label">Performance Data Retention (ie., for NagiosGraphs)</label>
+            <label class="select">
+              <select name="perfdata_cutoff">
+		<option value="0"<?php if (!isset($nemsconf['perfdata_cutoff']) || $nemsconf['perfdata_cutoff'] == 0) echo ' SELECTED'; ?>>Keep Indefinitely</option>
+		<option value="365"<?php if (isset($nemsconf['perfdata_cutoff']) && $nemsconf['perfdata_cutoff'] == 365) echo ' SELECTED'; ?>>365 Days</option>
+		<option value="180"<?php if (isset($nemsconf['perfdata_cutoff']) && $nemsconf['perfdata_cutoff'] == 180) echo ' SELECTED'; ?>>180 Days</option>
+		<option value="90"<?php if (isset($nemsconf['perfdata_cutoff']) && $nemsconf['perfdata_cutoff'] == 90) echo ' SELECTED'; ?>>90 Days</option>
+		<option value="30"<?php if (isset($nemsconf['perfdata_cutoff']) && $nemsconf['perfdata_cutoff'] == 30) echo ' SELECTED'; ?>>30 Days</option>
+		<option value="7"<?php if (isset($nemsconf['perfdata_cutoff']) && $nemsconf['perfdata_cutoff'] == 7) echo ' SELECTED'; ?>>7 Days</option>
+              </select>
+              <i></i>
+            </label>
+          </section>
+    </fieldset>
+
+  </div>
+</div>
 
 <div class="row" style="background: #fff; margin: 0;">
 
