@@ -404,7 +404,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 </div>
 
 
-<div class="row" style="background: #fff; margin: 0;">
+<div class="row" style="background: #fff; margin: 0; display:none;">
 
   <div class="col-md-4">
     <header>Maintenance</header>
