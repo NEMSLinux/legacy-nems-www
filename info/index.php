@@ -35,6 +35,7 @@
   $speedtestserver = intval(trim(shell_exec('/usr/local/bin/nems-info speedtest')));
   $speedtestwhich = trim(shell_exec('/usr/local/bin/nems-info speedtest which'));
   $speedtestlocation = trim(shell_exec('/usr/local/bin/nems-info speedtest location'));
+
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -43,9 +44,9 @@
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Server IP Address:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info ip'); ?></span><br />If nems.local is not resolving, you may use the IP address to connect to your NEMS server.</p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Server Alias:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info alias'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Running As:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info username'); ?></span></p>
+  <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Platform:</b> <span class="nems-green"><?= $platform->name ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Version Running:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nemsver'); ?></span></p>
-  <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Version Available:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nemsveravail'); ?></span></p>
-  <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Platform:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info platform-name'); ?></span></p>
+  <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Version Available for <?= $platform->name ?>:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nemsveravail'); ?></span></p>
   <?php if ($platform->num < 10) { ?><p style="padding:4px 6px; color: #aaa !important;"><b>piWatcher Present:</b> <span class="nems-green"><?php $piwatcher=shell_exec('/usr/local/bin/nems-info piwatcher'); if ($piwatcher == 1) { echo 'Yes'; } else { echo 'No <a class="btn btn-xs rounded btn-default" href="https://cat5.tv/piwatcher" target="_blank">Order</a>'; } } ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Network Interface:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info nic'); ?></span></p>
   <p style="padding:4px 6px; color: #aaa !important;"><b>Number of Hosts:</b> <span class="nems-green"><?= shell_exec('/usr/local/bin/nems-info hosts'); ?></span></p>
