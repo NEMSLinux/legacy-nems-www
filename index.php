@@ -102,10 +102,14 @@
 					</div>
 
 				</div><!--/end row-->
-
-	<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>
-
+        <br />
         <?php
+	  if ($cloudauth == 1) {
+            echo '<p align="center" style="font-size: 12px;">Thank you for supporting NEMS Linux.</p>';
+          } else {
+            echo '<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>';
+          }
+
           $sponsor_ratio = 1;
           if (file_exists('/var/www/html/vendor/logo.png')) {
             echo '<div class="text-center img-center"><p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Distributed By:</p>';
