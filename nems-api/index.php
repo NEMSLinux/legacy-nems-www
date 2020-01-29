@@ -2,6 +2,14 @@
 
 $guest = $_SERVER['REMOTE_ADDR'];
 
+// Allow DAKboard Test Server, but only on their NEMS instance
+if (substr($guest, 0, 13) == '159.65.248.78') {
+  $nemsip = shell_exec('/usr/local/bin/nems-info ip');
+  if ($nemsip == '54.209.27.138') {
+    $allowed = 1;
+  }
+}
+
 // only allow local access
 $allowed = 0;
 if(
