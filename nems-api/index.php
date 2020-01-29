@@ -7,6 +7,7 @@ $allowed = 0;
 if(
   substr($guest, 0, 3) == '10.' ||
   substr($guest, 0, 7) == '172.16.' ||
+  substr($guest, 0, 7) == '172.17.' ||
   substr($guest, 0, 8) == '192.168.' ||
   $guest == '127.0.0.1'
 ) {
