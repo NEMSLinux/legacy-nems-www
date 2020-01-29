@@ -8,6 +8,20 @@ if(
   substr($guest, 0, 3) == '10.' ||
   substr($guest, 0, 7) == '172.16.' ||
   substr($guest, 0, 7) == '172.17.' ||
+  substr($guest, 0, 7) == '172.18.' ||
+  substr($guest, 0, 7) == '172.19.' ||
+  substr($guest, 0, 7) == '172.20.' ||
+  substr($guest, 0, 7) == '172.21.' ||
+  substr($guest, 0, 7) == '172.22.' ||
+  substr($guest, 0, 7) == '172.23.' ||
+  substr($guest, 0, 7) == '172.24.' ||
+  substr($guest, 0, 7) == '172.25.' ||
+  substr($guest, 0, 7) == '172.26.' ||
+  substr($guest, 0, 7) == '172.27.' ||
+  substr($guest, 0, 7) == '172.28.' ||
+  substr($guest, 0, 7) == '172.29.' ||
+  substr($guest, 0, 7) == '172.30.' ||
+  substr($guest, 0, 7) == '172.31.' ||
   substr($guest, 0, 8) == '192.168.' ||
   $guest == '127.0.0.1'
 ) {
