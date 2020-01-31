@@ -181,6 +181,20 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 		<script src="https://cdn.zecheriah.com/site-assets/1.9.6/One-Pages/Classic/assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
 	<![endif]-->
         <span style="color: #333; position: absolute; right:0; bottom: 0; padding: 8px;">NEMS Linux <?php echo ver('nems'); ?></span>
+        <script>
+          setInterval(function() {
+            var ajax = new XMLHttpRequest();
+            ajax.onreadystatechange = function() {
+              if (ajax.readyState == 4) {
+                if (ajax.responseText == 1) {
+                  window.location.href = "/";
+                }
+              }
+            };
+            ajax.open("POST", "init_ajax.php", true); // Using POST to avoid caching
+            ajax.send();
+          }, 1000);
+        </script>
 </body>
 </html>
 <?php
