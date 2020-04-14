@@ -180,7 +180,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
 							<ul class="dropdown-menu">
 						                <li><a href="https://docs.nemslinux.com/" target="_blank">NEMS Documentation</a></li>
 								<li><a href="https://www.patreon.com/bePatron?c=1348071&rid=2163018" target="_blank">Priority Support</a></li>
-						                <li><a href="https://forum.category5.tv/forum-8.html" target="_blank">Community Forum</a></li>
+						                <li><a href="https://forum.nemslinux.com/" target="_blank">Community Forum</a></li>
 								<li><a href="https://discord.gg/e9xT9mh" target="_blank">Discord Server</a></li>
                 						<li><a href="https://nemslinux.com/" target="_blank">Official NEMS Web Site</a></li>
 					                </ul>
