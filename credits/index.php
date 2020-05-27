@@ -156,6 +156,8 @@ window.findKeyframesRule = function (rule) {
   </style>
   <audio src="bg.mp3" autoplay="autoplay"></audio>
 
+  <div class="fullscreen-static-image fullheight">
+
     <div id="container">
 
       <div class="scroller">
@@ -244,6 +246,23 @@ foreach ($list as $name) {
 
     </div>
 
+  </div>
+<style>
+      .fullscreen-static-image:after {
+        content: '\A';
+        position: absolute;
+        width: 100%; 
+        height:100%;
+        top:0;
+        left:0;
+        background:rgba(0,0,0,0.9);
+        opacity: 1;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        box-shadow: inset 0px 0px 600px black;
+      }
+    </style>
 <?php
   include('/var/www/html/inc/footer.php');
 ?>
