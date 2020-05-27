@@ -1,0 +1,36 @@
+.actionslide-container {
+	position: absolute; 
+	display: block;
+}
+
+.actionslide-container a {
+	color: white;
+	text-decoration: underline;
+}
+
+.actionslide-container a:hover {
+	text-decoration: none;
+}
+
+.actionslide-bglines {
+	height: 2px; 
+	background-color: white; 
+	opacity: 0.1
+}
+
+.actionslide-title {
+	font-size: 34px; 
+	font-style: italic; 
+	font-weight: bold; 
+	color: black; 
+	margin-bottom: 10px;
+	text-shadow: -1px -1px #bbb,1px 1px #bbb;
+	color:#eee;
+	letter-spacing: 2px;
+}
+
+.actionslide-content {
+	font-size: 18px; 
+	text-shadow: -1px -1px #bbb,1px 1px #bbb;
+	color:#eee;
+}
