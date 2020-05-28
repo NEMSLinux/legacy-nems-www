@@ -43,7 +43,6 @@ window.findKeyframesRule = function (rule) {
 	animation: 178s credits linear; /* Adjust how long the scroller should take to control the speed */
     }
 
-
     .fullscreen-static-image:after {
         content: '\A';
         position: absolute;
@@ -83,6 +82,30 @@ window.findKeyframesRule = function (rule) {
         }
     }
 
+    #logo {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      animation: 140s logo forwards; /* Match to .fullscreen-static-image:after */
+    }
+    #logo img {
+      margin: 0 auto;
+      width: 300px;
+    }
+    @keyframes logo {
+	0% {
+          display: none;
+          opacity: 0;
+        }
+        75% {
+          display: block;
+          opacity: 0;
+        }
+	80% {
+          opacity: 1;
+        }
+    }
+
     #container, body {
       overflow:hidden;
       text-align: center;
@@ -116,6 +139,9 @@ window.findKeyframesRule = function (rule) {
 
     <div id="container">
 
+      <div id="logo">
+        <img src="/img/nems_logo.png" class="img-responsive" />
+      </div>
       <div class="scroller">
 
 
