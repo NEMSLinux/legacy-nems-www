@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "NEMS System Settings"
-AuthUserFile /var/www/htpasswd
-Require valid-user
