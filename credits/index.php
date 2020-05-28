@@ -4,65 +4,13 @@
     include('../init.php');
     exit();
   }
-  if (ver('nems') < 1.3) {
-    exit('Requires NEMS 1.3+');
-  }
-
-  if (file_exists('/var/log/nems/stats.log')) {
-    $tmp=file('/var/log/nems/stats.log');
-    if (is_array($tmp)) {
-      $tmp = array_reverse($tmp);
-      foreach ($tmp as $line) {
-        if (substr($line,0,2) == 'a:') {
-          $statlog = unserialize($line);
-          if (isset($statlog['benchmarks']) && substr($statlog['benchmarks'],0,2) == '{"') {
-            $tmp2=json_decode($statlog['benchmarks']);
-            unset($statlog['benchmarks']);
-            $statlog['benchmarks'] = $tmp2;
-            unset($tmp2);
-          }
-          unset($tmp);
-          break;
-        }
-      }
-    }
-  }
 
   include('/var/www/html/inc/header.php');
 
   $platform = ver('platform');
 
-  $speedtestserver = intval(trim(shell_exec('/usr/local/bin/nems-info speedtest')));
-  $speedtestwhich = trim(shell_exec('/usr/local/bin/nems-info speedtest which'));
-  $speedtestlocation = trim(shell_exec('/usr/local/bin/nems-info speedtest location'));
-
 ?>
 <script>
-if (window.hasOwnProperty("storyFormat")) {
-	// Change this to the path where your HTML file is located
-	// if you want to run this from inside Twine.
-	setup.Path = "C:/Games/YourGame/";  // Running inside Twine application
-} else { 
-	setup.Path = "";  // Running in a browser
-}
-setup.ImagePath = setup.Path + "images/";
-
-$(document).on(':passagestart', function (ev) {
-	if (passage() == "Credits") {
-		$.wiki('<<addclass "#passages" "credits-style">><<addclass "body" "body-credits">>');
-	} else {
-		$.wiki('<<removeclass "#passages" "credits-style">><<removeclass "body" "body-credits">>');
-	}
-});
-
-$(document).on(':passagedisplay', function (ev) {
-	if (passage() == "Credits") {
-		var keyframes = findKeyframesRule("credits");
-		keyframes.deleteRule("100%");
-		keyframes.appendRule("100% { top: " + ( ( $( ".wrapper" ).height() + 100 ) * -1 ) + "px; }");
-	}
-});
-
 window.findKeyframesRule = function (rule) {
 	// gather all stylesheets into an array
 	var i, j, ss = document.styleSheets;
@@ -81,58 +29,60 @@ window.findKeyframesRule = function (rule) {
 };
 </script>
   <style>
-.credits-style {
-	padding: 0;
-	box-sizing: border-box;
-	max-width: 100% !important;
-}
-
-.body-credits {
-	height: 100vh;
-	background: radial-gradient(circle at top center, #333 0%, #000 100%);
-	overflow: hidden;
-	background-position: 0px 0px;
-}
-
-.scroller {
+    .scroller {
 	position: absolute;
 	top: 100%;
-	left: 50%;
-/*	width: 600px;*/
-	margin-left: -300px;
+        width: 100%;
+	margin: 0 auto;
 	font: 300 30px/1 'Open Sans Condensed', sans-serif;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: 30px;
 	line-height: 1;
 	text-align: center;
 	color: #fff;
-	animation: 40s credits linear;
-}
+	animation: 178s credits linear; /* Adjust how long the scroller should take to control the speed */
+    }
 
-.movie {
-	margin-bottom: 50px;
-	font-size: 50px;
-}
 
-.job {
-	margin-bottom: 5px;
-	font-size: 18px;
-}
+    .fullscreen-static-image:after {
+        content: '\A';
+        position: absolute;
+        width: 100%;
+        height:100%;
+        top:0;
+        left:0;
+        box-shadow: inset 0px 0px 600px black;
+	animation: 140s fadeout forwards; /* Match seconds to the timing of the scroller */
+    }
 
-.name {
-	margin-bottom: 40px;
-	font-size: 35px;
-}
+    @keyframes credits {
+	0% {
+          top: 100%;
+        }
+	100% {
+          top: -8000px; /* Ensure this is larger than the tallest possible screen */
+        }
+    }
 
-.name-pic {
-	margin-bottom: 70px;
-	font-size: 35px;
-}
+    @keyframes fadeout { /* Do some fading with the background to really give that cinematic look */
+	0% {
+          background:rgba(0,0,0,0.5);
+          opacity: .5;
+        }
+	20% {
+          background:rgba(0,0,0,0.8);
+          opacity: .8;
+        }
+	60% {
+          background:rgba(0,0,0,0.8);
+          opacity: .8;
+        }
+	100% {
+          background:rgba(0,0,0,1);
+          opacity: 1;
+        }
+    }
 
-@keyframes credits {
-	0% { top: 100%; }
-	100% { top: -2069px; }
-}
     #container, body {
       overflow:hidden;
       text-align: center;
@@ -150,20 +100,30 @@ window.findKeyframesRule = function (rule) {
       color: #eee !important;
     }
     h4 {
-      color: yellow;
+      color: #FFFF00 !important;
       margin-top: 10px;
     }
-  </style>
-  <audio src="bg.mp3" autoplay="autoplay"></audio>
 
-  <div class="fullscreen-static-image fullheight">
+  </style>
+
+  <!-- Please note: This music is licensed to Robbie Ferguson for royalty free use within this project. -->
+  <!-- The audio is streaming from Robbie's server and does not reside on your NEMS Server. -->
+  <!-- While licensed for this project, you may not use the music elsewhere. It is copyright Jeffrey Peterson. -->
+  <audio src="https://cdn.zecheriah.com/nems/audio/credits.mp3" autoplay="autoplay"></audio>
+
+  <div class="fullscreen-static-image fullheight">  </div>
+
 
     <div id="container">
 
       <div class="scroller">
 
+
+
             <img src="/img/nems_logo.png" class="img-responsive" style="max-height: 80px;" />
             <h1>Created By</h1><h2>Robbie Ferguson</h2><h3><a href="https://Category5.TV/" target="_blank">Category5.TV</a></h3>
+
+            <div style="height: 400px;"></div>
 
             <h1><b>NEMS Linux could not exist without the open source efforts of countless developers.</b><br />The following projects are directly responsible for notable features of the NEMS architecture.</h1>
 
@@ -173,19 +133,22 @@ window.findKeyframesRule = function (rule) {
 
             <h1>Adagios</h1><h2>By Opin Kerfi</h2><h3><a href="https://adagios.org" target="_blank">adagios.org</a></h3>
 
+            <h1>NConf</h1><h2>By Sunrise Communications AG</h2><h3><a href="https://nconf.org" target="_blank">nconf.org</a></h3>
+
             <h1>Monitorix</h1><h2>By Jordi Sanfeliu</h2><h3><a href="https://monitorix.org" target="_blank">monitorix.org</a></h3>
+
+            <h1>Merlin Dashboard</h1><h2>By Mattias Bergsten</h2><h3><a href="https://github.com/fnordpojk" target="_blank">github.com/fnordpojk</a></h3>
 
             <h1>NagiosTV</h1><h2>By Chris Carey</h2><h3><a href="https://github.com/chriscareycode" target="_blank">github.com/chriscareycode</a></h3>
 
             <h1>Sponsored By</h1>
             <a href="https://www.rnitsolutions.com/" target="_blank"><img src="assets/rnit_logo_full_dark.png" class="img-responsive" style="max-height: 80px;" /></a></h1>
 
-            <h1><b>I could not develop NEMS Linux without the financial support of its users.</b><br />The following people have opted to have their name listed in the credits.</h1>
-<table align="center">
-<tr>
+            <h1><b>I could not develop NEMS Linux without the financial support of its users.</b><br />The following <a href="https://patreon.com/nems" target="_blank">Patrons</a> have opted to have their name listed in the credits.</h1>
 <?php
-$list = explode(PHP_EOL, 'Patrick Kersten
-Marc Dörseln
+$list = explode(PHP_EOL, '
+Patrick Kersten
+Marc D&ouml;rseln
 Dave Harman
 Bill Marshall
 Aaron Tringle
@@ -205,65 +168,54 @@ Jiffy
 Larry Getz
 Coquille Indian Tribe
 Jarrod Andrews
-Dennis Bailey');
-$count = 0;
+Dennis Bailey
+');
 foreach ($list as $name) {
-  echo '<td align="center" style="padding: 4px 8px;"><h4>' . $name . '</h4></td>';
-  $count++;
-  if ($count == 3) {
-    echo '</tr><tr>';
-    $count = 0;
+  if (trim(strlen($name)) > 0) {
+    echo '<h4>' . trim($name) . '</h4>' . PHP_EOL;
   }
 }
 ?>
 </table>
 
-            <h1>Platform Support</h1>
-            <h2>Big thanks to the following.</h2>
-<table align="center">
-<tr>
-<?php
-$list = explode(PHP_EOL, 'Raspbian
-Bill');
-$count = 0;
-foreach ($list as $name) {
-  echo '<td align="center" style="padding: 4px 8px;"><h4>' . $name . '</h4></td>';
-  $count++;
-  if ($count == 3) {
-    echo '</tr><tr>';
-    $count = 0;
-  }
-}
-?>
-</table>
+            <h2 style="margin-top: 50px;">Platform Support</h2>
+            <h3>Big thanks to the following for their contributions to open source, which<br /> helped me greatly in my quest to port NEMS Linux to many platforms.</h3>
+
+            <h1>Raspberry Pi</h1><h2>Raspbian</h2>
+            <h1>PINE64</h1><h2>Ayufan</h2>
+            <h1>ODROID</h1><h2>Meveric</h2>
+            <h1>ODROID, FriendlyElec, ASUS, OrangePi</h1><h2>Armbian</h2>
+
+            <h2 style="margin-top: 50px;">Community Contributors</h2><h1 style="margin-top: 0;">Thank you to the following community members for going above and beyond.</h1>
+
+            <h2 style="margin-top: 20px;">UltimateBugHunter-NitPicker</h2>
+            <h2 style="margin-top: 20px;">bhammy187</h2>
+            <h2 style="margin-top: 20px;">geek-dom</h2>
+            <h2 style="margin-top: 20px;">mydogboris</h2>
+            <h2 style="margin-top: 20px;">rkadmin</h2>
+            <h2 style="margin-top: 20px;">Zerant</h2>
+
+            <h1 style="margin-top: 20px;font-size: 0.5em;line-height: 1.1em;"><b>Note:</b> I only just recently started keeping a list.<br />If you don't see your name yet, it does not mean you are not appreciated.<br />Please message me on Discord.</h1>
+
+
+            <h1>"Movie Score"</h1><h2>By Jeffrey Peterson</h2><h3>Licensed By Storyblocks<br /><span style="font-size: 0.6em;">All Rights Reserved. Not licensed for use outside this project.</span></h3>
 
             <h1>Nagios, the Nagios logo, and Nagios graphics<br />
                 are the servicemarks, trademarks, or registered<br />
                 trademarks owned by Nagios Enterprises. All<br />
                 other servicemarks and trademarks are the<br />
                 property of their respective owner.</h4>
+
+            <h1 style="font-weight: bold; color: #fff;">Thank you for supporting NEMS Linux.</h1>
+
         </div>
 
     </div>
 
-  </div>
-<style>
-      .fullscreen-static-image:after {
-        content: '\A';
-        position: absolute;
-        width: 100%; 
-        height:100%;
-        top:0;
-        left:0;
-        background:rgba(0,0,0,0.9);
-        opacity: 1;
-        transition: all 0.5s;
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        box-shadow: inset 0px 0px 600px black;
-      }
+    <style>
     </style>
 <?php
   include('/var/www/html/inc/footer.php');
 ?>
+
 
