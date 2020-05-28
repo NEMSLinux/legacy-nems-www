@@ -27,6 +27,17 @@ window.findKeyframesRule = function (rule) {
 	// rule not found
 	return null;
 };
+  function aud_fade(){
+    var timer,
+    music = document.getElementById("music");
+    if (music.volume > 0.0005) {
+      music.volume -= 0.0005;
+      timer = setTimeout(aud_fade,5);
+      /* console.log(music.volume); */
+    }
+  }
+  setTimeout(aud_fade, 105000); /* match to logo, - 35 seconds, * 1000 */
+
 </script>
   <style>
     .scroller {
@@ -40,7 +51,7 @@ window.findKeyframesRule = function (rule) {
 	line-height: 1;
 	text-align: center;
 	color: #fff;
-	animation: 178s credits linear; /* Adjust how long the scroller should take to control the speed */
+	animation: 170s credits linear; /* Adjust length to control speed. Ideally about 26 seconds longer than the song. */
     }
 
     .fullscreen-static-image:after {
@@ -51,7 +62,7 @@ window.findKeyframesRule = function (rule) {
         top:0;
         left:0;
         box-shadow: inset 0px 0px 600px black;
-	animation: 140s fadeout forwards; /* Match seconds to the timing of the scroller */
+	animation: 140s fadeout forwards; /* Match seconds to the timing of the scroller and match to logo below. */
     }
 
     @keyframes credits {
@@ -131,8 +142,8 @@ window.findKeyframesRule = function (rule) {
 
   <!-- Please note: This music is licensed to Robbie Ferguson for royalty free use within this project. -->
   <!-- The audio is streaming from Robbie's server and does not reside on your NEMS Server. -->
-  <!-- While licensed for this project, you may not use the music elsewhere. It is copyright Jeffrey Peterson. -->
-  <audio src="https://cdn.zecheriah.com/nems/audio/credits.mp3" autoplay="autoplay"></audio>
+  <!-- While licensed for this project, you may not use the music elsewhere. -->
+  <audio src="https://cdn.zecheriah.com/nems/audio/Movie-Score-Jeffrey-Peterson.mp3" autoplay="autoplay" id="music"></audio>
 
   <div class="fullscreen-static-image fullheight">  </div>
 
@@ -224,7 +235,9 @@ foreach ($list as $name) {
             <h1 style="margin-top: 20px;font-size: 0.5em;line-height: 1.1em;"><b>Note:</b> I only just recently started keeping a list.<br />If you don't see your name yet, it does not mean you are not appreciated.<br />Please message me on Discord.</h1>
 
 
-            <h1>"Movie Score"</h1><h2>By Jeffrey Peterson</h2><h3>Licensed By Storyblocks<br /><span style="font-size: 0.6em;">All Rights Reserved. Not licensed for use outside this project.</span></h3>
+            <h1>"Movie Score"</h1><h2>By Jeffrey Peterson</h2>
+            <h1>"Epic Inspiration"</h1><h2>By Veaceslav Draganov</h2>
+            <h3 style="margin-top:20px;">Licensed By Storyblocks<br /><span style="font-size: 0.6em;">All Rights Reserved. Not licensed for use outside this project.</span></h3>
 
             <h1>Nagios, the Nagios logo, and Nagios graphics<br />
                 are the servicemarks, trademarks, or registered<br />
