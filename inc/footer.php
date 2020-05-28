@@ -46,7 +46,7 @@
 	  <div class="container">
 		<div class="row">
 		  <div class="col-md-4 col-sm-4 col-xs-5">
-			<p><a href="https://nemslinux.com/" target="_blank">NEMS Linux</a> <span style="color: #777">by</span> <a target="_blank" href="http://www.baldnerd.com/who-is-the-bald-nerd/">Robbie Ferguson</a></p>
+			<p><a href="/credits/">Credits</a></p>
 		  </div>
                   <div class="col-md-4 col-sm-4 col-xs-5 img-center text-center">
                     <p>Version <?= ver() ?></p>

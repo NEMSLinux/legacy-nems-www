@@ -53,6 +53,9 @@ window.findKeyframesRule = function (rule) {
 	color: #fff;
 	animation: 170s credits linear; /* Adjust length to control speed. Ideally about 26 seconds longer than the song. */
     }
+    .scroller img {
+      margin: 0 auto;
+    }
 
     .fullscreen-static-image:after {
         content: '\A';
@@ -92,7 +95,9 @@ window.findKeyframesRule = function (rule) {
           opacity: 1;
         }
     }
-
+    #footsie {
+      width: 100%;
+    }
     #logo {
       position: absolute;
       top: 40%;
@@ -117,12 +122,8 @@ window.findKeyframesRule = function (rule) {
         }
     }
 
-    #container, body {
+    body {
       overflow:hidden;
-      text-align: center;
-    }
-    #container img {
-      margin: 0 auto;
     }
     h1 {
       margin-top: 50px;
@@ -213,7 +214,6 @@ foreach ($list as $name) {
   }
 }
 ?>
-</table>
 
             <h2 style="margin-top: 50px;">Platform Support</h2>
             <h3>Big thanks to the following for their contributions to open source, which<br /> helped me greatly in my quest to port NEMS Linux to many platforms.</h3>
@@ -243,7 +243,7 @@ foreach ($list as $name) {
                 are the servicemarks, trademarks, or registered<br />
                 trademarks owned by Nagios Enterprises. All<br />
                 other servicemarks and trademarks are the<br />
-                property of their respective owner.</h4>
+                property of their respective owner.</h1>
 
             <h1 style="font-weight: bold; color: #fff;">Thank you for supporting NEMS Linux.</h1>
 
@@ -251,8 +251,6 @@ foreach ($list as $name) {
 
     </div>
 
-    <style>
-    </style>
 <?php
   include('/var/www/html/inc/footer.php');
 ?>
