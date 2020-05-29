@@ -150,7 +150,9 @@ window.findKeyframesRule = function (rule) {
   <!-- Please note: This music is licensed to Robbie Ferguson for royalty free use within this project. -->
   <!-- The audio is streaming from Robbie's server and does not reside on your NEMS Server. -->
   <!-- While licensed for this project, you may not use the music elsewhere. -->
-  <audio src="https://cdn.zecheriah.com/nems/audio/Movie-Score-Jeffrey-Peterson.mp3" autoplay="autoplay" id="music"></audio>
+  <audio autoplay="autoplay" id="music">
+    <source src="https://cdn.zecheriah.com/nems/audio/Movie-Score-Jeffrey-Peterson.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="fullscreen-static-image fullheight">  </div>
 
