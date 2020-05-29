@@ -33,17 +33,6 @@ window.findKeyframesRule = function (rule) {
 	// rule not found
 	return null;
 };
-  function aud_fade(){
-    var timer,
-    music = document.getElementById("music");
-    if (music.volume > 0.0005) {
-      music.volume -= 0.0005;
-      timer = setTimeout(aud_fade,5);
-      /* console.log(music.volume); */
-    }
-  }
-  setTimeout(aud_fade, 105000); /* match to logo, - 35 seconds, * 1000 */
-
 </script>
   <style>
     .scroller {
@@ -154,7 +143,25 @@ window.findKeyframesRule = function (rule) {
     <source src="https://cdn.zecheriah.com/nems/audio/Movie-Score-Jeffrey-Peterson.ogg" type="audio/ogg">
     <source src="https://cdn.zecheriah.com/nems/audio/Movie-Score-Jeffrey-Peterson.mp3" type="audio/mpeg">
   </audio>
-
+  <script>
+    function aud_play(){
+      music = document.getElementById("music");
+      music.play();
+      console.log('Initialized music playback.');
+    }
+    window.onload = aud_play();
+    function aud_fade(){
+      console.log('Begin fading out music.');
+      var timer,
+      music = document.getElementById("music");
+      if (music.volume > 0.0005) {
+        music.volume -= 0.0005;
+        timer = setTimeout(aud_fade,5);
+        /* console.log(music.volume); */
+      }
+    }
+    setTimeout(aud_fade, 105000); /* match to logo, - 35 seconds, * 1000 */
+  </script>
   <div class="fullscreen-static-image fullheight">  </div>
 
 
