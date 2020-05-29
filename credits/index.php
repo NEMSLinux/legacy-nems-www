@@ -1,13 +1,19 @@
 <?php
-  include('/var/www/html/inc/functions.php');
-  if (!initialized()) {
-    include('../init.php');
-    exit();
+  if (file_exists('/var/www/html/inc/functions.php')) {
+    include('/var/www/html/inc/functions.php');
+    if (!initialized()) {
+      include('../init.php');
+      exit();
+    }
+    $platform = ver('platform');
   }
 
-  include('/var/www/html/inc/header.php');
-
-  $platform = ver('platform');
+  if (file_exists('/var/log/nems/')) {
+    include('/var/www/html/inc/header.php');
+  } else {
+    include('/var/www/nemslinux.com/html/inc/functions.php');
+    include('/var/www/nemslinux.com/html/inc/header.php');
+  }
 
 ?>
 <script>
@@ -252,7 +258,11 @@ foreach ($list as $name) {
     </div>
 
 <?php
-  include('/var/www/html/inc/footer.php');
+  if (file_exists('/var/log/nems/')) {
+    include('/var/www/html/inc/footer.php');
+  } else {
+    include('/var/www/nemslinux.com/html/inc/footer.php');
+  }
 ?>
 
 

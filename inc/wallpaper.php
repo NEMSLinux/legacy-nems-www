@@ -11,7 +11,7 @@
 
   // defaults
   $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
-  $background=5;
+  if (!isset($background)) $background=5;
   // only allow >= NEMS 1.5 to change these defaults
   if ($nemsver >= 1.5) {
     $background=6;
