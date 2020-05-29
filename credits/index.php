@@ -159,6 +159,7 @@ window.findKeyframesRule = function (rule) {
         timer = setTimeout(aud_fade,5);
         /* console.log(music.volume); */
       }
+      console.log('Finished fading out music.');
     }
     setTimeout(aud_fade, 105000); /* match to logo, - 35 seconds, * 1000 */
   </script>
