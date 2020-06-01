@@ -261,6 +261,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 		<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
               <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
               <li><a href="#tv" data-toggle="tab">TV Dashboard</a></li>
+              <li><a href="#hardware" data-toggle="tab">Hardware</a></li>
               <li><a href="#options" data-toggle="tab">Optional Services</a></li>
 						</ul>
 						<div class="tab-content">
@@ -817,6 +818,97 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
 <!-- / tv dashboard -->
 
+
+<!-- Hardware -->
+<?php if (ver('nems') >= 1.6) { ?>
+
+							<div class="tab-pane fade in" id="hardware">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
+<div>
+
+
+    <div class="col-md-12">
+
+          <header>Compatible Hardware</header>
+          <fieldset>
+
+<?php
+  $temper=json_decode(shell_exec('/usr/local/bin/nems-info temper'));
+?>
+
+              <section>
+                  <h1>TEMPer</h1>
+                  <label class="label">Thermal Sensor: <b><?= $temper->sensors->thermal == 1 ? 'Present' : 'Not Present'; ?></b></label>
+                  <h2>Calibration: <span class="col-6" id="slider1-value"><?= '50' ?></span> &deg;F</h2>
+                  <div class="row">
+                    <div class="col-6">
+                      <div id="slider1" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                        <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left:50% !important;"></a>
+                      </div>
+                    </div>
+                  </div>
+                  <label class="label">Humidity Sensor: <b><?= $temper->sensors->humidity == 1 ? 'Present' : 'Not Present'; ?></b></label>
+                  <label class="input">
+                      <i class="icon-append fa fa-envelope"></i>
+                      <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
+                      <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
+                  </label>
+              </section>
+
+        <script>
+var FormSliders=function(){return{initFormSliders:function()
+{$('#slider1').slider({min:0,max:20,slide:function(event,ui)
+{$('#slider1-value').text(ui.value);}});$('#slider2').slider({min:0,max:500,range:true,values:[75,300],slide:function(event,ui)
+{$('#slider2-value1').text(ui.values[0]);$('#slider2-value2').text(ui.values[1]);}});$('#slider3').slider({min:0,max:500,step:100,slide:function(event,ui)
+{$('#slider3-value').text(ui.value);}});$('#slider1-rounded').slider({min:0,max:500,slide:function(event,ui)
+{$('#slider1-value-rounded').text(ui.value);}});$('#slider2-rounded').slider({min:0,max:500,range:true,values:[75,300],slide:function(event,ui)
+{$('#slider2-value1-rounded').text(ui.values[0]);$('#slider2-value2-rounded').text(ui.values[1]);}});$('#slider3-rounded').slider({min:0,max:500,step:100,slide:function(event,ui)
+{$('#slider3-value-rounded').text(ui.value);}});}};}();
+                jQuery(document).ready(function() {
+			FormSliders.initFormSliders();
+		});
+	</script>
+
+
+
+                <section>
+                  <label class="label">TEMPer</label>
+
+                  <label class="select">
+                    <select name="tv_require_notify">
+                      <option value="1"<?php if (!isset($nemsconf['tv_require_notify']) || $nemsconf['tv_require_notify'] == 1) echo ' SELECTED'; ?>>Once they enter their individual notification period (Default)</option>
+                      <option value="2"<?php if ($nemsconf['tv_require_notify'] == 2) echo ' SELECTED'; ?>>Immediately</option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+
+                <section>
+                  <label class="label">Clock Format</label>
+                  <label class="select">
+                    <select name="tv_24h">
+                      <option value="3"<?php if (!isset($nemsconf['tv_24h']) || $nemsconf['tv_24h'] == 3) echo ' SELECTED'; ?>>3:25</option>
+                      <option value="2"<?php if ($nemsconf['tv_24h'] == 2) echo ' SELECTED'; ?>>3:25 PM</option>
+                      <option value="1"<?php if ($nemsconf['tv_24h'] == 1) echo ' SELECTED'; ?>>15:25</option>
+                    </select>
+                    <i></i>
+                  </label>
+                </section>
+
+          </fieldset>
+
+
+</div>
+
+</div></div></div></div>
+</div>
+<?php } ?>
+
+<!-- / Hardware -->
+
 							<div class="tab-pane fade in" id="options">
 								<div class="row">
 									<div class="col-md-12">
@@ -879,6 +971,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 </form>
 
 </div>
+
 <?php
   include('/var/www/html/inc/footer.php');
 ?>
