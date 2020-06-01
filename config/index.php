@@ -260,8 +260,12 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <li><a href="#cloud" data-toggle="tab">NEMS Cloud Services</a></li>
 		<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
               <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
+<?php if (ver('nems') >= 1.4) { ?>
               <li><a href="#tv" data-toggle="tab">TV Dashboard</a></li>
+<?php } ?>
+<?php if (ver('nems') >= 1.6) { ?>
               <li><a href="#hardware" data-toggle="tab">Hardware</a></li>
+<?php } ?>
               <li><a href="#options" data-toggle="tab">Optional Services</a></li>
 						</ul>
 						<div class="tab-content">
