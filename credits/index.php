@@ -246,6 +246,9 @@ foreach ($list as $name) {
             <h2 style="margin-top: 20px;">mydogboris</h2>
             <h2 style="margin-top: 20px;">rkadmin</h2>
             <h2 style="margin-top: 20px;">Zerant</h2>
+            <h2 style="margin-top: 20px;">JonBackhaus</h2>
+            <h2 style="margin-top: 20px;">baggins</h2>
+            <h2 style="margin-top: 20px;">Vincenzo Di Iorio</h2>
 
             <h1 style="margin-top: 20px;font-size: 0.5em;line-height: 1.1em;"><b>Note:</b> I only just recently started keeping a list.<br />If you don't see your name yet, it does not mean you are not appreciated.<br />Please message me on Discord.</h1>
 
