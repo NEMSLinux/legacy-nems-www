@@ -199,6 +199,9 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
         $nemsconf['speedtestserver'] = intval($_POST['speedtestserver']);
         $nemsconf['speedtestwhich'] = intval($_POST['speedtestwhich']) ?: 0;
 
+        $nemsconf['temper.temp'] = (floatval($_POST['temperTempAdjusted']) - floatval($_POST['temperTempTrue']));
+        $nemsconf['temper.hum'] = (floatval($_POST['temperHumAdjusted']) - floatval($_POST['temperHumTrue']));
+
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -845,65 +848,83 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
               <section>
                   <h1>TEMPer</h1>
-                  <label class="label">Thermal Sensor: <b><?= $temper->sensors->thermal == 1 ? 'Present' : 'Not Present'; ?></b></label>
-                  <h2>Calibration: <span class="col-6" id="slider1-value"><?= '50' ?></span> &deg;F</h2>
-                  <div class="row">
-                    <div class="col-6">
-                      <div id="slider1" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
-                        <a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left:50% !important;"></a>
-                      </div>
-                    </div>
-                  </div>
-                  <label class="label">Humidity Sensor: <b><?= $temper->sensors->humidity == 1 ? 'Present' : 'Not Present'; ?></b></label>
-                  <label class="input">
-                      <i class="icon-append fa fa-envelope"></i>
-                      <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
-                      <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
-                  </label>
+                  <p>You can adjust the calibration of your TEMPer sensor. It is recommended you set a known-accurate temperature and humidity sensor near your NEMS Server and let your devices sit, turned on, for 24 hours before calibrating. Then, by comparing the values, you can adjust your TEMPer settings here to ensure high accuracy. Please also ensure you are plugging your TEMPer device into a USB extension cord, not directly to your NEMS Server. This helps avoid the heat of your NEMS Server causing inaccurate thermal readings.</p>
+                  <input type="hidden" name="temperTempTrue" value="<?= $temper->{0}->{'internal temperature'} ?>" />
+                  <input type="hidden" id="temperTempAdjusted" name="temperTempAdjusted" value="<?= $temper->output->temperature ?>" />
+                  <input type="hidden" name="temperHumTrue" value="<?= $temper->{0}->{'internal humidity'} ?>" />
+                  <input type="hidden" id="temperHumAdjusted" name="temperHumAdjusted" value="<?= $temper->output->humidity ?>" />
+
+<div class="row">
+<div class="col-md-6">
+                  <h2>Thermal Sensor: <b><?= $temper->sensors->thermal == 1 ? 'Present' : 'Not Present'; ?></b></h2>
+                  <h3>Thermal Calibration <a id="resetTemperature" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></h3>
+<div id="temperatureAmount"></div>
+<div id="temperatureSlider"></div>
+<script>
+$(function() {
+    $( "#temperatureSlider" ).slider({
+      min: <?= ($temper->{0}->{'internal temperature'} - 6.03) ?>,
+      max: <?= ($temper->{0}->{'internal temperature'} + 6.03) ?>,
+      step: 0.01, // <-- new config
+      slide: function( event, ui ) {
+        $( "#temperatureAmount" ).html( 'Detected Temperature: <b><?= $temper->{0}->{'internal temperature'} ?>&deg;C</b><br />Adjusted Temperature: <b>' + ui.value + '&deg;C</b>' );
+        $( "#temperTempAdjusted" ).val( ui.value );
+      },
+      value: <?= $temper->output->temperature ?>
+
+    });
+
+    $( "#temperatureAmount" ).html( 'Detected Temperature: <b><?= $temper->{0}->{'internal temperature'} ?>&deg;C</b><br />Adjusted Temperature: <b><?= $temper->output->temperature ?>&deg;C</b>' );
+
+  });
+  $(document).ready(function(){
+    $("#resetTemperature").click(function(event){
+      $("#temperatureSlider").slider("value",<?= $temper->{0}->{'internal temperature'} ?>);
+      $( "#temperatureAmount" ).html( 'Detected Temperature: <b><?= $temper->{0}->{'internal temperature'} ?>&deg;C</b><br />Adjusted Temperature: <b><?= $temper->{0}->{'internal temperature'} ?>&deg;C</b>' );
+      $( "#temperTempAdjusted" ).val( '<?= $temper->{0}->{'internal temperature'} ?>' );
+    });
+  });
+</script>
+</div>
+
+<div class="col-md-6">
+                  <h2>Humidity Sensor: <b><?= $temper->sensors->humidity == 1 ? 'Present' : 'Not Present'; ?></b></h2>
+                  <h3>Humidity Calibration <a id="resetHumidity" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></h3>
+<div id="humidityAmount"></div>
+<div id="humiditySlider"></div>
+<script>
+$(function() {
+    $( "#humiditySlider" ).slider({
+      min: <?= ($temper->{0}->{'internal humidity'} - 10.03) ?>,
+      max: <?= ($temper->{0}->{'internal humidity'} + 10.03) ?>,
+      step: 0.01, // <-- new config
+      slide: function( event, ui ) {
+        $( "#humidityAmount" ).html( 'Detected Humidity: <b><?= $temper->{0}->{'internal humidity'} ?>%</b><br />Adjusted Humidity: <b>' + ui.value + '%</b>' );
+        $( "#temperHumAdjusted" ).val( ui.value );
+      },
+      value: <?= $temper->output->humidity ?>
+
+    });
+
+    $( "#humidityAmount" ).html( 'Detected Humidity: <b><?= $temper->{0}->{'internal humidity'} ?>%</b><br />Adjusted Humidity: <b><?= $temper->output->humidity ?>%</b>' );
+
+  });
+  $(document).ready(function(){
+    $("#resetHumidity").click(function(event){
+      $("#humiditySlider").slider("value",<?= $temper->{0}->{'internal humidity'} ?>);
+      $( "#humidityAmount" ).html( 'Detected Humidity: <b><?= $temper->{0}->{'internal humidity'} ?>%</b><br />Adjusted Humidity: <b><?= $temper->{0}->{'internal humidity'} ?>%</b>' );
+      $( "#temperHumAdjusted" ).val( '<?= $temper->{0}->{'internal humidity'} ?>' );
+    });
+  });
+</script>
+  </div>
+
+</div><!-- /row -->
+
               </section>
 
-        <script>
-var FormSliders=function(){return{initFormSliders:function()
-{$('#slider1').slider({min:0,max:20,slide:function(event,ui)
-{$('#slider1-value').text(ui.value);}});$('#slider2').slider({min:0,max:500,range:true,values:[75,300],slide:function(event,ui)
-{$('#slider2-value1').text(ui.values[0]);$('#slider2-value2').text(ui.values[1]);}});$('#slider3').slider({min:0,max:500,step:100,slide:function(event,ui)
-{$('#slider3-value').text(ui.value);}});$('#slider1-rounded').slider({min:0,max:500,slide:function(event,ui)
-{$('#slider1-value-rounded').text(ui.value);}});$('#slider2-rounded').slider({min:0,max:500,range:true,values:[75,300],slide:function(event,ui)
-{$('#slider2-value1-rounded').text(ui.values[0]);$('#slider2-value2-rounded').text(ui.values[1]);}});$('#slider3-rounded').slider({min:0,max:500,step:100,slide:function(event,ui)
-{$('#slider3-value-rounded').text(ui.value);}});}};}();
-                jQuery(document).ready(function() {
-			FormSliders.initFormSliders();
-		});
-	</script>
-
-
-
-                <section>
-                  <label class="label">TEMPer</label>
-
-                  <label class="select">
-                    <select name="tv_require_notify">
-                      <option value="1"<?php if (!isset($nemsconf['tv_require_notify']) || $nemsconf['tv_require_notify'] == 1) echo ' SELECTED'; ?>>Once they enter their individual notification period (Default)</option>
-                      <option value="2"<?php if ($nemsconf['tv_require_notify'] == 2) echo ' SELECTED'; ?>>Immediately</option>
-                    </select>
-                    <i></i>
-                  </label>
-                </section>
-
-                <section>
-                  <label class="label">Clock Format</label>
-                  <label class="select">
-                    <select name="tv_24h">
-                      <option value="3"<?php if (!isset($nemsconf['tv_24h']) || $nemsconf['tv_24h'] == 3) echo ' SELECTED'; ?>>3:25</option>
-                      <option value="2"<?php if ($nemsconf['tv_24h'] == 2) echo ' SELECTED'; ?>>3:25 PM</option>
-                      <option value="1"<?php if ($nemsconf['tv_24h'] == 1) echo ' SELECTED'; ?>>15:25</option>
-                    </select>
-                    <i></i>
-                  </label>
-                </section>
 
           </fieldset>
-
 
 </div>
 
