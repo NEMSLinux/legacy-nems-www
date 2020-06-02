@@ -857,6 +857,9 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 <div class="row">
 <div class="col-md-6">
                   <h2>Thermal Sensor: <b><?= $temper->sensors->thermal == 1 ? 'Present' : 'Not Present'; ?></b></h2>
+<?php
+  if ($temper->sensors->thermal == 1) {
+?>
                   <h3>Thermal Calibration <a id="resetTemperature" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></h3>
 <div id="temperatureAmount"></div>
 <div id="temperatureSlider"></div>
@@ -885,10 +888,16 @@ $(function() {
     });
   });
 </script>
+<?php
+  }
+?>
 </div>
 
 <div class="col-md-6">
                   <h2>Humidity Sensor: <b><?= $temper->sensors->humidity == 1 ? 'Present' : 'Not Present'; ?></b></h2>
+<?php
+  if ($temper->sensors->humidity == 1) {
+?>
                   <h3>Humidity Calibration <a id="resetHumidity" href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></h3>
 <div id="humidityAmount"></div>
 <div id="humiditySlider"></div>
@@ -917,10 +926,18 @@ $(function() {
     });
   });
 </script>
+<?php
+  }
+?>
   </div>
 
 </div><!-- /row -->
 
+<div class="row" style="margin-top: 20px;">
+  <div class="col-md-12">
+    <a href="https://docs.nemslinux.com/hardware/temper" target="_blank" class="btn btn-u btn-u-light-grey">TEMPer Documentation</a>
+  </div>
+</div>
               </section>
 
 

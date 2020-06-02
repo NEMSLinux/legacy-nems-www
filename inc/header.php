@@ -55,7 +55,7 @@
 	<link rel="stylesheet" href="/css/fullcalendar.min.css">
 
 	<!-- CSS Customization -->
-	<link rel="stylesheet" href="/css/custom.css">
+	<link rel="stylesheet" href="/css/custom.css?v=1.00">
 
         <!-- JS Global Compulsory -->
         <script src="/js/jquery.min.js"></script>

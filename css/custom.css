@@ -118,3 +118,8 @@ li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdow
 .parallax-counter-v4:after {
     background: rgba(0,0,0,1) !important;
 }
+
+/* Text color on tabbed content (background is white, so make darker text */
+.tab-content p, .tab-content h1, .tab-content h2, .tab-content h3, .tab-content h4 {
+  color: #555 !important;
+}
