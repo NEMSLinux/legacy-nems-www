@@ -848,7 +848,8 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
               <section>
                   <h1>TEMPer</h1>
-                  <p>You can adjust the calibration of your TEMPer sensor. It is recommended you set a known-accurate temperature and humidity sensor near your NEMS Server and let your devices sit, turned on, for 24 hours before calibrating. Then, by comparing the values, you can adjust your TEMPer settings here to ensure high accuracy. Please also ensure you are plugging your TEMPer device into a USB extension cord, not directly to your NEMS Server. This helps avoid the heat of your NEMS Server causing inaccurate thermal readings.</p>
+                  <p><b>Only adjust these if your TEMPer readings are inaccurate.</b> This is an adjustment of the <em>sensor</em>, not the check command threshold. If you are looking to change your thresholds, that is done in <a href="/nconf/" target="_blank">NEMS NConf</a>, not here.</p>
+                  <p>You can adjust the calibration of your TEMPer sensor. It is recommended you set a known-accurate temperature and humidity sensor near your NEMS Server and let both devices sit, turned on, for 24 hours before calibrating. Then, by comparing the values, you can adjust your TEMPer settings here to ensure high accuracy. Please also ensure you are plugging your TEMPer device into a USB extension cord, not directly to your NEMS Server. This helps avoid the heat of your NEMS Server causing inaccurate thermal readings.</p>
                   <input type="hidden" name="temperTempTrue" value="<?= $temper->{0}->{'internal temperature'} ?>" />
                   <input type="hidden" id="temperTempAdjusted" name="temperTempAdjusted" value="<?= $temper->output->temperature ?>" />
                   <input type="hidden" name="temperHumTrue" value="<?= $temper->{0}->{'internal humidity'} ?>" />
