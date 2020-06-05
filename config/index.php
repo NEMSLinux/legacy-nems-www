@@ -266,7 +266,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 <?php if (ver('nems') >= 1.4) { ?>
               <li><a href="#tv" data-toggle="tab">TV Dashboard</a></li>
 <?php } ?>
-<?php if (ver('nems') >= 1.6) { ?>
+<?php if (ver('nems') >= 1.6 || isset($_GET['beta'])) { ?>
               <li><a href="#hardware" data-toggle="tab">Hardware</a></li>
 <?php } ?>
               <li><a href="#options" data-toggle="tab">Optional Services</a></li>
@@ -827,7 +827,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
 
 <!-- Hardware -->
-<?php if (ver('nems') >= 1.6) { ?>
+<?php if (ver('nems') >= 1.6 || isset($_GET['beta'])) { ?>
 
 							<div class="tab-pane fade in" id="hardware">
 								<div class="row">
