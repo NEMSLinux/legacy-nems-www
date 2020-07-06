@@ -260,6 +260,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 					<div class="tab-v1">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#general" data-toggle="tab">General</a></li>
+              <li><a href="#migrator" data-toggle="tab">NEMS Migrator Backup</a></li>
               <li><a href="#cloud" data-toggle="tab">NEMS Cloud Services</a></li>
 		<li style="display:none;"><a href="#networking" data-toggle="tab">Networking</a></li>
               <li><a href="#notifications" data-toggle="tab">Notifications</a></li>
@@ -527,6 +528,33 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 </div>
 
 
+
+							<div class="tab-pane fade in" id="migrator">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row">
+
+                      <div>
+                         <header>NEMS Migrator<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
+                         <fieldset>
+                              <section>
+                                  <p>By adding a personal encryption/decryption password, your NEMS server will backup its configuration to NEMS Cloud Services. If you manage multiple NEMS servers, use the same encryption/decryption password to allow you to see multiple NEMS servers on a single NEMS Cloud TV Dashboard.</p>
+                                  <p>This password will never be stored on NEMS Cloud Services. It is strictly used for encryption/decryption operations. You may use it to view your NEMS Server status on the NEMS Cloud Services web site.</p>
+                                  <label class="label">Personal Encryption/Decryption Password</label>
+                                  <label class="input">
+                                      <i class="icon-append fa fa-lock"></i>
+                                      <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
+                                      <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
+                                  </label>
+                              </section>
+                          </fieldset>
+                      </div>
+
+</div></div></div></div>
+
+
+
+
 							<div class="tab-pane fade in" id="cloud">
 								<div class="row">
 									<div class="col-md-12">
@@ -548,7 +576,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                                             echo '<span class="nems-green">Connected</span>';
                                           } else {
                                             echo '<span class="color-red">Authorization Failed</span>';
-                                            if (!isset($nemsconf['osbpass']) || $nemsconf['osbpass'] == '') echo ' (NEMS Cloud Services requires encryption, but you haven\'t set a Personal Encryption/Decryption Password on the <em>General</em> tab.)';
+                                            if (!isset($nemsconf['osbpass']) || $nemsconf['osbpass'] == '') echo ' (NEMS Cloud Services requires encryption, but you haven\'t set a Personal Encryption/Decryption Password on the <em>NEMS Migrator</em> tab.)';
                                           }
                                           echo '</span>';
                                         }
@@ -558,23 +586,6 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                               <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the General tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
                           </fieldset>
                       </div>
-
-                      <div>
-                         <header>NEMS Migrator<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
-                         <fieldset>
-                              <section>
-                                  <p>By adding a personal encryption/decryption password, your NEMS server will backup its configuration to NEMS Cloud Services. If you manage multiple NEMS servers, use the same encryption/decryption password to allow you to see multiple NEMS servers on a single NEMS Cloud TV Dashboard.</p>
-                                  <p>This password will never be stored on NEMS Cloud Services. It is strictly used for encryption/decryption operations. You may use it to view your NEMS Server status on the NEMS Cloud Services web site.</p>
-                                  <label class="label">Personal Encryption/Decryption Password</label>
-                                  <label class="input">
-                                      <i class="icon-append fa fa-lock"></i>
-                                      <input type="password" name="osbpass" value="<?= $nemsconf['osbpass'] ?>">
-                                      <b class="tooltip tooltip-bottom-right">Your private password which will encrypt/decrypt your backup set</b>
-                                  </label>
-                              </section>
-                          </fieldset>
-                      </div>
-
 
                                             <?php if (ver('nems') >= 1.5) { ?>
                                                 <header>NEMS CheckIn Notifications</header>
@@ -617,6 +628,8 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
 
 </div></div></div></div>
+
+
 
 							<div class="tab-pane fade in" id="networking">
 								<div class="row">
