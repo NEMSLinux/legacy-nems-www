@@ -5,15 +5,18 @@
     7 = color picker
     8 = user uploaded
   */
-  include_once('/var/www/html/inc/functions.php');
-
-  $nemsver = shell_exec('/usr/local/bin/nems-info nemsver');
+  if (file_exists('/var/www/html/inc/functions.php')) {
+    include_once('/var/www/html/inc/functions.php');
+  }
+  if (file_exists('/usr/local/bin/nems-info')) {
+    $nemsver = shell_exec('/usr/local/bin/nems-info nemsver');
+  }
 
   // defaults
   $backgroundBlur=1; // 1 = disabled, 2 = slight, 3 = medium, 4 = heavy
   if (!isset($background)) $background=5;
   // only allow >= NEMS 1.5 to change these defaults
-  if ($nemsver >= 1.5) {
+  if (isset($nemsver) && $nemsver >= 1.5) {
     $background=6;
     $conftmp = file('/usr/local/share/nems/nems.conf');
     if (is_array($conftmp) && count($conftmp) > 0) {
