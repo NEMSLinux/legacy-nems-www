@@ -222,6 +222,7 @@ Larry Getz
 Coquille Indian Tribe
 Jarrod Andrews
 Dennis Bailey
+Brian Darnell
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
