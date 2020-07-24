@@ -223,6 +223,7 @@ Coquille Indian Tribe
 Jarrod Andrews
 Dennis Bailey
 Brian Darnell
+SystemOfADL
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
