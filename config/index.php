@@ -648,7 +648,10 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
     <div class="col-md-12">
 
-          <header>SMTP Email Configuration</header>
+          <header>
+            SMTP Email Configuration
+            <a href="https://docs.nemslinux.com/config/email_notifications" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+          </header>
           <fieldset>
         <?php
           // figure out the server and port from config or use default port
@@ -704,12 +707,59 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                       <b class="tooltip tooltip-bottom-right">SMTP Password</b>
                   </label>
               </section>
+
+              <?php
+                if (ver('nems') >= 1.6) {
+                  echo '<a id="nems-mailtest" class="btn-u">Test SMTP Settings</a>';
+echo '<div id="nems-mailtest-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">nems-mailtest</h4>
+      </div>
+      <div class="modal-body">
+        Please wait...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>';
+echo "
+<script>
+$(document).ready(function(){
+
+ $('#nems-mailtest').click(function(){
+   $('#nems-mailtest-modal').modal('show'); 
+
+   $.ajax({
+    url: '/commands/nems-mailtest.php',
+    type: 'post',
+    data: 'SST',
+    success: function(response){ 
+      $('#nems-mailtest-modal .modal-body').html(response);
+    }
+  });
+ });
+});
+</script>";
+                }
+              ?>
+
           </fieldset>
 
           <div class="row" style="background: #fff; margin: 0;">
 
             <div class="col-md-4">
-              <header>Telegram Account Info <a href="https://docs.nemslinux.com/usage/notify-host-by-telegram" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a></header>
+              <header>
+                Telegram Account Info
+                <a href="https://docs.nemslinux.com/usage/notify-host-by-telegram" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+              </header>
               <fieldset>
                   <section>
                       <label class="label">Bot API Token</label>
@@ -731,7 +781,10 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             </div>
 
             <div class="col-md-4">
-              <header>Pushover Account Info</header>
+              <header>
+                Pushover Account Info
+                <a href="https://docs.nemslinux.com/usage/notify-by-pushover" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+              </header>
               <fieldset>
                   <section>
                       <label class="label">API Key</label>
