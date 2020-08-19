@@ -662,20 +662,20 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <section>
                   <label class="label">SMTP Server Address</label>
                   <label class="input">
-                      <input type="text" name="smtp" placeholder="For example: smtp.gmail.com" value="<?= $smtp ?>">
+                      <input type="text" id="smtp" name="smtp" placeholder="For example: smtp.gmail.com" value="<?= $smtp ?>">
                   </label>
               </section>
               <section>
                   <label class="label">SMTP Server Port</label>
                   <label class="input">
-                      <input type="text" name="port" placeholder="For example: 25" value="<?= $port ?>">
+                      <input type="text" id="port" name="port" placeholder="For example: 25" value="<?= $port ?>">
                   </label>
               </section>
               <?php if (ver('nems') >= 1.5) { ?>
                 <section>
                   <label class="label">SMTP Secure Authentication</label>
                   <label class="select">
-                    <select name="smtp_tls">
+                    <select id="smtp_tls" name="smtp_tls">
                       <option value="1"<?php if (!isset($USER15) || $USER15 == 1) echo ' SELECTED'; ?>>Use TLS Secure Authentication</option>
                       <option value="2"<?php if (isset($USER15) && $USER15 == 2) echo ' SELECTED'; ?>>Do not use TLS</option>
                     </select>
@@ -687,7 +687,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="label">"From" Sender Email Address</label>
                   <label class="input">
                       <i class="icon-append fa fa-envelope"></i>
-                      <input type="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
+                      <input type="email" id="email" name="email" placeholder="Email address" value="<?= $USER5 ?>">
                       <b class="tooltip tooltip-bottom-right">Sender Email Address</b>
                   </label>
               </section>
@@ -695,7 +695,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="label">SMTP Authentication Username (Typically an email address)</label>
                   <label class="input">
                       <i class="icon-append fa fa-envelope"></i>
-                      <input type="text" name="smtpuser" placeholder="Username" value="<?= $USER9 ?>">
+                      <input type="text" id="smtpuser" name="smtpuser" placeholder="Username" value="<?= $USER9 ?>">
                       <b class="tooltip tooltip-bottom-right">SMTP Username</b>
                   </label>
               </section>
@@ -703,7 +703,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                   <label class="label">SMTP Password</label>
                   <label class="input">
                       <i class="icon-append fa fa-lock"></i>
-                      <input type="password" name="smtppassword" placeholder="Password" id="smtppassword" value="<?= $USER10 ?>">
+                      <input type="password" id="smtppassword" name="smtppassword" placeholder="Password" id="smtppassword" value="<?= $USER10 ?>">
                       <b class="tooltip tooltip-bottom-right">SMTP Password</b>
                   </label>
               </section>
@@ -711,43 +711,32 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               <?php
                 if (ver('nems') >= 1.6) {
                   echo '<a id="nems-mailtest" class="btn-u">Test SMTP Settings</a>';
-echo '<div id="nems-mailtest-modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">nems-mailtest</h4>
-      </div>
-      <div class="modal-body">
-        Please wait...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>';
-echo "
-<script>
-$(document).ready(function(){
-
- $('#nems-mailtest').click(function(){
-   $('#nems-mailtest-modal').modal('show'); 
-
-   $.ajax({
-    url: '/commands/nems-mailtest.php',
-    type: 'post',
-    data: 'SST',
-    success: function(response){ 
-      $('#nems-mailtest-modal .modal-body').html(response);
-    }
-  });
- });
-});
-</script>";
+                  echo '<div id="nems-mailtest-modal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">nems-mailtest</h4></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+                  echo "
+                       <script>
+                         $(document).ready(function(){
+                           $('#nems-mailtest').click(function(){
+                             $('#nems-mailtest-modal .modal-body').html('Please Wait <i class=\"fa fa-spinner fa-pulse fa-fw\"></i>');
+                             $('#nems-mailtest-modal').modal('show');
+                             $.ajax({
+                               url: '/commands/nems-mailtest.php',
+                               type: 'post',
+                               data: {
+                                 'SST':1,
+                                 'smtp': $('#smtp').val(),
+                                 'port': $('#port').val(),
+                                 'smtp_tls': $('#smtp_tls').val(),
+                                 'email': $('#email').val(),
+                                 'smtpuser': $('#smtpuser').val(),
+                                 'smtppassword': $('#smtppassword').val()
+                               },
+                               success: function(response){
+                                 $('#nems-mailtest-modal .modal-body').html(response);
+                               }
+                             });
+                           });
+                         });
+                       </script>";
                 }
               ?>
 
