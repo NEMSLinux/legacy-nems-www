@@ -56,7 +56,7 @@
 				<li style="display:none;"><a target="_blank" class="social_facebook rounded-x" data-original-title="Facebook" href="https://www.facebook.com/Robbie-Ferguson-22827508923/"></a></li>
 				<li><a target="_blank" class="social_twitter rounded-x" data-original-title="Twitter" href="https://twitter.com/NEMSLinux"></a></li>
 				<li><a target="_blank" class="social_rss rounded-x" data-original-title="Blog" href="http://baldnerd.com"></a></li>
-			        <li><a target="_blank" class="social_youtube rounded-x" data-original-title="NEMS Linux on YouTube" href="https://www.youtube.com/channel/UCyGst2wXRao5FsnxJyTEhsQ"></a></li>
+			        <li><a target="_blank" class="social_youtube rounded-x" data-original-title="NEMS Linux on YouTube" href="https://youtube.com/c/NEMSLinux"></a></li>
 			</ul>
 		  </div>
 		</div>
