@@ -239,7 +239,7 @@ foreach ($list as $name) {
 
             <h1>Raspberry Pi</h1><h2>Raspbian</h2>
             <h1>PINE64</h1><h2>Ayufan</h2>
-            <h1>ODROID</h1><h2>Meveric</h2>
+            <h1>ODROID</h1><h2>Meveric, mad_ady</h2>
             <h1>ODROID, FriendlyElec, ASUS, OrangePi</h1><h2>Armbian</h2>
 
             <h2 style="margin-top: 50px;">Community Contributors</h2><h1 style="margin-top: 0;">Thank you to the following community members for going above and beyond.</h1>
