@@ -126,7 +126,7 @@
 
             <div class="text-center img-center">
               <p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Sponsored By:</p>
-              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="https://nemslinux.com/img/sponsors/xrnit.png.pagespeed.ic.DeVGhHCiav.png" class="img-responsive" style="max-height:<?= (30*$sponsor_ratio) ?>px;" /></a>
+              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="/img/sponsors/xrnit.webp" class="img-responsive" style="max-height:<?= (30*$sponsor_ratio) ?>px;" /></a>
             </div>
 
 
