@@ -202,6 +202,8 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
         $nemsconf['temper.temp'] = (floatval($_POST['temperTempAdjusted']) - floatval($_POST['temperTempTrue']));
         $nemsconf['temper.hum'] = (floatval($_POST['temperHumAdjusted']) - floatval($_POST['temperHumTrue']));
 
+        $nemsconf['php_agent_key'] = sanitize($_POST['php_agent_key']);
+
 	$nemsconfoutput = '';
 	foreach ($nemsconf as $key=>$value) {
 		$nemsconfoutput .= $key . '=' . $value . PHP_EOL;
@@ -481,33 +483,41 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <label class="label">IPMI Password</label>
             <label class="input">
                 <i class="icon-append fa fa-lock"></i>
-                <input type="text" name="ipmi_pass" placeholder="" value="<?= $USER17 ?>">
+                <input type="password" name="ipmi_pass" placeholder="" value="<?= $USER17 ?>">
                 <b class="tooltip tooltip-bottom-right">Enter your IPMI password</b>
             </label>
         </section>
     </fieldset>
   </div>
 
-  <div class="col-md-4" style="display: none;">
-    <header>Internet Speedtest</header>
+  <div class="col-md-4">
+    <header>NEMS PHP Agent</header>
     <fieldset>
         <section>
-            <label class="label">Automatically Chosen Server</label>
+            <label class="label">Encryption/Decryption Passphrase</label>
             <label class="input">
-                <i class="icon-append fa fa-server"></i>
-                <input type="hidden" name="speedtestserver" value="<?= $nemsconf['speedtestserver'] ?>" />
-                <input type="text" disabled="disabled" value="<?= $nemsconf['speedtestserver'] ?>" />
+                <i class="icon-append fa fa-lock"></i>
+                <input type="password" id="php_agent_key" name="php_agent_key" placeholder="" value="<?= $nemsconf['php_agent_key'] ?>">
+                <b class="tooltip tooltip-bottom-right">Enter your passphrase</b>
             </label>
         </section>
         <section>
-           <label class="label">Which To Use</label>
-           <label class="select">
-             <select name="speedtestwhich">
-               <option value="0"<?php if (!isset($nemsconf['speedtestwhich']) || $nemsconf['speedtestwhich'] == 0) echo ' SELECTED'; ?>>Recommended Nearest Server (Dynamic)</option>
-               <option value="1"<?php if (isset($nemsconf['speedtestwhich']) && $nemsconf['speedtestwhich'] == 1) echo ' SELECTED'; ?>>Hard-set in NEMS NConf service (Static)</option>
-             </select>
-             <i></i>
-           </label>
+            <a href="php-agent-gen.php" target="_blank" class="btn btn-u" id="download_agent"<?php if (strlen($nemsconf['php_agent_key']) == 0) echo ' disabled="disabled"'; ?>>
+                <i class="fa fa-download"></i>
+                Download PHP Agent
+            </a>
+            <div id="nopass_notice_php_agent" style="color: maroon;">You must add a passphrase before you can download the PHP agent.</div>
+            <div id="save_notice_php_agent" style="display:none; color: maroon;">You must save your changes before you can download the new agent.</div>
+            <label class="label"><b>Note:</b> If you change your passphrase you will have to re-download and deploy.</label>
+            <script>
+              $(function(){
+                $('#php_agent_key').on('keyup', function(){
+                  $('#download_agent').attr('disabled', true);
+                  $('#save_notice_php_agent').show();
+                  $('#nopass_notice_php_agent').hide();
+                });
+              });
+            </script>
         </section>
     </fieldset>
   </div>

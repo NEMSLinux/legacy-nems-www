@@ -124,11 +124,20 @@
           }
         ?>
 
-            <div class="text-center img-center">
-              <p style="font-size: 0.5em; color:#aaa; margin: 30px 0 0px 0; padding: 0 !important;">Sponsored By:</p>
-              <a style="margin: 0; padding: 0 0 20px 0;" href="https://www.rnitsolutions.com/" target="_blank"><img src="/img/sponsors/xrnit.webp" class="img-responsive" style="max-height:<?= (30*$sponsor_ratio) ?>px;" /></a>
-            </div>
 
+            <div class="row">
+              <div class="container" style="margin-top: 40px;">
+
+                <div class="col-md-3 text-center img-center">
+                  <h3 style="font-size: 0.6em;">Sponsored By:<a href="https://www.rnitsolutions.com/" target="_blank"><img src="/img/sponsors/xrnit.webp" class="img-responsive" /></a></h3>
+                </div>
+
+                <div class="col-md-3 text-center img-center">
+                  <h3 style="font-size: 0.6em;">Product Of:<a href="https://Category5.TV/" target="_blank"><img src="/img/sponsors/cat5tv_network.webp" class="img-responsive" style="max-height: 30px;" /></a></h3>
+                </div>
+
+              </div>
+            </div>
 
 			</div><!--/end container-->
 
@@ -137,6 +146,7 @@
 
 
 	</section>
+
 					</div>
 				  </div>
 				</div>
@@ -149,6 +159,7 @@
 	  </div>
 	</section>
 	<!-- Promo block END -->
+
 
 <?php
   include('/var/www/html/inc/footer.php');
