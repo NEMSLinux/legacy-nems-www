@@ -490,6 +490,8 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
     </fieldset>
   </div>
 
+<?php if (ver('nems') >= 1.6 || isset($_GET['beta'])) { ?>
+
   <div class="col-md-4">
     <header>NEMS PHP Agent</header>
     <fieldset>
@@ -521,6 +523,10 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
         </section>
     </fieldset>
   </div>
+
+<?php
+  }
+?>
 
 <?php
 }
