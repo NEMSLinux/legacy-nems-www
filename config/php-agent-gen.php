@@ -12,7 +12,7 @@ if (is_array($conf)) { // Load the existing conf data
 if ($php_agent_key == '') die('Missing passphrase. Did you set one in NEMS SST?');
 
 $nemsver = shell_exec('/usr/local/bin/nems-info nemsver');
-$nemsagentver = '1.0';
+$nemsagentver = '1.1';
 
 $data = '<' . '?php
   // This is the NEMS PHP Server Agent v' . $nemsagentver . '
@@ -22,7 +22,7 @@ $data = '<' . '?php
 
   // If you change your NEMS PHP Server Agent Encryption/Decryption Key in NEMS System Settings Tool, this will no longer match
   // You can either edit it here base64 encoded, or just download the new agent (recommended) and re-upload to your server
-  $encryptionkey = \'' . base64_encode($php_agent_key) . '\';
+  $encryptionkey = \'' . openssl_encrypt($php_agent_key,"AES-128-ECB",base64_encode(':' . $php_agent_key . ':')) . '\';
 
   $data = array();
 
@@ -55,17 +55,42 @@ $data = '<' . '?php
     $data[\'mem\'][\'used\'] = $data[\'mem\'][\'total\'] - $data[\'mem\'][\'free\'];
 
   //hdd stat
+    $mountpoint = \'.\';
+    $df = disk_free_space($mountpoint);
+    $dt = disk_total_space($mountpoint);
+    if ($df == \'\') {
+      $data[\'storage\'][$mountpoint][\'locked\'] = 1;
+    } else {
+      $data[\'storage\'][$mountpoint][\'path\'] = getcwd();
+      $data[\'storage\'][$mountpoint][\'free\'] = round($df / 1024 / 1024 / 1024, 2);
+      $data[\'storage\'][$mountpoint][\'total\'] = round($dt / 1024 / 1024/ 1024, 2);
+      $data[\'storage\'][$mountpoint][\'used\'] = $data[\'storage\'][$mountpoint][\'total\'] - $data[\'storage\'][$mountpoint][\'free\'];
+      $data[\'storage\'][$mountpoint][\'percent\'] = round(sprintf(\'%.2f\',($data[\'storage\'][$mountpoint][\'used\'] / $data[\'storage\'][$mountpoint][\'total\']) * 100), 2);
+    }
+
     $mountpoint = \'/\';
-    $data[\'storage\'][$mountpoint][\'free\'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-    $data[\'storage\'][$mountpoint][\'total\'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-    $data[\'storage\'][$mountpoint][\'used\'] = $data[\'storage\'][$mountpoint][\'total\'] - $data[\'storage\'][$mountpoint][\'free\'];
-    $data[\'storage\'][$mountpoint][\'percent\'] = round(sprintf(\'%.2f\',($data[\'storage\'][$mountpoint][\'used\'] / $data[\'storage\'][\'mountpoint\'][\'total\']) * 100), 2);
+    $df = disk_free_space($mountpoint);
+    $dt = disk_total_space($mountpoint);
+    if ($df == \'\') {
+      $data[\'storage\'][$mountpoint][\'locked\'] = 1;
+    } else {
+      $data[\'storage\'][$mountpoint][\'free\'] = round($df / 1024 / 1024 / 1024, 2);
+      $data[\'storage\'][$mountpoint][\'total\'] = round($dt / 1024 / 1024/ 1024, 2);
+      $data[\'storage\'][$mountpoint][\'used\'] = $data[\'storage\'][$mountpoint][\'total\'] - $data[\'storage\'][$mountpoint][\'free\'];
+      $data[\'storage\'][$mountpoint][\'percent\'] = round(sprintf(\'%.2f\',($data[\'storage\'][$mountpoint][\'used\'] / $data[\'storage\'][$mountpoint][\'total\']) * 100), 2);
+    }
 
     $mountpoint = \'/var\';
-    $data[\'storage\'][$mountpoint][\'free\'] = round(disk_free_space("/") / 1024 / 1024 / 1024, 2);
-    $data[\'storage\'][$mountpoint][\'total\'] = round(disk_total_space("/") / 1024 / 1024/ 1024, 2);
-    $data[\'storage\'][$mountpoint][\'used\'] = $data[\'storage\'][$mountpoint][\'total\'] - $data[\'storage\'][$mountpoint][\'free\'];
-    $data[\'storage\'][$mountpoint][\'percent\'] = round(sprintf(\'%.2f\',($data[\'storage\'][$mountpoint][\'used\'] / $data[\'storage\'][\'mountpoint\'][\'total\']) * 100), 2);
+    $df = disk_free_space($mountpoint);
+    $dt = disk_total_space($mountpoint);
+    if ($df == \'\') {
+      $data[\'storage\'][$mountpoint][\'locked\'] = 1;
+    } else {
+      $data[\'storage\'][$mountpoint][\'free\'] = round($df / 1024 / 1024 / 1024, 2);
+      $data[\'storage\'][$mountpoint][\'total\'] = round($dt / 1024 / 1024/ 1024, 2);
+      $data[\'storage\'][$mountpoint][\'used\'] = $data[\'storage\'][$mountpoint][\'total\'] - $data[\'storage\'][$mountpoint][\'free\'];
+      $data[\'storage\'][$mountpoint][\'percent\'] = round(sprintf(\'%.2f\',($data[\'storage\'][$mountpoint][\'used\'] / $data[\'storage\'][$mountpoint][\'total\']) * 100), 2);
+    }
 
   //network stat
     $data[\'network\'][\'rx\'] = round(trim(file_get_contents("/sys/class/net/eth0/statistics/rx_bytes")) / 1024/ 1024/ 1024, 2);
@@ -81,8 +106,8 @@ $data = '<' . '?php
   // Create the output
     $output[\'ver\'][\'nems\'] = \'' . $nemsver . '\';
     $output[\'ver\'][\'nemsagent\'] = \'' . $nemsagentver . '\';
-    $output[\'data\'] = openssl_encrypt($dataJSON,"AES-128-ECB",base64_decode($encryptionkey));
-    $output[\'auth\'] = hash(\'sha256\', base64_decode($encryptionkey)); // Used to test to make sure the decryption key is correct
+    $output[\'data\'] = openssl_encrypt($dataJSON,"AES-128-ECB",$encryptionkey);
+    $output[\'auth\'] = hash(\'sha256\', $encryptionkey); // Used to test to make sure the decryption key is correct
 
   // Output the output
     echo json_encode($output);
