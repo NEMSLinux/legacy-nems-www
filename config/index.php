@@ -600,7 +600,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                                       ?>
                                   </label>
                               </section>
-                              <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the General tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
+                              <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the NEMS Migrator tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
                           </fieldset>
                       </div>
 
