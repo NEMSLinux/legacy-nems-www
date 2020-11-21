@@ -549,7 +549,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 										<div class="row">
 
                       <div>
-                         <header>NEMS Migrator<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/nems-migrator" target="_blank">Documentation</a></header>
+                         <header>NEMS Migrator<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up for Off-Site</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/en/latest/apps/nems-migrator.html" target="_blank">Documentation</a></header>
                          <fieldset>
                               <section>
                                   <p>By adding a personal encryption/decryption password, your NEMS server will backup its configuration to NEMS Cloud Services. If you manage multiple NEMS servers, use the same encryption/decryption password to allow you to see multiple NEMS servers on a single NEMS Cloud TV Dashboard.</p>
@@ -575,7 +575,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 										<div class="row">
 
                       <div>
-                         <header>NEMS Cloud Services<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/features/cloud" target="_blank">Learn More</a></header>
+                         <header>NEMS Cloud Services<?php if ($cloudauth != 1) echo ' <a class="btn-u btn-u-xs" href="https://www.patreon.com/bePatron?c=1348071&rid=2163022" target="_blank">Sign Up</a>'; ?> <a class="btn-u btn-u-dark-green btn-u-xs" href="https://docs.nemslinux.com/en/latest/nems-cloud-services/index.html" target="_blank">Learn More</a></header>
                          <fieldset>
                               <section>
                                   <label class="label">NEMS Cloud Services Key (If Registered)</label>
@@ -664,7 +664,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
 
           <header>
             SMTP Email Configuration
-            <a href="https://docs.nemslinux.com/config/email_notifications" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+            <a href="https://docs.nemslinux.com/en/latest/gettingstarted/smtp.html" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
           </header>
           <fieldset>
         <?php
@@ -761,7 +761,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <div class="col-md-4">
               <header>
                 Telegram Account Info
-                <a href="https://docs.nemslinux.com/usage/notify-host-by-telegram" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+                <a href="https://docs.nemslinux.com/en/latest/notifications/telegram.html" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
               </header>
               <fieldset>
                   <section>
@@ -786,7 +786,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             <div class="col-md-4">
               <header>
                 Pushover Account Info
-                <a href="https://docs.nemslinux.com/usage/notify-by-pushover" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
+                <a href="https://docs.nemslinux.com/en/latest/notifications/pushover.html" target="_blank"><i class="fa fa-question-circle" style="font-size: 0.8em; color: #1b4a90; text-decoratoin:none;"></i></a>
               </header>
               <fieldset>
                   <section>
@@ -1005,7 +1005,7 @@ $(function() {
 
 <div class="row" style="margin-top: 20px;">
   <div class="col-md-12">
-    <a href="https://docs.nemslinux.com/hardware/temper" target="_blank" class="btn btn-u btn-u-light-grey">TEMPer Documentation</a>
+    <a href="https://docs.nemslinux.com/en/latest/accessories/temper.html" target="_blank" class="btn btn-u btn-u-light-grey">TEMPer Documentation</a>
   </div>
 </div>
               </section>

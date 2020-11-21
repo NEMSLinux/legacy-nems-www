@@ -142,7 +142,7 @@ $s_6 = class_by_state(($global_stats['service_problems'] > 0 ? STATE_CRITICAL : 
 		<ul>
 		  <li><a data-ajax="false" href="/" data-icon="home" target="_blank">NEMS Dashboard</a></li>
 		  <li><a data-ajax="false" href="/nagios" data-icon="star" target="_blank">Nagios Core</a></li>
-		  <li><a data-ajax="false" href="https://docs.nemslinux.com/nems-mobile/" data-icon="info" target="_blank">Documentation</a></li>			
+		  <li><a data-ajax="false" href="https://docs.nemslinux.com/en/latest/apps/mobile.html" data-icon="info" target="_blank">Documentation</a></li>			
 		</ul>
 	  </div> <!-- end navbar -->
 	</div> <!-- end footer -->

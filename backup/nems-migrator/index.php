@@ -36,7 +36,7 @@
   <header>NEMS Migrator Local Backup</header>
 
   <div class="col-md-12 margin-bottom-40">
-    <p style="color: #333 !important;">Your local backup is always available to you. You can even access it via Windows networking (samba) and automate your backup. See <a href="https://docs.nemslinux.com/features/nems-migrator" target="_blank" class="color-blue">the NEMS Migrator documentation</a> for more details.</p>
+    <p style="color: #333 !important;">Your local backup is always available to you. You can even access it via Windows networking (samba) and automate your backup. See <a href="https://docs.nemslinux.com/en/latest/apps/nems-migrator.html" target="_blank" class="color-blue">the NEMS Migrator documentation</a> for more details.</p>
     <a href="/backup" target="_blank" class="btn-u btn-u-lg btn-brd-hover btn-u-green btn-u-block"><i class="fa fa-download"></i> DOWNLOAD<?php if (isset($currentsize) && $currentsize > 0) echo ' (' . formatBytes($currentsize) . ')'; ?></a>
   </div>
 
@@ -135,7 +135,7 @@
           <p class="color-light" style="color: #eee !important;">To restore your NEMS Linux server to one of your OSBs, simply SSH in and run the command:<br /><em>sudo nems-restore osb</em></p>
         </div>
         <div class="call-action-v1-in inner-btn page-scroll">
-          <a href="https://docs.nemslinux.com/commands/nems-restore#how_to_restore_a_nems_migrator_backup" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
+          <a href="https://docs.nemslinux.com/en/latest/commands/nems-restore.html#how-to-restore-a-nems-migrator-backup" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
         </div>
       </div>
     </div>
@@ -163,7 +163,7 @@
           <p class="color-light" style="color: #eee !important;">It's easy to restore your NEMS Linux server backup to replace a defective SD card or upgrade your NEMS server.</p>
         </div>
         <div class="call-action-v1-in inner-btn page-scroll">
-          <a href="https://docs.nemslinux.com/commands/nems-restore#how_to_restore_a_nems_migrator_backup" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
+          <a href="https://docs.nemslinux.com/en/latest/commands/nems-restore.html#how-to-restore-a-nems-migrator-backup" target="_blank" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
         </div>
       </div>
     </div>

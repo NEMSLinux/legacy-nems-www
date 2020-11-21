@@ -112,7 +112,7 @@ var top = ($('.navbar').offset() || { "top": NaN }).top;
 
 						</div>
 						<div class="call-action-v1-in inner-btn page-scroll">
-							<a href="https://docs.nemslinux.com/commands/nems-init" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
+							<a href="https://docs.nemslinux.com/en/latest/gettingstarted/initialization.html" class="btn-u btn-u-lg btn-brd btn-brd-width-2 btn-brd-hover btn-u-light btn-u-block">DOCUMENTATION</a>
 						</div>
 					</div>
 				</div>

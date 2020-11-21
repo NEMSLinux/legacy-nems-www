@@ -58,7 +58,7 @@
 
   <?php
     if (isset($statlog) && is_array($statlog)) {
-      echo '<p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Anonymous Stats:</b><br />This anonymous data helps me understand how NEMS servers are performing. In the interest of transparency and so you know exactly what is being sent, here is a log of the most recent data your server shared (the dataset is always the same, though the numbers may change):<br /><pre>' . print_r($statlog,true) . '</pre><span style="color:#aaa">This data is sent to the NEMS API via an encrypted connection and stored anonymously. You may read more about this <a href="https://docs.nemslinux.com/anonymous_stats" target="_blank">in the NEMS Documentation</a>.<br />You can see the full log at /var/log/nems/stats.log</span></p>';
+      echo '<p style="padding:4px 6px; color: #aaa !important;"><b>NEMS Anonymous Stats:</b><br />This anonymous data helps me understand how NEMS servers are performing. In the interest of transparency and so you know exactly what is being sent, here is a log of the most recent data your server shared (the dataset is always the same, though the numbers may change):<br /><pre>' . print_r($statlog,true) . '</pre><span style="color:#aaa">This data is sent to the NEMS API via an encrypted connection and stored anonymously. You may read more about this <a href="https://docs.nemslinux.com/en/latest/misc/anonymousstats.html" target="_blank">in the NEMS Documentation</a>.<br />You can see the full log at /var/log/nems/stats.log</span></p>';
     }
   ?>
 
