@@ -504,10 +504,7 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
             </label>
         </section>
         <section>
-            <a href="php-agent-gen.php" target="_blank" class="btn btn-u" id="download_agent"<?php if (strlen($nemsconf['php_agent_key']) == 0) echo ' disabled="disabled"'; ?>>
-                <i class="fa fa-download"></i>
-                Download PHP Agent
-            </a>
+            <button onclick="location.href='php-agent-gen.php'" type="button" class="btn btn-u" id="download_agent"<?php if (strlen($nemsconf['php_agent_key']) == 0) echo ' disabled="disabled"'; ?>><i class="fa fa-download"></i> Download PHP Agent</button>
             <div id="nopass_notice_php_agent" style="color: maroon; display:none;">You must add a passphrase before you can download the PHP agent.</div>
             <div id="save_notice_php_agent" style="display:none; color: maroon;">You must save your changes before you can download the new agent.</div>
             <label class="label"><b>Note:</b> If you change your passphrase you will have to re-download and deploy.</label>
