@@ -16,7 +16,7 @@
     }
 
     // User has defined their own color
-    if (isset($background) && $background == 7 || $background == 8) {
+    if (isset($background) && ( $background == 7 || $background == 8 ) ) {
 
       $tmp=explode(',',str_replace(array('hsv(',')'),array('',''),$backgroundColor));
       $h = trim($tmp[0]);

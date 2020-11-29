@@ -1,4 +1,3 @@
-
 <?php /*	<section id="graphs" class="about-section">
 
 		<div class="parallax-counter-v4 parallaxBg1" id="facts">

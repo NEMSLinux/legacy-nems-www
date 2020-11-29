@@ -43,7 +43,7 @@
 </form>
 
 <?php
-  if (is_array($osb) && count($osb) > 0) {
+  if ( isset($osb) && is_array($osb) && count($osb) > 0 ) {
 ?>
 
 <form method="post" id="sky-form4" class="sky-form">
