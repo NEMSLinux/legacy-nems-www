@@ -590,14 +590,14 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
                                             echo '<span class="nems-green">Connected</span>';
                                           } else {
                                             echo '<span class="color-red">Authorization Failed</span>';
-                                            if (!isset($nemsconf['osbpass']) || $nemsconf['osbpass'] == '') echo ' (NEMS Cloud Services requires encryption, but you haven\'t set a Personal Encryption/Decryption Password on the <em>NEMS Migrator</em> tab.)';
+                                            if (!isset($nemsconf['osbpass']) || $nemsconf['osbpass'] == '') echo ' (NEMS Cloud Services requires encryption, but you haven\'t set a Personal Encryption/Decryption Password on the <em>NEMS Migrator Backup</em> tab.)';
                                           }
                                           echo '</span>';
                                         }
                                       ?>
                                   </label>
                               </section>
-                              <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the NEMS Migrator tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
+                              <p><b>Please Note:</b> Your off-site backup will be encrypted using the personal encryption/decryption key you entered on the NEMS Migrator Backup tab. If you do not enter an encryption key, your backup will not be sent to NEMS Cloud Services.</p>
                           </fieldset>
                       </div>
 
