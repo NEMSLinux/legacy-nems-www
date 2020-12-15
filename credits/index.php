@@ -226,6 +226,7 @@ Brian Darnell
 SystemOfADL
 Tony Browne
 Steven Beukes
+Rob Thomas
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
