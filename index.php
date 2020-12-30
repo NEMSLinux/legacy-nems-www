@@ -105,7 +105,7 @@
         <br />
         <?php
 	  if ($cloudauth == 1) {
-            echo '<p align="center" style="font-size: 12px;">Thank you for supporting NEMS Linux.</p>';
+            echo '<p align="center" class="thankyou">Thank you for supporting NEMS Linux. Read the <a href="https://www.patreon.com/nems/posts" target="_blank">Latest Posts on Patreon</a>.</p>';
           } else {
             echo '<p align="center"><a href="https://www.patreon.com/bePatron?u=8543379" class="btn btn-u btn-u-red" target="_blank"><img src="/img/fa-patreon.png" align="bottom" style="max-height:14px; margin-right: 8px;" class="pull-left img-responsive" /> Become a Patron</a></p>';
           }

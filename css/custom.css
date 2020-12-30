@@ -123,3 +123,19 @@ li, li a, .one-page-header .navbar-nav a.dropdown-toggle, li.dropdown, a.dropdow
 .tab-content p, .tab-content h1, .tab-content h2, .tab-content h3, .tab-content h4 {
   color: #555 !important;
 }
+
+p.thankyou {
+  font-size: 14px;
+}
+
+p.thankyou a {
+  text-transform: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  color: #72c02c;
+}
+
+p.thankyou a:hover, p.thankyou a:active {
+  color: #72ea2c;
+}
