@@ -139,3 +139,8 @@ p.thankyou a {
 p.thankyou a:hover, p.thankyou a:active {
   color: #72ea2c;
 }
+
+.private {
+  color: transparent !important;
+  text-shadow:0 0 7px #72c02c, 0 0 10px #72c02c;
+}
