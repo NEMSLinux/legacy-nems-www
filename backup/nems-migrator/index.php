@@ -24,6 +24,8 @@
     $currentsize = intval(trim(file_get_contents('/var/www/html/backup/snapshot/size.log')));
   }
 
+  $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
+
 ?>
 
 <div class="container" style="margin-top: 100px; padding-bottom: 100px;">
@@ -140,6 +142,19 @@
       </div>
     </div>
 
+
+<?php
+  } elseif ($cloudauth == 1) {
+?>
+
+    <div class="call-action-v1 call-action-v1-boxed bg-color-blue margin-bottom-40">
+      <div class="call-action-v1-box">
+        <div class="call-action-v1-in">
+          <h3 class="color-light" style="color: #fff;">NEMS Migrator Off-Site Backup Service</h3>
+          <p class="color-light" style="color: #eee !important;">Your NEMS Cloud Services account is connected, however an OSB is not yet available. OSBs are created automatically. Please check back in 24 hours.</p>
+        </div>
+      </div>
+    </div>
 
 <?php
   } else {
