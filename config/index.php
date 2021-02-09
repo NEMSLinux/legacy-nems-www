@@ -196,6 +196,7 @@ if (is_array($nemsconf) && isset($_POST) && count($_POST) > 0) { // Overwrite th
         $nemsconf['checkin.email'] = filter_var(trim($_POST['checkin_email']), FILTER_VALIDATE_EMAIL) ?: '';
         $nemsconf['checkin.interval'] = intval($_POST['checkin_interval']) ?: 8; // how many 15 minute cycles before notifying. Default 8 (2 hours).
 
+        $nemsconf['disablespeedtest'] = intval($_POST['disablespeedtest']);
         $nemsconf['speedtestserver'] = intval($_POST['speedtestserver']);
         $nemsconf['speedtestwhich'] = intval($_POST['speedtestwhich']) ?: 0;
 
@@ -406,6 +407,18 @@ $cloudauth = shell_exec('/usr/local/bin/nems-info cloudauth');
               }
             }
         ?>
+              </select>
+              <i></i>
+            </label>
+          </section>
+        <?php } ?>
+        <?php if (ver('nems') >= 1.6) { ?>
+          <section>
+            <label class="label">Disable Benchmark Speedtest</label>
+            <label class="select">
+              <select name="disablespeedtest">
+		            <option value="0"<?php if (!isset($nemsconf['disablespeedtest']) || $nemsconf['disablespeedtest'] == 0) echo ' SELECTED'; ?>>Speedtest Enabled</option>
+		            <option value="1"<?php if (isset($nemsconf['disablespeedtest']) && $nemsconf['disablespeedtest'] == 1) echo ' SELECTED'; ?>>Speedtest Disabled</option>
               </select>
               <i></i>
             </label>
