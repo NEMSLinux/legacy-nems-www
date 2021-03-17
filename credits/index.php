@@ -228,6 +228,7 @@ Tony Browne
 Steven Beukes
 Rob Thomas
 Heiko Gerstung
+Jerold Von Hemel
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
