@@ -229,6 +229,7 @@ Steven Beukes
 Rob Thomas
 Heiko Gerstung
 Jerold Von Hemel
+Nato Riley
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
