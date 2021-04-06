@@ -12,7 +12,7 @@ if (is_array($conf)) { // Load the existing conf data
 if ($php_agent_key == '') die('Missing passphrase. Did you set one in NEMS SST?');
 
 $nemsver = shell_exec('/usr/local/bin/nems-info nemsver');
-$nemsagentver = '1.2';
+$nemsagentver = '1.3';
 
 $data = '<' . '?php
   // This is the NEMS PHP Server Agent v' . $nemsagentver . '
@@ -24,12 +24,17 @@ $data = '<' . '?php
   // You can either edit it here base64 encoded, or just download the new agent (recommended) and re-upload to your server
   $encryptionkey = \'' . openssl_encrypt($php_agent_key,"AES-128-ECB",base64_encode(':' . $php_agent_key . ':')) . '\';
 
-  $check = filter_var($_POST[\'check\'], FILTER_SANITIZE_STRING);
+  if (isset($_POST[\'check\'])) {
+    $check = filter_var($_POST[\'check\'], FILTER_SANITIZE_STRING);
+  } else {
+    $check = "";
+  }
 
   $data = array();
 
   // CPU Data
   if ($check == \'load\') {
+    $cores = shell_exec("/usr/bin/nproc --all");
     $prevVal = shell_exec("cat /proc/stat");
     $prevArr = explode(\' \',trim($prevVal));
     $prevTotal = $prevArr[2] + $prevArr[3] + $prevArr[4] + $prevArr[5];
@@ -48,6 +53,7 @@ $data = '<' . '?php
     $data[\'cpu\'][\'loadaverage\'][1] = $tmp[0];
     $data[\'cpu\'][\'loadaverage\'][5] = $tmp[1];
     $data[\'cpu\'][\'loadaverage\'][15] = $tmp[2];
+    $data[\'cpu\'][\'cores\'] = $cores;
   }
 
   //memory stat
