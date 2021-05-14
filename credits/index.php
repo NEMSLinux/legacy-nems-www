@@ -230,6 +230,7 @@ Rob Thomas
 Heiko Gerstung
 Jerold Von Hemel
 Nato Riley
+Joe Luzzi
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
