@@ -231,6 +231,7 @@ Heiko Gerstung
 Jerold Von Hemel
 Nato Riley
 Joe Luzzi
+Xander Brennan
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
