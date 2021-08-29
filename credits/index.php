@@ -232,6 +232,7 @@ Jerold Von Hemel
 Nato Riley
 Joe Luzzi
 Xander Brennan
+Sam Lakhani
 ');
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
