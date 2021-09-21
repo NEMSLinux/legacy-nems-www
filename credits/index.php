@@ -233,7 +233,10 @@ Nato Riley
 Joe Luzzi
 Xander Brennan
 Sam Lakhani
+John Sheftic
 ');
+sort($list);
+	    
 foreach ($list as $name) {
   if (trim(strlen($name)) > 0) {
     echo '<h4>' . trim($name) . '</h4>' . PHP_EOL;
