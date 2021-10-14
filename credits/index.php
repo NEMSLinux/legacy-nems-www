@@ -234,6 +234,7 @@ Joe Luzzi
 Xander Brennan
 Sam Lakhani
 John Sheftic
+James Rawls
 ');
 sort($list);
 	    
