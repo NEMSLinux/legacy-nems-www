@@ -235,6 +235,7 @@ Xander Brennan
 Sam Lakhani
 John Sheftic
 James Rawls
+Bronson Trevor
 ');
 sort($list);
 	    
